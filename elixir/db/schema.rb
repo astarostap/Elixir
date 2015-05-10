@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150505045552) do
+=======
+ActiveRecord::Schema.define(version: 20150505061306) do
+>>>>>>> carousel
 
   create_table "agrees", force: true do |t|
     t.datetime "created_at"
@@ -53,6 +57,7 @@ ActiveRecord::Schema.define(version: 20150505045552) do
     t.string   "option2"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo_link"
   end
 
   create_table "responses", force: true do |t|
