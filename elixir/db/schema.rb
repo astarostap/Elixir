@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150426205814) do
+ActiveRecord::Schema.define(version: 20150505045552) do
 
   create_table "agrees", force: true do |t|
     t.datetime "created_at"
@@ -31,6 +31,10 @@ ActiveRecord::Schema.define(version: 20150426205814) do
     t.string   "knownFor"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "username"
+    t.string   "email"
+    t.string   "encrypted_password"
+    t.string   "salt"
   end
 
   create_table "normal_users", force: true do |t|
@@ -38,6 +42,8 @@ ActiveRecord::Schema.define(version: 20150426205814) do
     t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "encrypted_password"
+    t.string   "email"
   end
 
   create_table "questions", force: true do |t|
