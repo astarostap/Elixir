@@ -40,3 +40,4 @@ gem 'tzinfo-data'
 
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
+gem 'validates_formatting_of'

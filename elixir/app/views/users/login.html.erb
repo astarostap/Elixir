@@ -1,0 +1,14 @@
+<div style = "position:relative;top:50px;">
+<% if flash.notice %>
+  <div><h3><%= flash.notice %></h3></div>
+<%end%> 
+<% @page_title = "UserAuth | Signup" %>
+<div class="Sign_Form" style="position:absolute;">
+  <h1>Login</h1>
+  <%= form_for(:user, :url => {:controller => 'users', :action => 'post_login'}) do |f| %>
+    <p> Username:</br> <%= f.text_field :username%> </p>
+    <p> Password:</br> <%= f.password_field :password%></p>
+    <%= f.submit :Login %>
+  <% end %>
+</div>
+</div>
