@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 			if @new_user.save
 				session[:id] = @new_user.id
 				session[:username] = @new_user.username
-				flash.notice = "Welcome " + @user.username + "!"
+				flash.notice = "Welcome " + @new_user.username + "!"
 				redirect_to :controller => "questions"
 			else
 				flash.notice = "Didn't save the user"
