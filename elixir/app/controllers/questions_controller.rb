@@ -11,4 +11,12 @@ class QuestionsController < ApplicationController
 		@all_questions = Question.all
 		@first, *@rest = @all_questions
 	end
+
+	def query
+		result = ""
+		if params[:query] == nil then
+			render :json => result
+		else
+		end
+	end
 end
