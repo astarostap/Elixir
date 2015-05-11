@@ -1,3 +1,12 @@
+<%= javascript_include_tag "searcher" %>
+<input id="search_box" type="text" style="position:relative;top:100px;"></input>
+<div id="resultBox"></div>
+<script type="text/javascript">
+  //<![CDATA[
+    new Searcher("search_box", "resultBox", "/questions/query"); 
+  //]]>
+</script>
+
 <div id="owl-demo" class="owl-carousel" style="position:relative;top:52px;">
  
 
@@ -10,7 +19,7 @@
       </div>
       <% end %>
 
-</div>
 
 <script src="assets/javascripts/owl-carousel.min.js"></script>
 <script src="assets/javascripts/custom.js"></script>
+
