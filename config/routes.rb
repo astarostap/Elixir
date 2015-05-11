@@ -53,6 +53,7 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  root 'questions#index'
 
   get 'users/login' => 'users#login'
   post 'users/post_login' => 'users#post_login'
