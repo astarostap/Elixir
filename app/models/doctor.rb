@@ -26,7 +26,7 @@ class Doctor < ActiveRecord::Base
 		try_result = salt + password
 		try_digest = Digest::SHA2.hexdigest(try_result)
 
-		if try_digest == self.:encrypted_password
+		if try_digest == self.encrypted_password
 			return true
 		else
 			return false
