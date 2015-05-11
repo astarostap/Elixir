@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 				redirect_to :controller => "questions"
 			else
 				flash.notice = "Didn't save the user"
-				redirect_to :controller => "users", :id => @user_id, :action => "new"
+				redirect_to :controller => "questions"
 			end
 		end
   	end
