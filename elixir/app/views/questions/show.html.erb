@@ -1,0 +1,46 @@
+<%= stylesheet_link_tag "question" %>
+<%= javascript_include_tag "question" %>
+<div id="page_container">
+	<div id="title">
+		<h1><%= @question.title %></h1>
+	</div>
+
+	<div id="question_text_div" class="centered">
+		<p id="question_text"><%= @question.text %></p>
+	</div>
+
+	<table class="centered" id="option_table">
+		<tr>
+			<td>
+				<div id="option1" class="option_div">
+					<p class="option_text"><%= @question.option1 %></p>
+				</div>
+			</td>
+			<td>
+				<div id="vote_div">
+					<h3> Users </h3>
+					<table id="vote_line" class="centered"><tr>
+						<td class="vote_percent">100%</td>
+						<td><div class="centered vote_bar" id="user_votes"></div></td>
+						<td class="vote_percent">100%</td>
+					</tr></table>
+				</div>
+
+				<div id="vote_div">
+					<h3> Doctors </h3>
+					<table id="vote_line" class="centered"><tr>
+						<td class="vote_percent">100%</td>
+						<td><div class="centered vote_bar" id="doc_votes"></div></td>
+						<td class="vote_percent">100%</td>
+					</tr></table>
+				</div>
+			</td>
+			<td>
+				<div id="option2" class="option_div">
+					<p class="option_text"><%= @question.option2 %></p>
+				</div>
+			</td>
+		</tr>
+	</table>
+
+</div>
