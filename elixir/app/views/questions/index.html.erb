@@ -7,8 +7,6 @@
   //]]>
 </script>
 
-<div id="owl-demo" class="owl-carousel" style="position:relative;top:52px;">
- 
 
 <% @all_questions.each_with_index do |q, index| %>
       <div class="item">
@@ -17,9 +15,12 @@
           <h3><%= q.title %></h3>
         </div>
       </div>
-      <% end %>
+<% end %> 
+</div>
 
 
-<script src="assets/javascripts/owl-carousel.min.js"></script>
-<script src="assets/javascripts/custom.js"></script>
+<%= javascript_include_tag "owl.carousel.min" %>
+<%= javascript_include_tag "custom" %>
+
+
 
