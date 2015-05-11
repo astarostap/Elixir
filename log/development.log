@@ -21986,3 +21986,9 @@ Started GET "/assets/owl.carousel.min.js?body=1" for 127.0.0.1 at 2015-05-10 20:
 
 
 Started GET "/assets/custom.js?body=1" for 127.0.0.1 at 2015-05-10 20:09:09 -0700
+
+
+Started GET "/users/login" for 127.0.0.1 at 2015-05-10 20:11:31 -0700
+Processing by UsersController#login as HTML
+  Rendered users/login.html.erb within layouts/application (122.5ms)
+Completed 200 OK in 830ms (Views: 829.1ms | ActiveRecord: 0.0ms)
