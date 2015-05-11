@@ -9,3 +9,6 @@ Rails.application.config.assets.version = '1.0'
 
 Rails.application.config.assets.precompile += %w( question.css )
 Rails.application.config.assets.precompile += %w( question.js )
+Rails.application.config.assets.precompile += %w( owl.carousel.css )
+Rails.application.config.assets.precompile += %w( owl.theme.css )
+Rails.application.config.assets.precompile += %w( owl.transitions.css )
