@@ -44,6 +44,8 @@ gem 'tzinfo-data'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'rake', '~> 10.4.2'
+
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'validates_formatting_of'
