@@ -10,10 +10,10 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>x
+<body>
 <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
-        <div class="navbar-header">
+        <div class="navbar-header" style="width:300px;">
           <%= link_to image_tag("leonTheLemming_burned.png", size: "70x50"), :controller => "questions" %>
 
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
@@ -27,6 +27,14 @@
           <ul class="nav navbar-nav">
           </ul>
 
+          <form class="navbar-form navbar-left" role="search" >
+            <div class="form-group">
+            <input class="form-control" type="text" placeholder="Search" style="width:300px;"></input> 
+          </div>
+          <button class="btn btn-default" type="submit">
+            Submit
+          </button>
+        </form>
           <ul class="nav navbar-nav navbar-right">
             <% if session[:id] %>
                <% namestr = "Hi " + session[:username] + "!"%>
