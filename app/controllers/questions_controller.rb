@@ -10,6 +10,8 @@ class QuestionsController < ApplicationController
 	def index
 		@all_questions = Question.all
 		@first, *@rest = @all_questions
+		lucky_qstn = rand(1...@all_questions.length)
+		@lucky_href = "/questions/" + lucky_qstn.to_s
 	end
 
 	def query
