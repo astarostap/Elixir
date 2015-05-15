@@ -15,10 +15,18 @@ class QuestionsController < ApplicationController
 	end
 
 	def query
-		result = ""
+		@result = []
 		if params[:query] == nil then
-			render :json => result
+			render :list_results
 		else
+			substr = params[:query].downcase
+			q = Question.new
+			findings = q.getQueries(substr)
+			for question in findings do
+				@result << question
+			end
+			render :list_results
 		end
 	end
+
 end

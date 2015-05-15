@@ -1,0 +1,14 @@
+<div style="position:relative;top:100px;">
+	<% for q in @result do%>
+		<div>
+			 <table style="width:100%;1px solid black;">
+  				<tr>
+    				<td><%= image_tag(q.photo_link, size: "50x50") %> </td>
+    				
+    				<td> <%= link_to(q.title, :controller => "questions", :action => "show", :id => q.id) %> </td>
+    			</tr>
+			</table> 
+			
+		</div>
+	<% end %>
+</div>

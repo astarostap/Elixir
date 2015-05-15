@@ -26,15 +26,13 @@
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
           </ul>
+          <%= form_tag("/questions/query", method: "post", role: "search", class: "navbar-form navbar-left") do %>
+              <div class="form-group">
+                <input class="form-control" type="text" placeholder="Search" style="width:300px;" name="query"></input> 
+              </div>
+              <%= submit_tag("Search", class: "btn btn-default") %>
+          <% end %>
 
-          <form class="navbar-form navbar-left" role="search" >
-            <div class="form-group">
-            <input class="form-control" type="text" placeholder="Search" style="width:300px;"></input> 
-          </div>
-          <button class="btn btn-default" type="submit">
-            Submit
-          </button>
-        </form>
           <ul class="nav navbar-nav navbar-right">
             <% if session[:id] %>
                <% namestr = "Hi " + session[:username] + "!"%>

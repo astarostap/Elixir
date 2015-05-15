@@ -59,6 +59,8 @@ Rails.application.routes.draw do
   post 'users/post_login' => 'users#post_login'
   get 'users/logout' => 'users#logout'
 
+  post 'questions/query' => 'questions#query'
+
   resources :questions
   resources :users
 
