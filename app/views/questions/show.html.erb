@@ -1,5 +1,4 @@
 <%= stylesheet_link_tag "question" %>
-<%= javascript_include_tag "question" %>
 <div id="page_container">
 	<div id="title">
 		<h1><%= @question.title %></h1>
@@ -20,18 +19,18 @@
 				<div id="vote_div">
 					<h3> Users </h3>
 					<table id="vote_line" class="centered"><tr>
-						<td class="vote_percent">100%</td>
+						<td>100%</td>
 						<td><div class="centered vote_bar" id="user_votes"></div></td>
-						<td class="vote_percent">100%</td>
+						<td>100%</td>
 					</tr></table>
 				</div>
 
 				<div id="vote_div">
 					<h3> Doctors </h3>
 					<table id="vote_line" class="centered"><tr>
-						<td class="vote_percent">100%</td>
+						<td>100%</td>
 						<td><div class="centered vote_bar" id="doc_votes"></div></td>
-						<td class="vote_percent">100%</td>
+						<td>100%</td>
 					</tr></table>
 				</div>
 			</td>
@@ -43,4 +42,97 @@
 		</tr>
 	</table>
 
+	<table class="centered" id="chart_table">
+		<tr>
+			<th colspan="2"><h2 class="centered">Doctor statistics</h2></th>
+			<th class="stat_gap"></th>
+			<th colspan="2"><h2 class="centered">User statistics</h2></th>
+		</tr>
+
+		<tr> 
+			<td style="height:40px;">
+				<select id="doc_criteria" onchange="display_doc_filters(this.value);">
+					<option value=-1>Select a criteria</option>
+					<option value=1>Option Number</option>
+					<option value=2>Specialty</option>
+					<option value=3>Years in Practice</option>
+					<option value=4>Rating</option>
+				</select>
+			</td>
+
+			<td><h4 class='doc_filter'>Filters</h4></td>
+
+			<td class="stat_gap"></td>
+
+			<td>
+				<select id="user_criteria" onchange="display_user_filters(this.value);">
+					<option value=-1>Select a criteria</option>
+					<option value=1>Option Number</option>
+					<option value=2>Age</option>
+					<option value=3>Gender</option>
+					<option value=4>Location</option>
+				</select>
+			</td>
+
+			<td><h4 class="user_filter">Filters</h4></td>
+		</tr>
+
+		<tr><td><p></p></td></tr>
+
+		<tr>
+			<td>
+				<div id="doc_chart_div" class="centered">
+					<div class="chart_container centered">
+						<div class="graph_container">
+							<canvas class="doughnut_canvas" id="doc_canvas"></canvas>
+						</div>
+						<div id="doc_legend_div"></div>
+					</div>
+				</div>
+			</td>
+
+			<td class="filter_td">
+				<select id='doc_specialty_filter' class='dropdown doc_filter' onchange='update_doc_chart(this.id, this.value);'>
+					<option value=-1>Option Number</option>
+				</select>
+				<select id='doc_specialty_filter' class='dropdown doc_filter' onchange='update_doc_chart(this.id, this.value);'>
+					<option value=-1>Specialty</option>
+				</select>
+				<select id='doc_years_filter' class='dropdown doc_filter' onchange='update_doc_chart(this.id, this.value);'>
+					<option value=-1>Years in Practice</option>
+				</select>
+				<select id='doc_rating_filter' class='dropdown doc_filter' onchange='update_doc_chart(this.id, this.value);'>
+					<option value=-1>Rating</option>
+				</select>
+			</td>
+
+			<td class="stat_gap"></td>
+
+			<td>
+				<div id="user_chart_div" class="centered">
+					<div class="chart_container centered">
+						<div class="graph_container">
+							<canvas class="doughnut_canvas" id="user_canvas"></canvas>
+						</div>
+						<div id="user_legend_div"></div>
+					</div>
+				</div>
+			</td>
+
+			<td class="filter_td">
+				<select id='user_specialty_filter' class='dropdown user_filter' onchange='update_doc_chart(this.id, this.value);'>
+					<option value=-1>Option Number</option>
+				</select>
+				<select id='user_specialty_filter' class='dropdown user_filter' onchange='update_user_chart(this.id, this.value);'>
+					<option value=-1>Age</option>
+				</select>
+				<select id='user_years_filter' class='dropdown user_filter' onchange='update_user_chart(this.id, this.value);'>
+					<option value=-1>Gender</option>
+				</select>
+				<select id='user_rating_filter' class='dropdown user_filter' onchange='update_user_chart(this.id, this.value);'>
+					<option value=-1>Location</option>
+				</select>
+			</td>
+		</tr>
+	</table> 
 </div>
