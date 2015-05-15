@@ -34,6 +34,8 @@ class QuestionsController < ApplicationController
 	end
 
 	def create
+		q = params[:question]
+		@new_question = Question.new
 	end
 
 end
