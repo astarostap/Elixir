@@ -8,9 +8,9 @@
   <%= form_for(:question, :url => {:controller => 'questions', :action => 'create'}) do |f| %>
     <p> Title:</br> <%= f.text_field :title%> </p>
     <p> First Option:</br> <%= f.text_field :option1%> </p>
-    <p> Second Option:</br> <%= f.password_field :option2%></p>
-    <p> Text:</br> <%= f.password_field :text%></p>
-    <p> Picture Link:</br> <%= f.password_field :photo_link%> </p>
+    <p> Second Option:</br> <%= f.text_field :option2%></p>
+    <p> Text:</br> <%= f.text_field :text%></p>
+    <p> Picture Link:</br> <%= f.text_field :photo_link%> </p>
     <%= f.submit :Publish %>
   <% end %>
 </div>

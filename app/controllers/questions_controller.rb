@@ -36,6 +36,14 @@ class QuestionsController < ApplicationController
 	def create
 		q = params[:question]
 		@new_question = Question.new
+		@new_question.title = q[:title]
+		@new_question.text = q[:text]
+		@new_question.option1 = q[:option1]
+		@new_question.option2 = q[:option2]
+		@new_question.photo_link = q[:photo_link]
+
+		@new_question.save
+		redirect_to :controller => "questions", :id => @new_question.id, :action => "show"
 	end
 
 end
