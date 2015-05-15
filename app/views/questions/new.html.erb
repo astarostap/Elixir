@@ -1,0 +1,16 @@
+<div style = "position:relative;top:50px;">
+<% if flash.notice %>
+  <div><h3><%= flash.notice %></h3></div>
+<%end%> 
+<% @page_title = "UserAuth | Signup" %>
+<div class="Sign_Form" style="position:absolute;">
+  <h1>New Question</h1>
+  <%= form_for(:question, :url => {:controller => 'questions', :action => 'create'}) do |f| %>
+    <p> Title:</br> <%= f.text_field :title%> </p>
+    <p> First Option:</br> <%= f.text_field :option1%> </p>
+    <p> Second Option:</br> <%= f.password_field :option2%></p>
+    <p> Picture Link:</br> <%= f.password_field :photo_link%> </p>
+    <%= f.submit :Publish %>
+  <% end %>
+</div>
+</div>

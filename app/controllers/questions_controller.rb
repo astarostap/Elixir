@@ -29,4 +29,11 @@ class QuestionsController < ApplicationController
 		end
 	end
 
+	def new
+		@question = Question.new
+	end
+
+	def create
+	end
+
 end
