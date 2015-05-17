@@ -1,14 +1,15 @@
 <a class="btn btn-primary" href= <%= @lucky_href %> style="position:relative;top:100px;left:410px;width:300px;">Feeling Lucky </a>
 
-
 <div class="container-fluid" syle="horizontal-align: middle">
+
+<div id="outer-div">
 <div id="owl-demo" class="owl-carousel owl-theme" style="position:relative;top:200px;">
 
 <% count = 0 %>
 <% @all_questions.each_with_index do |q, index| %>
       <% break if count == 3 %>
       <div class="item">
-        <%= link_to(image_tag(q.photo_link, :style => "width:100%; height:500px;"), :controller => "questions", :action => "show", :id => q.id) %>
+        <%= link_to(image_tag(q.photo_link, :style => "position:relative;width:640px;height:480px;"), :controller => "questions", :action => "show", :id => q.id) %>
         <div class="carousel-caption">
           <h3><%= q.title %></h3>
         </div>
@@ -17,7 +18,7 @@
 <% end %> 
 </div>
 </div>
-
+</div>
 
 <%= javascript_include_tag "owl.carousel.min" %>
 <%= javascript_include_tag "custom" %>

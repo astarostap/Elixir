@@ -1931,3 +1931,17 @@ Started GET "/users/new" for 127.0.0.1 at 2015-05-17 14:25:44 -0700
 Processing by UsersController#new as HTML
   Rendered users/new.html.erb within layouts/application (1.1ms)
 Completed 200 OK in 199ms (Views: 193.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-05-17 14:33:22 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by QuestionsController#index as HTML
+  [1m[35mQuestion Load (0.2ms)[0m  SELECT "questions".* FROM "questions"
+  Rendered questions/index.html.erb within layouts/application (16.3ms)
+Completed 200 OK in 409ms (Views: 388.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/custom.js?body=1" for 127.0.0.1 at 2015-05-17 14:33:23 -0700
+
+
+Started GET "/assets/owl.carousel.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:33:23 -0700
