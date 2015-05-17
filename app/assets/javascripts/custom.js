@@ -7,7 +7,8 @@ $(document).ready(function() {
       slideSpeed : 300,
       paginationSpeed : 400,
       singleItem:true,
-      autoPlay:5000
+      autoPlay:5000,
+      stopOnHover: true
  
       // "singleItem:true" is a shortcut for:
       // items : 1, 
