@@ -1,16 +1,30 @@
-<div style = "position:relative;top:50px;">
 <% if flash.notice %>
-  <div><h3><%= flash.notice %></h3></div>
+	<div><h3><%= flash.notice %></h3></div>
 <%end%> 
-<% @page_title = "UserAuth | Signup" %>
-<div class="Sign_Form" style="position:absolute;">
-  <h1>Sign Up</h1>
-  <%= form_for(:user, :url => {:controller => 'users', :action => 'create'}) do |f| %>
-    <p> Username:</br> <%= f.text_field :username%> </p>
-    <p> Email:</br> <%= f.text_field :email%> </p>
-    <p> Password:</br> <%= f.password_field :password%></p>
-    <p> Password Confirmation:</br> <%= f.password_field :password_confirmation%> </p>
-    <%= f.submit :Signup %>
-  <% end %>
+
+<div style = "position:relative;top:50px;">
+<div class="container-fluid" syle="horizontal-align: middle">
+	<h1>Sign Up</h1>
+
+	<form role="form" action"users/create" method="post">
+	  <div class="form-group">
+	    <label for="username">Username:</label>
+	    <input type="text" class="form-control" id="username">
+	  </div>
+	  <div class="form-group">
+	    <label for="email">Email:</label>
+	    <input type="email" class="form-control" id="email">
+	  </div>
+	  <div class="form-group">
+	    <label for="password">Password:</label>
+	    <input type="password" class="form-control" id="password">
+	  </div>
+	  <div class="form-group">
+	    <label for="password_confirmation">Password Confirmation:</label>
+	    <input type="password" class="form-control" id="password_confirmation">
+	  </div>
+	  <button type="submit" class="btn btn-default">Submit</button>
+	</form>
 </div>
 </div>
+
