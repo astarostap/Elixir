@@ -1098,3 +1098,1460 @@ Started GET "/assets/custom.js?body=1" for 127.0.0.1 at 2015-05-17 14:01:28 -070
 
 
 Started GET "/assets/owl.carousel.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:01:28 -0700
+
+
+Started GET "/questions" for 127.0.0.1 at 2015-05-17 14:25:47 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by QuestionsController#index as HTML
+  [1m[35mQuestion Load (0.2ms)[0m  SELECT "questions".* FROM "questions"
+  Rendered questions/index.html.erb within layouts/application (51.8ms)
+Completed 200 OK in 6823ms (Views: 6778.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/owl.carousel.css?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/owl.theme.css?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/owl.transitions.css?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/chart.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/custom.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/jquery-2.1.3.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/owl.carousel.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/question.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/questions.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/searcher.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+
+
+Started GET "/assets/leonTheLemming_burned.png" for 127.0.0.1 at 2015-05-17 14:25:55 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "questions" ("created_at", "option1", "option2", "photo_link", "text", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2015-05-17 21:26:30.085579"], ["option1", "Gatorade"], ["option2", "Water"], ["photo_link", "http://0701.static.prezi.com/preview/x6rejb4yxle3cjkeankcqm3saeadw6rhlm5vs2oll757hbaoaxlq_0_0.png"], ["text", "What to do if I do an hour full body workout should what to do if i drink water or gatorade while i work out?"], ["title", "Is gatorade better for you than water when exercising?"], ["updated_at", "2015-05-17 21:26:30.085579"]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "questions" ("created_at", "option1", "option2", "photo_link", "text", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2015-05-17 21:26:30.103824"], ["option1", "No such thing"], ["option2", "There are superfoods"], ["photo_link", "http://www.itslavida.com/files/2015/01/superfoods-1000x500.jpg"], ["text", "What should I buy at the grocery store to stay healthy? Which foods are superfoods?"], ["title", "Are superfoods a real thing?"], ["updated_at", "2015-05-17 21:26:30.103824"]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "questions" ("created_at", "option1", "option2", "photo_link", "text", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2015-05-17 21:26:30.107727"], ["option1", "Supplements are necessary to build muscle mass."], ["option2", "Muscle mass can be built through exercise."], ["photo_link", "http://www.trak-life.com/wp-content/uploads/2013/07/Supplements-01.jpg"], ["text", "Are supplements necessary to build muscle mass?"], ["title", "Are supplements necessary to build muscle mass?"], ["updated_at", "2015-05-17 21:26:30.107727"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "questions" ("created_at", "option1", "option2", "photo_link", "text", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2015-05-17 21:26:30.111232"], ["option1", "Lactic acid causes delayed onset muscle soreness"], ["option2", "Delayed onset muscle soreness is a natural outcome of physical activity."], ["photo_link", "http://www.bicyclestore.com.au/media/wysiwyg/LacticA.jpg"], ["text", "I’ve heard lactic acid is caused by soreness. Is this true?"], ["title", "Does lactic acid cause muscle soreness?"], ["updated_at", "2015-05-17 21:26:30.111232"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "questions" ("created_at", "option1", "option2", "photo_link", "text", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2015-05-17 21:26:30.114423"], ["option1", "BMI should be used to evaluate good health."], ["option2", "Waist circumference should be added to BMI to evaluate good health."], ["photo_link", "http://www.apotheke-innsbruck.at/page/media/bmi.jpg"], ["text", "I received a good BMI rating last time at the doctors? Am I healthy?"], ["title", "Am I in good health if I have a good BMI reading?"], ["updated_at", "2015-05-17 21:26:30.114423"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "questions" ("created_at", "option1", "option2", "photo_link", "text", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2015-05-17 21:26:30.117175"], ["option1", "Eggs cause heart disease."], ["option2", "Effect of egg consumption on blood cholesterol is minimal."], ["photo_link", "https://moviewriternyu.files.wordpress.com/2013/10/eggs.jpg"], ["text", "Can I now eat eggs as a part of a healthy diet? "], ["title", "Should eggs be a part of a healthy diet?"], ["updated_at", "2015-05-17 21:26:30.117175"]]
+  [1m[36m (1.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "questions" ("created_at", "option1", "option2", "photo_link", "text", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2015-05-17 21:26:30.120174"], ["option1", "Vitamin E protects against disease."], ["option2", "Supplementing with Vitamin E may slightly lower lifespan."], ["photo_link", "http://www.empoweringeverydaywomen.com/images/easter-eggs1000.jpg"], ["text", "Does supplemental vitamin E protect against disease?"], ["title", "Should I be supplementing my diet with vitamin E?"], ["updated_at", "2015-05-17 21:26:30.120174"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "questions" ("created_at", "option1", "option2", "photo_link", "text", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2015-05-17 21:26:30.122983"], ["option1", "Herbal supplements are natural and good for you."], ["option2", "Some herbal supplements cause liver toxicity."], ["photo_link", "http://hairsupplements.org/wp-content/uploads/2014/03/HairSupplements1.jpg"], ["text", "Can herbal supplements be taken like medicine?"], ["title", "Does the idea that herbal supplements are natural mean they are safe?"], ["updated_at", "2015-05-17 21:26:30.122983"]]
+  [1m[36m (2.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "questions" ("created_at", "option1", "option2", "photo_link", "text", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2015-05-17 21:26:30.126223"], ["option1", "Antibiotics are for colds."], ["option2", "Antibiotics should be used in the treatment of bacterial infections."], ["photo_link", "http://www.pbiforum.net/images/cache/1000x500/crop/images%7Ccms-image-000000894.jpg"], ["text", "Why won’t my doctor give me an antibiotic for my cold?"], ["title", "Will an antibiotic cure a cold?"], ["updated_at", "2015-05-17 21:26:30.126223"]]
+  [1m[35m (1.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "questions" ("created_at", "option1", "option2", "photo_link", "text", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", "2015-05-17 21:26:30.128925"], ["option1", "Ulcers are caused by stress, food, and spices."], ["option2", "Ulcers are caused by the bacteria Helicobacter pylori."], ["photo_link", "http://indianparentsforum.com/home/wp-content/uploads/2015/03/how-to-deal-with-stress.jpg"], ["text", "Is it true that certain foods cause ulcers?"], ["title", "Are ulcers caused by stress?"], ["updated_at", "2015-05-17 21:26:30.128925"]]
+  [1m[36m (2.3ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/questions" for 127.0.0.1 at 2015-05-17 14:26:38 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by QuestionsController#index as HTML
+  [1m[35mQuestion Load (0.3ms)[0m  SELECT "questions".* FROM "questions"
+  Rendered questions/index.html.erb within layouts/application (18.9ms)
+Completed 200 OK in 484ms (Views: 459.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/owl.carousel.css?body=1" for 127.0.0.1 at 2015-05-17 14:26:38 -0700
+
+
+Started GET "/assets/owl.transitions.css?body=1" for 127.0.0.1 at 2015-05-17 14:26:38 -0700
+
+
+Started GET "/assets/owl.theme.css?body=1" for 127.0.0.1 at 2015-05-17 14:26:38 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:38 -0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-05-17 14:26:38 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:38 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:38 -0700
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:38 -0700
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:38 -0700
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:39 -0700
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:39 -0700
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:39 -0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:39 -0700
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:39 -0700
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:39 -0700
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:39 -0700
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:39 -0700
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:39 -0700
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:39 -0700
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:39 -0700
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:39 -0700
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:39 -0700
+
+
+Started GET "/assets/chart.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:39 -0700
+
+
+Started GET "/assets/custom.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:39 -0700
+
+
+Started GET "/assets/jquery-2.1.3.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:39 -0700
+
+
+Started GET "/assets/owl.carousel.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:39 -0700
+
+
+Started GET "/assets/question.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:39 -0700
+
+
+Started GET "/assets/questions.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:39 -0700
+
+
+Started GET "/assets/searcher.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:39 -0700
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:39 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:39 -0700
+
+
+Started GET "/assets/leonTheLemming_burned.png" for 127.0.0.1 at 2015-05-17 14:26:39 -0700
+
+
+Started GET "/questions" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+Processing by QuestionsController#index as HTML
+  [1m[36mQuestion Load (0.2ms)[0m  [1mSELECT "questions".* FROM "questions"[0m
+  Rendered questions/index.html.erb within layouts/application (12.7ms)
+Completed 200 OK in 240ms (Views: 238.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/owl.carousel.css?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/owl.transitions.css?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/owl.theme.css?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/jquery-2.1.3.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/custom.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/chart.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/owl.carousel.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/question.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/questions.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/searcher.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/assets/leonTheLemming_burned.png" for 127.0.0.1 at 2015-05-17 14:26:40 -0700
+
+
+Started GET "/questions" for 127.0.0.1 at 2015-05-17 14:26:46 -0700
+Processing by QuestionsController#index as HTML
+  [1m[35mQuestion Load (0.2ms)[0m  SELECT "questions".* FROM "questions"
+  Rendered questions/index.html.erb within layouts/application (13.0ms)
+Completed 200 OK in 284ms (Views: 281.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/owl.carousel.css?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/owl.theme.css?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/owl.transitions.css?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/custom.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/jquery-2.1.3.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/owl.carousel.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/chart.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/question.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/questions.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/searcher.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started GET "/assets/leonTheLemming_burned.png" for 127.0.0.1 at 2015-05-17 14:26:47 -0700
+
+
+Started POST "/questions/query" for 127.0.0.1 at 2015-05-17 14:26:49 -0700
+Processing by QuestionsController#query as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4Mc/kBuLrzQtHVnF68I1ujvCWLhG9LddkxgorCwow8o=", "query"=>"w", "commit"=>"Search"}
+  [1m[36mQuestion Load (0.2ms)[0m  [1mSELECT "questions".* FROM "questions"[0m
+  Rendered questions/list_results.erb within layouts/application (3.3ms)
+Completed 200 OK in 322ms (Views: 282.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/owl.carousel.css?body=1" for 127.0.0.1 at 2015-05-17 14:26:49 -0700
+
+
+Started GET "/assets/owl.theme.css?body=1" for 127.0.0.1 at 2015-05-17 14:26:49 -0700
+
+
+Started GET "/assets/owl.transitions.css?body=1" for 127.0.0.1 at 2015-05-17 14:26:49 -0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-05-17 14:26:49 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/chart.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/custom.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/jquery-2.1.3.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/owl.carousel.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/question.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/questions.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/searcher.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/assets/leonTheLemming_burned.png" for 127.0.0.1 at 2015-05-17 14:26:50 -0700
+
+
+Started GET "/questions/2" for 127.0.0.1 at 2015-05-17 14:26:51 -0700
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"2"}
+  Rendered questions/show.html.erb within layouts/application (984.4ms)
+Completed 200 OK in 1241ms (Views: 1239.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/owl.carousel.css?body=1" for 127.0.0.1 at 2015-05-17 14:26:52 -0700
+
+
+Started GET "/assets/owl.theme.css?body=1" for 127.0.0.1 at 2015-05-17 14:26:52 -0700
+
+
+Started GET "/assets/owl.transitions.css?body=1" for 127.0.0.1 at 2015-05-17 14:26:52 -0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-05-17 14:26:52 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:52 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:52 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:52 -0700
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:52 -0700
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:52 -0700
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:52 -0700
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:52 -0700
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:52 -0700
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:52 -0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:52 -0700
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:52 -0700
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:52 -0700
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:52 -0700
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:52 -0700
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:52 -0700
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:52 -0700
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:52 -0700
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:52 -0700
+
+
+Started GET "/assets/chart.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:52 -0700
+
+
+Started GET "/assets/jquery-2.1.3.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:52 -0700
+
+
+Started GET "/assets/custom.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:53 -0700
+
+
+Started GET "/assets/owl.carousel.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:53 -0700
+
+
+Started GET "/assets/questions.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:53 -0700
+
+
+Started GET "/assets/searcher.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:53 -0700
+
+
+Started GET "/assets/question.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:53 -0700
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:53 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:53 -0700
+
+
+Started GET "/assets/leonTheLemming_burned.png" for 127.0.0.1 at 2015-05-17 14:26:53 -0700
+
+
+Started GET "/" for 127.0.0.1 at 2015-05-17 14:26:55 -0700
+Processing by QuestionsController#index as HTML
+  [1m[35mQuestion Load (0.3ms)[0m  SELECT "questions".* FROM "questions"
+  Rendered questions/index.html.erb within layouts/application (44.0ms)
+Completed 200 OK in 280ms (Views: 278.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/owl.carousel.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:55 -0700
+
+
+Started GET "/assets/custom.js?body=1" for 127.0.0.1 at 2015-05-17 14:26:55 -0700
+
+
+Started GET "/" for 127.0.0.1 at 2015-05-17 14:45:30 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by QuestionsController#index as HTML
+  [1m[35mQuestion Load (3.8ms)[0m  SELECT "questions".* FROM "questions"
+  Rendered questions/index.html.erb within layouts/application (721.6ms)
+Completed 200 OK in 2061ms (Views: 1999.3ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/assets/owl.carousel.css?body=1" for 127.0.0.1 at 2015-05-17 14:45:32 -0700
+
+
+Started GET "/assets/owl.transitions.css?body=1" for 127.0.0.1 at 2015-05-17 14:45:32 -0700
+
+
+Started GET "/assets/owl.theme.css?body=1" for 127.0.0.1 at 2015-05-17 14:45:32 -0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-05-17 14:45:32 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:32 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:32 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:32 -0700
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:32 -0700
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:32 -0700
+
+
+Started GET "/assets/app.css?body=1" for 127.0.0.1 at 2015-05-17 14:45:32 -0700
+
+
+Started GET "/assets/homepage.css?body=1" for 127.0.0.1 at 2015-05-17 14:45:32 -0700
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:32 -0700
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:32 -0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:32 -0700
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:32 -0700
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:33 -0700
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:33 -0700
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:33 -0700
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:33 -0700
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:33 -0700
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:33 -0700
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:33 -0700
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:33 -0700
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:33 -0700
+
+
+Started GET "/assets/chart.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:33 -0700
+
+
+Started GET "/assets/custom.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:33 -0700
+
+
+Started GET "/assets/jquery-2.1.3.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:33 -0700
+
+
+Started GET "/assets/owl.carousel.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:33 -0700
+
+
+Started GET "/assets/question.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:33 -0700
+
+
+Started GET "/assets/questions.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:33 -0700
+
+
+Started GET "/assets/searcher.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:33 -0700
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:33 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:33 -0700
+
+
+Started GET "/assets/leonTheLemming_burned.png" for 127.0.0.1 at 2015-05-17 14:45:33 -0700
+
+
+Started GET "/" for 127.0.0.1 at 2015-05-17 14:45:53 -0700
+Processing by QuestionsController#index as HTML
+  [1m[36mQuestion Load (0.3ms)[0m  [1mSELECT "questions".* FROM "questions"[0m
+  Rendered questions/index.html.erb within layouts/application (275.6ms)
+Completed 200 OK in 519ms (Views: 517.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/owl.carousel.css?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/owl.theme.css?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/owl.transitions.css?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/app.css?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/homepage.css?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/custom.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/chart.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/jquery-2.1.3.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/owl.carousel.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/question.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/questions.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/searcher.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+
+
+Started GET "/assets/leonTheLemming_burned.png" for 127.0.0.1 at 2015-05-17 14:45:54 -0700
+  [1m[36mQuestion Load (27.9ms)[0m  [1mSELECT "questions".* FROM "questions"[0m
+
+
+Started GET "/" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+Processing by QuestionsController#index as HTML
+  [1m[35mQuestion Load (0.2ms)[0m  SELECT "questions".* FROM "questions"
+  Rendered questions/index.html.erb within layouts/application (18.0ms)
+Completed 200 OK in 294ms (Views: 293.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/owl.carousel.css?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/owl.theme.css?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/owl.transitions.css?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/chart.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/custom.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/jquery-2.1.3.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/owl.carousel.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/question.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/questions.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/app.css?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/homepage.css?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/searcher.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/assets/leonTheLemming_burned.png" for 127.0.0.1 at 2015-05-17 14:46:46 -0700
+
+
+Started GET "/" for 127.0.0.1 at 2015-05-17 14:46:54 -0700
+Processing by QuestionsController#index as HTML
+  [1m[36mQuestion Load (0.4ms)[0m  [1mSELECT "questions".* FROM "questions"[0m
+  Rendered questions/index.html.erb within layouts/application (17.1ms)
+Completed 200 OK in 253ms (Views: 251.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-05-17 14:48:42 -0700
+Processing by QuestionsController#index as HTML
+  [1m[35mQuestion Load (0.2ms)[0m  SELECT "questions".* FROM "questions"
+  Rendered questions/index.html.erb within layouts/application (16.7ms)
+Completed 200 OK in 284ms (Views: 282.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/owl.carousel.css?body=1" for 127.0.0.1 at 2015-05-17 14:48:42 -0700
+
+
+Started GET "/assets/owl.theme.css?body=1" for 127.0.0.1 at 2015-05-17 14:48:42 -0700
+
+
+Started GET "/assets/owl.transitions.css?body=1" for 127.0.0.1 at 2015-05-17 14:48:42 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:42 -0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-05-17 14:48:42 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:42 -0700
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:42 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:42 -0700
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:42 -0700
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:42 -0700
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:42 -0700
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:42 -0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:42 -0700
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:42 -0700
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:43 -0700
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:43 -0700
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:43 -0700
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:43 -0700
+
+
+Started GET "/assets/app.css?body=1" for 127.0.0.1 at 2015-05-17 14:48:43 -0700
+
+
+Started GET "/assets/homepage.css?body=1" for 127.0.0.1 at 2015-05-17 14:48:43 -0700
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:43 -0700
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:43 -0700
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:43 -0700
+
+
+Started GET "/assets/chart.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:43 -0700
+
+
+Started GET "/assets/custom.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:43 -0700
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:43 -0700
+
+
+Started GET "/assets/jquery-2.1.3.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:43 -0700
+
+
+Started GET "/assets/owl.carousel.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:43 -0700
+
+
+Started GET "/assets/question.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:43 -0700
+
+
+Started GET "/assets/questions.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:43 -0700
+
+
+Started GET "/assets/searcher.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:43 -0700
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:43 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-05-17 14:48:43 -0700
+
+
+Started GET "/assets/leonTheLemming_burned.png" for 127.0.0.1 at 2015-05-17 14:48:43 -0700
+
+
+Started POST "/questions/query" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+Processing by QuestionsController#query as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4Mc/kBuLrzQtHVnF68I1ujvCWLhG9LddkxgorCwow8o=", "query"=>"q", "commit"=>"Search"}
+  [1m[36mQuestion Load (0.3ms)[0m  [1mSELECT "questions".* FROM "questions"[0m
+  Rendered questions/list_results.erb within layouts/application (0.5ms)
+Completed 200 OK in 259ms (Views: 253.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/owl.carousel.css?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/owl.theme.css?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/owl.transitions.css?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/chart.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/jquery-2.1.3.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/owl.carousel.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/custom.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/question.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/questions.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/app.css?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/homepage.css?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/searcher.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started GET "/assets/leonTheLemming_burned.png" for 127.0.0.1 at 2015-05-17 14:49:19 -0700
+
+
+Started POST "/questions/query" for 127.0.0.1 at 2015-05-17 14:49:24 -0700
+Processing by QuestionsController#query as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4Mc/kBuLrzQtHVnF68I1ujvCWLhG9LddkxgorCwow8o=", "query"=>"w", "commit"=>"Search"}
+  [1m[35mQuestion Load (0.3ms)[0m  SELECT "questions".* FROM "questions"
+  Rendered questions/list_results.erb within layouts/application (2.7ms)
+Completed 200 OK in 272ms (Views: 269.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/owl.carousel.css?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/owl.theme.css?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/owl.transitions.css?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/chart.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/custom.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/app.css?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/homepage.css?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/jquery-2.1.3.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/owl.carousel.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/question.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/questions.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/searcher.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/assets/leonTheLemming_burned.png" for 127.0.0.1 at 2015-05-17 14:49:25 -0700
+
+
+Started GET "/questions/1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+Processing by QuestionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendered questions/show.html.erb within layouts/application (22.3ms)
+Completed 200 OK in 264ms (Views: 263.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/owl.carousel.css?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/owl.theme.css?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/owl.transitions.css?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/app.css?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/homepage.css?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/bootstrap.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/chart.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/custom.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/jquery-2.1.3.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/owl.carousel.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/question.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/questions.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/searcher.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/assets/leonTheLemming_burned.png" for 127.0.0.1 at 2015-05-17 14:49:26 -0700
+
+
+Started GET "/" for 127.0.0.1 at 2015-05-17 14:49:30 -0700
+Processing by QuestionsController#index as HTML
+  [1m[36mQuestion Load (0.3ms)[0m  [1mSELECT "questions".* FROM "questions"[0m
+  Rendered questions/index.html.erb within layouts/application (25.3ms)
+Completed 200 OK in 331ms (Views: 328.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/homepage.css?body=1" for 127.0.0.1 at 2015-05-17 14:49:30 -0700
+
+
+Started GET "/assets/owl.carousel.min.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:30 -0700
+
+
+Started GET "/assets/custom.js?body=1" for 127.0.0.1 at 2015-05-17 14:49:30 -0700
