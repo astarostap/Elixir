@@ -38,13 +38,15 @@
           <% end %> 
           <% randQnum = feeling_lucky %>
              <%= form_tag("/questions/#{randQnum}", method: "get", class: "navbar-form navbar-left") do%>
-                  <%= submit_tag("Feeling Lucky", class: "btn btn-default") %> 
+                  <%= submit_tag("I'm Feeling Lucky", class: "btn btn-default") %> 
              <% end %> 
 
           <ul class="nav navbar-nav navbar-right">
 
              
-            
+            <li >
+                <%=link_to "Ask?", controller: "questions", action: "new"%>
+            </li>
             <% if session[:id] %>
                <% namestr = "Hi " + session[:username] + "!"%>
               <li><%=link_to namestr %> </li>
