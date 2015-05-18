@@ -62,3 +62,17 @@ function display_filter(class_name, val) {
         }
     }
 }
+
+function show_add_div(index) {
+    $("#add_comment_div_" + index).slideDown("slow", null);
+    window.scrollBy(0, 120); //make it based on bottom of div on page
+}
+
+function hide_add_div(index) {
+    $("#add_comment_div_" + index).slideUp("slow", null);
+    $("#add_ta" +index).value = "";
+}
+
+function count_vote() {
+    console.log("hi");
+}
