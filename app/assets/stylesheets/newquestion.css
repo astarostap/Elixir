@@ -1,0 +1,19 @@
+input#question_title {
+	width: 550px;
+}
+
+input#question_option1 {
+	width: 550px;
+}
+
+input#question_option2 {
+	width: 550px;
+}
+
+textarea#question_text {
+	width: 550px;
+}
+
+input#question_photo_link {
+	width: 550px;
+}
