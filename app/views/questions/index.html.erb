@@ -1,23 +1,32 @@
-<a class="btn btn-primary" href= <%= @lucky_href %> style="position:relative;top:100px;left:410px;width:300px;">Feeling Lucky </a>
+<%= stylesheet_link_tag "homepage" %>
+  <div id="title" style="position:relative;top:50px;">
+      <div class="container">
+        <div class="row">
+          <div class="span12" style="ho">
+            <h1 style="text-align: center;">Welcome to Elixir!</h1>
+            <h2 style="text-align: center;">Trusted Opinions, Informed Decisions, Healthier Lives</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="container-fluid" style="horizontal-align: middle;position:relative;top:100px;">
 
 
-<div class="container-fluid" syle="horizontal-align: middle">
-<div id="owl-demo" class="owl-carousel owl-theme" style="position:relative;top:200px;">
+<div id="outer-div"> 
+<div id="owl-demo" class="owl-carousel owl-theme">
 
 <% count = 0 %>
 <% @all_questions.each_with_index do |q, index| %>
       <% break if count == 3 %>
-      <div class="item">
-        <%= link_to(image_tag(q.photo_link, :style => "width:100%; height:500px;"), :controller => "questions", :action => "show", :id => q.id) %>
-        <div class="carousel-caption">
-          <h3><%= q.title %></h3>
-        </div>
+      <div style="display: block;width: 100%;height: 500px;">
+        <%= link_to(image_tag(q.photo_link, :style => "position:relative;width:100%;height:500px;"), :controller => "questions", :action => "show", :id => q.id) %>
       </div>
       <% count += 1 %>
 <% end %> 
 </div>
 </div>
-
+</div>
 
 <%= javascript_include_tag "owl.carousel.min" %>
 <%= javascript_include_tag "custom" %>

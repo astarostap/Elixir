@@ -1,29 +1,46 @@
+<div style = "position:relative;top:70px;">
 <% if flash.notice %>
-	<div><h3><%= flash.notice %></h3></div>
+  <div><h3><%= flash.notice %></h3></div>
 <%end%> 
 
-<div style = "position:relative;top:50px;">
-<div class="container-fluid" syle="horizontal-align: middle">
-	<h1>Sign Up</h1>
-	<%= form_tag({controller: "users", action: "create"}, method: "post", html: {role: "form"}) do%>
-	  <div class="form-group">
-	    <label for="username">Username:</label>
-	    <input type="text" class="form-control" id="user_username" name="user[username]">
-	  </div>
-	  <div class="form-group">
-	    <label for="email">Email:</label>
-	    <input type="email" class="form-control" id="user_email" name="user[email]">
-	  </div>
-	  <div class="form-group">
-	    <label for="password">Password:</label>
-	    <input type="password" class="form-control" id="user_password" name="user[password]">
-	  </div>
-	  <div class="form-group">
-	    <label for="password_confirmation">Password Confirmation:</label>
-	    <input type="password" class="form-control" id="user_password_confirmation" name="user[password_confirmation]">
-	  </div>
-	  <button type="submit" class="btn btn-default">Submit</button>
-	<% end %>
-</div>
-</div>
+<div id="outer" style="width:100%">  
 
+<div style="width: 30%; margin: 0 auto" class="" id="loginModal">
+	<div class="modal-body">
+		<div class="well">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#create" data-toggle="tab">Create Account</a></li>
+			</ul>
+			<div id="myTabContent" class="tab-content">
+				<div class="tab-pane active in" id="create">
+					<%= form_tag({controller: "users", action: "create"}, method: "post", html: {role: "form"}) do%>
+					<div class="control-group">
+               			<label class="control-label"  for="text">Username</label>
+                		<div class="controls">
+                  		<input type="text" class="form-control" id="user_username" name="user[username]">
+                	</div>
+                	<div class="control-group">
+               			<label class="control-label"  for="text">Email</label>
+                		<div class="controls">
+                  		<input type="text" class="form-control" id="user_email" name="user[email]">
+                	</div>
+                	<div class="control-group">
+               			<label class="control-label"  for="text">Password</label>
+                		<div class="controls">
+                  		<input type="text" class="form-control" id="user_password" name="user[password]">
+                	</div>
+                	<div class="control-group">
+               			<label class="control-label"  for="text">Password Confirmation</label>
+                		<div class="controls">
+                  		<input type="text" class="form-control" id="user_password_confirmation" name="user[password_confirmation]">
+                	</div>
+                	</br>
+						<div>
+							<button class="btn btn-primary">Create Account</button>
+						</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

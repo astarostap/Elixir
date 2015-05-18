@@ -1,17 +1,57 @@
-<div style = "position:relative;top:50px;">
+<%= stylesheet_link_tag "newquestion" %>
+
+<div style = "position:relative;top:70px;">
 <% if flash.notice %>
   <div><h3><%= flash.notice %></h3></div>
 <%end%> 
 <% @page_title = "UserAuth | Signup" %>
-<div class="Sign_Form" style="position:absolute;">
-  <h1>New Question</h1>
-  <%= form_for(:question, :url => {:controller => 'questions', :action => 'create'}) do |f| %>
-    <p> Title:</br> <%= f.text_field :title%> </p>
-    <p> First Option:</br> <%= f.text_field :option1%> </p>
-    <p> Second Option:</br> <%= f.text_field :option2%></p>
-    <p> Text:</br> <%= f.text_field :text%></p>
-    <p> Picture Link:</br> <%= f.text_field :photo_link%> </p>
-    <%= f.submit :Publish %>
-  <% end %>
-</div>
+
+<div id="outer" style="width:100%">  
+
+<div style="width: 50%; margin: 0 auto;position:relative" class="" id="loginModal">
+  <div class="modal-body" style="max-height:500px">
+    <div class="well">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#create" data-toggle="tab">New Question</a></li>
+      </ul>
+      <div id="myTabContent" class="tab-content">
+        <div class="tab-pane active in" id="create">
+          <%= form_for(:question, :url => {:controller => 'questions', :action => 'create'}) do |f| %>
+            <div class="control-group">
+                <label class="control-label"  for="title">Title</label>
+                <div class="controls">
+                  <input type="text" class="form-control" id="question_title" name="question[title]">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label"  for="option1">First Option</label>
+                <div class="controls">
+                  <input type="text" class="form-control" id="question_option1" name="question[option1]">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label"  for="option2">Second Option</label>
+                <div class="controls">
+                  <input type="text" class="form-control" id="question_option2" name="question[option2]">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label"  for="text">Text</label>
+                <div class="controls">
+                  <textarea class="form-control" id="question_text" name="question[text]"></textarea>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label"  for="text">Picture Link</label>
+                <div class="controls">
+                  <input type="text_area" class="form-control" id="question_photo_link" name="question[photo_link]">
+                </div>
+              </div>
+            </br>
+            <button class="btn btn-primary">Publish</button>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

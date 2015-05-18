@@ -11,17 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150505061306) do
+ActiveRecord::Schema.define(version: 20150518033040) do
 
   create_table "agrees", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "response_id"
+    t.integer  "doctor_id"
   end
 
   create_table "doctor_votes", force: true do |t|
     t.integer  "optionNum"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "question_id"
   end
 
   create_table "doctors", force: true do |t|
@@ -46,6 +49,14 @@ ActiveRecord::Schema.define(version: 20150505061306) do
     t.string   "email"
   end
 
+  create_table "papers", force: true do |t|
+    t.integer  "optionNum"
+    t.string   "url"
+    t.integer  "doctor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "questions", force: true do |t|
     t.string   "title"
     t.string   "text"
@@ -54,6 +65,7 @@ ActiveRecord::Schema.define(version: 20150505061306) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_link"
+    t.integer  "normal_user_id"
   end
 
   create_table "responses", force: true do |t|
@@ -61,12 +73,14 @@ ActiveRecord::Schema.define(version: 20150505061306) do
     t.string   "text"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "doctor_id"
   end
 
   create_table "user_votes", force: true do |t|
     t.integer  "optionNum"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "question_id"
   end
 
 end
