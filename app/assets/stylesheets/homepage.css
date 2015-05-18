@@ -14,3 +14,8 @@
 	width: 100%;
 }*/
 }
+
+div.owl-item > div {
+    display:table-cell;
+    vertical-align:middle;
+}
