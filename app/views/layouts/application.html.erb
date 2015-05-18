@@ -37,7 +37,7 @@
              <%= submit_tag("Search", class: "btn btn-default") %> 
           <% end %> 
           <% randQnum = feeling_lucky %>
-             <%= form_tag(controller: "questions", action: "show", id: randQnum.to_s, method: "get", class: "navbar-form navbar-left") do%>
+             <%= form_tag("/questions/#{randQnum}", method: "get", class: "navbar-form navbar-left") do%>
                   <%= submit_tag("Feeling Lucky", class: "btn btn-default") %> 
              <% end %> 
 

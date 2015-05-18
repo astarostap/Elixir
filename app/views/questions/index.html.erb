@@ -1,12 +1,10 @@
 <%= stylesheet_link_tag "homepage" %>
 
-<a class="btn btn-primary" href= <%= @lucky_href %> style="position:relative;top:100px;left:410px;width:300px;">Feeling Lucky </a>
-
-<div class="container-fluid" syle="horizontal-align: middle">
+<div class="container-fluid" style="horizontal-align: middle;position:relative;top:50px;">
 
 
 <div id="outer-div"> 
-<div id="owl-demo" class="owl-carousel owl-theme" style="position:relative;top:200px;">
+<div id="owl-demo" class="owl-carousel owl-theme">
 
 <% count = 0 %>
 <% @all_questions.each_with_index do |q, index| %>
