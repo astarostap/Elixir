@@ -21,3 +21,5 @@ Rails.application.config.assets.precompile += %w( owl.carousel.min.js )
 Rails.application.config.assets.precompile += %w( homepage.css )
 Rails.application.config.assets.precompile += %w( app.css )
 Rails.application.config.assets.precompile += %w( newquestion.css )
+Rails.application.config.assets.precompile += %w( search_bar.css )
+
