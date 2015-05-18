@@ -2,6 +2,7 @@ class Question < ActiveRecord::Base
 	has_many :responses
 	has_many :doctor_votes
 	has_many :user_votes
+	has_many :papers
 	belongs_to :user
 
 	def getQueries (substr)
