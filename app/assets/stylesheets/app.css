@@ -1,3 +1,7 @@
 .navbar {
 	/*background-image: linear-gradient(blue, #9999FF, #9999FF);*/
 }
+
+.container {
+	height: 70px;
+}

@@ -1,10 +1,7 @@
-<div style = "position:relative;top:50px;">
+<div style = "position:relative;top:70px;">
 <% if flash.notice %>
   <div><h3><%= flash.notice %></h3></div>
 <%end%> 
-
-<link class="cssdeck" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" class="cssdeck">
 
 <div id="outer" style="width:100%">  
 
@@ -17,15 +14,14 @@
 			<div id="myTabContent" class="tab-content">
 				<div class="tab-pane active in" id="create">
 					<%= form_tag({controller: "users", action: "create"}, method: "post", html: {role: "form"}) do%>
-						<label>Username</label>
-						<input type="text" value="" class="input-xlarge" id="user_username" name="user[username]">
-						<label>Email</label>
-						<input type="text" value="" class="input-xlarge" id="user_email" name="user[email]">
-						<label>Password</label>
-						<input type="text" value="" class="input-xlarge" id="user_password" name="user[password]">
-						<label>Password Confirmation:</label>
-						<input type="text" value="" class="input-xlarge" id="user_password_confirmation" name="user[password_confirmation]">
-						</textarea>
+						<p>Username</br>
+						<input type="text" value="" class="input-xlarge" id="user_username" name="user[username]"></p>
+						<p>Email</br>
+						<input type="text" value="" class="input-xlarge" id="user_email" name="user[email]"></p>
+						<p>Password</br>
+						<input type="text" value="" class="input-xlarge" id="user_password" name="user[password]"></p>
+						<p>Password Confirmation:</br>
+						<input type="text" value="" class="input-xlarge" id="user_password_confirmation" name="user[password_confirmation]"></p>
 						
 						<div>
 							<button class="btn btn-primary">Create Account</button>
@@ -36,7 +32,3 @@
 		</div>
 	</div>
 </div>
-
-<script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-
