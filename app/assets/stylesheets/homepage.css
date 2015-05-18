@@ -1,17 +1,18 @@
 #owl-demo {
-	position:relative;
+	/*position:relative;
 	left: 300px;
-	width:640px;
+	width:640px;*/
 }
 
 #question-title {
-	color: white;
+/*	color: white;*/
 }
 
 #outer-div {
-	position:absolute;
+/*	position:absolute;
 	background-color: #9999FF;
 	top:100px;
 	height: 900px;
 	width: 100%;
+}*/
 }
