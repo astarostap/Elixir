@@ -22,4 +22,5 @@ Rails.application.config.assets.precompile += %w( homepage.css )
 Rails.application.config.assets.precompile += %w( app.css )
 Rails.application.config.assets.precompile += %w( newquestion.css )
 Rails.application.config.assets.precompile += %w( search_bar.css )
+Rails.application.config.assets.precompile += %w( query_results.css )
 
