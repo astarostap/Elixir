@@ -1,11 +1,33 @@
+<%= stylesheet_link_tag "query_results" %>
+<div id="title" style="position:relative;top:50px;">
+      <div class="container">
+        <div class="row">
+          <div class="span12" style="ho">
+            <h1 style="text-align: center;">Query Results!</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
 <div style="position:relative;top:100px;">
 	<% for q in @result do%>
-		<div>
-			 <table style="width:100%;1px solid black;">
+		<div class="query_result">
+			 <table class="result_table" style="width:100%;1px solid black;">
   				<tr>
-    				<td><%= image_tag(q.photo_link, size: "50x50") %> </td>
+    				<td class="pic_cell"><%= image_tag(q.photo_link, size: "100x100") %> </td>
     				
-    				<td> <%= link_to(q.title, :controller => "questions", :action => "show", :id => q.id) %> </td>
+    				<td class="result_cell"> 
+    					<div class="panel panel-primary" style="height:100px;">
+    						<div class="panel-heading">
+    							<h3 class="panel-title" id="panel-title" > <%= link_to(q.title, :controller => "questions", :action => "show", :id => q.id) %> </h3>
+    						</div>
+    						<div class="panel-body">
+    							<%= q.text %>
+    						</div>
+    					</div>
+
+
+    				</td>
     			</tr>
 			</table> 
 			
