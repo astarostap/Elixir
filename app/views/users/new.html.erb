@@ -14,15 +14,27 @@
 			<div id="myTabContent" class="tab-content">
 				<div class="tab-pane active in" id="create">
 					<%= form_tag({controller: "users", action: "create"}, method: "post", html: {role: "form"}) do%>
-						<p>Username</br>
-						<input type="text" value="" class="input-xlarge" id="user_username" name="user[username]"></p>
-						<p>Email</br>
-						<input type="text" value="" class="input-xlarge" id="user_email" name="user[email]"></p>
-						<p>Password</br>
-						<input type="text" value="" class="input-xlarge" id="user_password" name="user[password]"></p>
-						<p>Password Confirmation:</br>
-						<input type="text" value="" class="input-xlarge" id="user_password_confirmation" name="user[password_confirmation]"></p>
-						
+					<div class="control-group">
+               			<label class="control-label"  for="text">Username</label>
+                		<div class="controls">
+                  		<input type="text" class="form-control" id="user_username" name="user[username]">
+                	</div>
+                	<div class="control-group">
+               			<label class="control-label"  for="text">Email</label>
+                		<div class="controls">
+                  		<input type="text" class="form-control" id="user_email" name="user[email]">
+                	</div>
+                	<div class="control-group">
+               			<label class="control-label"  for="text">Password</label>
+                		<div class="controls">
+                  		<input type="text" class="form-control" id="user_password" name="user[password]">
+                	</div>
+                	<div class="control-group">
+               			<label class="control-label"  for="text">Password Confirmation</label>
+                		<div class="controls">
+                  		<input type="text" class="form-control" id="user_password_confirmation" name="user[password_confirmation]">
+                	</div>
+                	</br>
 						<div>
 							<button class="btn btn-primary">Create Account</button>
 						</div>

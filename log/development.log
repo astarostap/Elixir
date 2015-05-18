@@ -20569,6 +20569,7 @@ Completed 200 OK in 296ms (Views: 294.8ms | ActiveRecord: 0.4ms)
 
 
 Started GET "/assets/newquestion.css?body=1" for 127.0.0.1 at 2015-05-17 20:16:52 -0700
+<<<<<<< HEAD
 >>>>>>> 8ae459d5ec47086c3ad99bcb429bcf8856c119c4
 
 
@@ -22319,3 +22320,12 @@ Started GET "/assets/custom.js?body=1" for 127.0.0.1 at 2015-05-17 20:21:49 -070
 
 
 Started GET "/assets/homepage.css?body=1" for 127.0.0.1 at 2015-05-17 20:21:49 -0700
+=======
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreatePapers (20150518033040)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "papers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "optionNum" integer, "url" varchar(255), "doctor_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150518033040"]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+>>>>>>> createPaperTable
