@@ -1,3 +1,44 @@
+/* ----------- */
+/* General CSS */
+/* ----------- */
+
+.float_left {
+	float:left;
+	;
+}
+
+.float_right {
+	float: right;
+	;
+}
+
+.centered {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.full_width {
+	width: 100%;
+	;
+}
+
+.inline {
+	display: inline-block;
+	;
+}
+
+button {
+	border-radius: 5px;
+	background-color: #1995dc;
+	color: white;
+	border: none;
+}
+
+/* -------- */
+/* page CSS */
+/* -------- */
+
 #page_container {
 	position: relative;
 	margin-top: 70px;
@@ -7,6 +48,10 @@
 	text-align: center;
 	;
 }
+
+/* -------------------- */
+/* Question/Options CSS */
+/* -------------------- */
 
 #question_text_div {
 	width: 300px;
@@ -33,6 +78,90 @@
 	border-spacing: 3px;
 	width: 200px;
 }
+
+.vote_bar {
+	width: 150px;
+	height: 20px;
+	background: gray;
+	border-radius: 7px;
+}
+
+.option_div {
+	width: 250px;
+	height: 250px;
+	background: #1995dc;
+	border-radius: 10px;
+}
+
+.option_text {
+	color: white;
+	text-align: center;
+	word-wrap: break-word;
+	margin:5px;
+}
+
+/* ------------ */
+/* Top Docs CSS */
+/* ------------ */
+
+.top_docs_table {
+	border-bottom: 1px solid #1995dc;
+}
+
+.top_docs_table th {
+	font-size: 16px;
+	height: 25px;
+	background-color: #1995dc;
+	color:white;
+}
+
+.top_docs_table td {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.pic_cell {
+	width:40px;
+}
+
+.doc_cell {
+	width: 75px;
+	text-align: left;
+}
+
+.specialty_cell {
+	width: 150px;
+}
+
+.rating_cell {
+	width: 50px;
+}
+
+.top_doc_gap {
+	width: 150px;
+}
+
+.right_corner {
+	width:25px;
+	border-top-right-radius: 10px;
+}
+
+.left_corner {
+	width: 25px;
+	border-top-left-radius: 10px;
+}
+
+.right_border {
+	border-right: 1px solid #1995dc;
+}
+
+.left_border {
+	border-left: 1px solid #1995dc;
+}
+
+/* --------- */
+/* graph CSS */
+/* --------- */
 
 /*graph and legend*/
 .chart_container { 
@@ -87,38 +216,7 @@
 
 .stat_gap {
 	width:150px;
-}
-
-.vote_bar {
-	width: 150px;
-	height: 20px;
-	background: gray;
-	border-radius: 7px;
-}
-
-.centered {
-	text-align: center;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.hidden {
-	display: hidden;
 	;
-}
-
-.option_div {
-	width: 250px;
-	height: 250px;
-	background: #1995dc;
-	border-radius: 10px;
-}
-
-.option_text {
-	color: white;
-	text-align: center;
-	word-wrap: break-word;
-	margin:5px;
 }
 
 .filter_td {
@@ -133,4 +231,82 @@
 
 .doc_filter, .user_filter {
 	display: none;
+	;
+}
+
+/* -------------- */
+/* Discussion CSS */
+/* -------------- */
+
+/* div containing all "add comment" elements */
+#add_comment_div_1, #add_comment_div_2 {
+	display: none;
+	overflow:hidden;
+}
+
+/* div containing title and "add comment" button */
+.disc_header_div {
+	overflow:hidden;
+	;
+}
+
+/* gap between left and right column */
+.disc_gap {
+	width:100px;
+	display:inline-block;
+}
+
+/* the left and right columns containing everything for that option */
+.disc_col {
+	width: 300px;
+	display:inline-block;
+	vertical-align: top;
+}
+
+.add_comment {
+	margin-top: 7px;
+	;
+}
+/* --------------- */
+/* - Comment CSS - */
+/* --------------- */
+
+/* ul containing comments */
+.disc_ul {
+	list-style-type: none;
+	padding-left: 0px;
+	width:300px;
+}
+
+.disc_li {
+	border-bottom: 1px solid gray;
+	margin-top: 20px;
+}
+
+.profile_picture {
+	width: 50px;
+	height: 50px;
+	border-radius: 25px;
+	margin-right: 10px;
+}
+
+.comment_header {
+	overflow: hidden;
+	;
+}
+
+.comment_body {
+	text-align: left;
+	word-wrap: break-word;
+	margin-bottom: 10px;
+}
+
+.sentiment_button {
+	width:40px;
+	height: 33px;
+}
+
+.comment_rating {
+	margin-top: 5px;
+	vertical-align: top;
 }
