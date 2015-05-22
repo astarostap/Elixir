@@ -1,5 +1,5 @@
 class AddPapers < ActiveRecord::Migration
-  def change
+def change
   	jb = Paper.new(:optionNum => 1, :question_id => 1, :doctor_id => 1, :url => "https://www.healthtap.com/user_questions/1566682")
     jb.save(:validate => false)
     ph = Paper.new(:optionNum => 2, :question_id => 1, :doctor_id => 2, :url => "http://www.livescience.com/34693-superfoods.html")
