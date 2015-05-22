@@ -20,7 +20,17 @@ class UsersController < ApplicationController
 
 		@new_user.password=(f[:password])
 		@new_user.username = f[:username]
-		@new_user.email = f[:email]
+		@new_user.gender = f[:sex]
+		@new_user.location = f[:origin]
+
+		input_birthDay = f[:birth_date]
+		split_bday = input_birthDay.split('/')
+		@new_user.birth_date = DateTime.new(split_bday[2].to_i, split_bday[0].to_i, split_bday[1].to_i)
+
+		puts "************"
+		puts @new_user.inspect
+		puts "*************"
+
 		if f[:password] != f[:password_confirmation] or params[:password] == ""
 			flash.notice = "Passwords do not match. Please enter your password again."
 			redirect_to :controller => "users", :id => @user_id, :action => "new"
