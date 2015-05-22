@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20150522051401) do
     t.integer  "optionNum"
     t.string   "url"
     t.integer  "doctor_id"
+    t.integer  "question_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "question_id"

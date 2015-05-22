@@ -4,6 +4,7 @@ class CreatePapers < ActiveRecord::Migration
     	t.integer :optionNum
     	t.string :url
     	t.integer :doctor_id
+    	t.integer :question_id
       t.timestamps
     end
   end

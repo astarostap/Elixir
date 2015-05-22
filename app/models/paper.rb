@@ -1,4 +1,4 @@
 class Paper < ActiveRecord::Base
 	belongs_to :question
-	belongs_to :doctors
+	belongs_to :doctor
 end
