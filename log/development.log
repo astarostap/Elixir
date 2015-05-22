@@ -21762,3 +21762,529 @@ Started GET "/assets/custom.js?body=1" for 127.0.0.1 at 2015-05-21 22:29:00 -070
   [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
   [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
 >>>>>>> master
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (1.3ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateDoctors (20150426205500)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "doctors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "docScore" integer, "specialty" varchar(255), "school" varchar(255), "knownFor" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150426205500"]]
+  [1m[35m (1.3ms)[0m  commit transaction
+Migrating to CreateQuestions (20150426205641)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "questions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "text" varchar(255), "option1" varchar(255), "option2" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150426205641"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+Migrating to CreateResponses (20150426205733)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "responses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "agreesNum" integer, "text" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150426205733"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+Migrating to CreateAgrees (20150426205739)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "agrees" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150426205739"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+Migrating to CreateNormalUsers (20150426205755)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "normal_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar(255), "salt" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150426205755"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+Migrating to CreateUserVotes (20150426205808)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "user_votes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "optionNum" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150426205808"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+Migrating to CreateDoctorVotes (20150426205814)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "doctor_votes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "optionNum" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150426205814"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+Migrating to AddAuth (20150505045552)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "normal_users" ADD "encrypted_password" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "normal_users" ADD "email" varchar(255)[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "doctors" ADD "username" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "doctors" ADD "email" varchar(255)[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "doctors" ADD "encrypted_password" varchar(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "doctors" ADD "salt" varchar(255)[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150505045552"]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+Migrating to Addphotolink (20150505061306)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "questions" ADD "photo_link" varchar(255)[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150505061306"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+Migrating to AddUsers (20150517221843)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "normal_users" ("created_at", "email", "updated_at", "username") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:19.430743"], ["email", "jpekins@gmail.com"], ["updated_at", "2015-05-22 06:15:19.430743"], ["username", "John"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "normal_users" ("created_at", "email", "updated_at", "username") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:19.446199"], ["email", "fake@fake.com"], ["updated_at", "2015-05-22 06:15:19.446199"], ["username", "Tanner"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "normal_users" ("created_at", "email", "updated_at", "username") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:19.447049"], ["email", "fake@fake.com"], ["updated_at", "2015-05-22 06:15:19.447049"], ["username", "Abraham"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "normal_users" ("created_at", "email", "updated_at", "username") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:19.447615"], ["email", "fake@fake.com"], ["updated_at", "2015-05-22 06:15:19.447615"], ["username", "Emily"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "normal_users" ("created_at", "email", "updated_at", "username") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:19.448172"], ["email", "fake@fake.com"], ["updated_at", "2015-05-22 06:15:19.448172"], ["username", "Oneida"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "normal_users" ("created_at", "email", "updated_at", "username") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:19.448699"], ["email", "fake@fake.com"], ["updated_at", "2015-05-22 06:15:19.448699"], ["username", "Thanh"]]
+  [1m[36mNormalUser Load (0.1ms)[0m  [1mSELECT "normal_users".* FROM "normal_users"[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "normal_users" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "normal_users"."id" = 1  [["encrypted_password", "15d70a74ab96f0d9a59aacbf56f133b2903db4d9c6fc5f5c0c2d3e6b5dcb0970"], ["salt", "83eb647ac1e759c0d99a6b4727306925"], ["updated_at", "2015-05-22 06:15:19.470889"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "normal_users" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "normal_users"."id" = 2[0m  [["encrypted_password", "dbd14c7c09fca0f48107ed590bf09f84cd2333f69be02db821610a80362c5211"], ["salt", "b9ec04d69fe08dc5b2e8033c4d68db94"], ["updated_at", "2015-05-22 06:15:19.473289"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "normal_users" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "normal_users"."id" = 3  [["encrypted_password", "5720243a0a6578f9565661c336fdd8e4d37d03c2d3050b5143d93a173f7f9f2a"], ["salt", "42d1adf7f9abf05dee5e52c9409578c9"], ["updated_at", "2015-05-22 06:15:19.474024"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "normal_users" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "normal_users"."id" = 4[0m  [["encrypted_password", "72beb3c85c2aaf22abbb4dac9322874cc2e3e9c9ebf859ef9df378f3ad605616"], ["salt", "f57a44bf9eff4dd43eabfbe31b3ae46f"], ["updated_at", "2015-05-22 06:15:19.474594"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "normal_users" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "normal_users"."id" = 5  [["encrypted_password", "f9ac393b72fc48bff59ade5eb74accdd6f86958d72262a070ea98fcf79e41cdd"], ["salt", "5dd04611d9ce009c177e2babbe98a569"], ["updated_at", "2015-05-22 06:15:19.475155"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "normal_users" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "normal_users"."id" = 6[0m  [["encrypted_password", "e9ca35f991cd3ec9e545cf49d2d606846873469f932b7fe864e9dede229ae219"], ["salt", "9e6ee42ad6790ace062584906217e8e3"], ["updated_at", "2015-05-22 06:15:19.475747"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150517221843"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+Migrating to AddDoctors (20150517224130)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "doctors" ("created_at", "docScore", "email", "knownFor", "school", "specialty", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:19.492468"], ["docScore", 100], ["email", "jpekins@gmail.com"], ["knownFor", "Child Nutrition"], ["school", "UC Irvine School of Medicine"], ["specialty", "Pediatrics"], ["updated_at", "2015-05-22 06:15:19.492468"], ["username", "drJohn"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "doctors" ("created_at", "docScore", "email", "knownFor", "school", "specialty", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:19.493944"], ["docScore", 70], ["email", "fake@fake.com"], ["knownFor", "Chest Pain"], ["school", "Stanford School of Medicine"], ["specialty", "Internal Medicine"], ["updated_at", "2015-05-22 06:15:19.493944"], ["username", "drTanner"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "doctors" ("created_at", "docScore", "email", "knownFor", "school", "specialty", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:19.494638"], ["docScore", 80], ["email", "fake@fake.com"], ["knownFor", "Diabetes"], ["school", "Ross University School of Medicine"], ["specialty", "Internal Medicine"], ["updated_at", "2015-05-22 06:15:19.494638"], ["username", "drAbraham"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "doctors" ("created_at", "docScore", "email", "knownFor", "school", "specialty", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:19.495287"], ["docScore", 50], ["email", "fake@fake.com"], ["knownFor", "Hysteroscopy"], ["school", "University of Colorado Denver School of Medicine"], ["specialty", "Obstetrics and Gynecology"], ["updated_at", "2015-05-22 06:15:19.495287"], ["username", "drEmily"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "doctors" ("created_at", "docScore", "email", "knownFor", "school", "specialty", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:19.495914"], ["docScore", 40], ["email", "fake@fake.com"], ["knownFor", "Female Health"], ["school", "Duke University School of Medicine"], ["specialty", "Internal Medicine"], ["updated_at", "2015-05-22 06:15:19.495914"], ["username", "drOneida"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "doctors" ("created_at", "docScore", "email", "knownFor", "school", "specialty", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:19.496554"], ["docScore", 60], ["email", "fake@fake.com"], ["knownFor", "Child Surgery"], ["school", "UC Berkeley School of Medicine"], ["specialty", "Pediatrics"], ["updated_at", "2015-05-22 06:15:19.496554"], ["username", "drThanh"]]
+  [1m[36mDoctor Load (0.1ms)[0m  [1mSELECT "doctors".* FROM "doctors"[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "doctors" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "doctors"."id" = 1  [["encrypted_password", "7916b8ee4067a19b23d1d1859daa2a6f92921a4ceaf3236b544169d0e4f1aee8"], ["salt", "de5a9a92a3d7e73e2baf6836fb9411ba"], ["updated_at", "2015-05-22 06:15:19.497621"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "doctors" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "doctors"."id" = 2[0m  [["encrypted_password", "aa4f4d2bd78f1978c1dc925e117e77500685b113e3e28199b615680b0fb5e05e"], ["salt", "ea85311d0d4ecd24355b18e7ad7410db"], ["updated_at", "2015-05-22 06:15:19.498337"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "doctors" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "doctors"."id" = 3  [["encrypted_password", "7b1703cd850dfe6bbd71aad95161137f9169a7be7488e01afd212f73506a895f"], ["salt", "fa39a21c2fd06d171bbc79f0ac1f289c"], ["updated_at", "2015-05-22 06:15:19.498897"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "doctors" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "doctors"."id" = 4[0m  [["encrypted_password", "f03ee74cfb83ee6574b01bb81a744673f2b21c2ebf2ab4338fdeaa410167950e"], ["salt", "158c8519a6023299bed8ebfe2b1f7ec8"], ["updated_at", "2015-05-22 06:15:19.499439"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "doctors" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "doctors"."id" = 5  [["encrypted_password", "d686f84c90d834609f0e7b2485bc29b9a4c9bb27440382b7ddb6fb6c4875840d"], ["salt", "e2ec8b1efe2f22975c6c6d606afd4369"], ["updated_at", "2015-05-22 06:15:19.500005"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "doctors" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "doctors"."id" = 6[0m  [["encrypted_password", "22ee0d526b077acf6fa6a9e0a6d9fd9affc2f9b972a13590e52cf8efa486a432"], ["salt", "dd87aedac429f14fada47edc64e160e1"], ["updated_at", "2015-05-22 06:15:19.500532"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150517224130"]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+Migrating to AddUserIdQuestions (20150517232848)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "questions" ADD "normal_user_id" integer[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150517232848"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+Migrating to AddDoctorIdResponses (20150517234520)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "responses" ADD "doctor_id" integer[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150517234520"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+Migrating to AddQuestionIdUserVote (20150517234709)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "user_votes" ADD "question_id" integer[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150517234709"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+Migrating to AddQuestionIdDoctorVote (20150517234926)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "doctor_votes" ADD "question_id" integer[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150517234926"]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+Migrating to AddResponseIdDoctorIdAgree (20150517235138)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "agrees" ADD "response_id" integer[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "agrees" ADD "doctor_id" integer
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150517235138"]]
+  [1m[35m (0.9ms)[0m  commit transaction
+Migrating to AddResponses (20150518000025)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "responses" ("agreesNum", "created_at", "doctor_id", "text", "updated_at") VALUES (?, ?, ?, ?, ?)  [["agreesNum", 1], ["created_at", "2015-05-22 06:15:19.585928"], ["doctor_id", 1], ["text", "so dumb"], ["updated_at", "2015-05-22 06:15:19.585928"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "responses" ("agreesNum", "created_at", "doctor_id", "text", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["agreesNum", 2], ["created_at", "2015-05-22 06:15:19.587396"], ["doctor_id", 2], ["text", "so beautiful"], ["updated_at", "2015-05-22 06:15:19.587396"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "responses" ("agreesNum", "created_at", "doctor_id", "text", "updated_at") VALUES (?, ?, ?, ?, ?)  [["agreesNum", 3], ["created_at", "2015-05-22 06:15:19.588239"], ["doctor_id", 3], ["text", "so smart"], ["updated_at", "2015-05-22 06:15:19.588239"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "responses" ("agreesNum", "created_at", "doctor_id", "text", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["agreesNum", 4], ["created_at", "2015-05-22 06:15:19.589006"], ["doctor_id", 4], ["text", "so insightful"], ["updated_at", "2015-05-22 06:15:19.589006"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "responses" ("agreesNum", "created_at", "doctor_id", "text", "updated_at") VALUES (?, ?, ?, ?, ?)  [["agreesNum", 5], ["created_at", "2015-05-22 06:15:19.589641"], ["doctor_id", 5], ["text", "so helpful"], ["updated_at", "2015-05-22 06:15:19.589641"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "responses" ("agreesNum", "created_at", "doctor_id", "text", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["agreesNum", 6], ["created_at", "2015-05-22 06:15:19.590221"], ["doctor_id", 6], ["text", "so life-changing!"], ["updated_at", "2015-05-22 06:15:19.590221"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150518000025"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+Migrating to AddAgrees (20150518000515)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "agrees" ("created_at", "doctor_id", "response_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:19.602780"], ["doctor_id", 1], ["response_id", 1], ["updated_at", "2015-05-22 06:15:19.602780"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "agrees" ("created_at", "doctor_id", "response_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:19.604426"], ["doctor_id", 2], ["response_id", 2], ["updated_at", "2015-05-22 06:15:19.604426"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "agrees" ("created_at", "doctor_id", "response_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:19.605161"], ["doctor_id", 3], ["response_id", 3], ["updated_at", "2015-05-22 06:15:19.605161"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "agrees" ("created_at", "doctor_id", "response_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:19.605706"], ["doctor_id", 4], ["response_id", 4], ["updated_at", "2015-05-22 06:15:19.605706"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "agrees" ("created_at", "doctor_id", "response_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:19.606242"], ["doctor_id", 5], ["response_id", 5], ["updated_at", "2015-05-22 06:15:19.606242"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "agrees" ("created_at", "doctor_id", "response_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:19.606899"], ["doctor_id", 6], ["response_id", 6], ["updated_at", "2015-05-22 06:15:19.606899"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150518000515"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+Migrating to AddDoctorVotes (20150518000800)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "doctor_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:19.617361"], ["optionNum", 1], ["question_id", 1], ["updated_at", "2015-05-22 06:15:19.617361"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "doctor_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:19.618790"], ["optionNum", 2], ["question_id", 2], ["updated_at", "2015-05-22 06:15:19.618790"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "doctor_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:19.619398"], ["optionNum", 1], ["question_id", 3], ["updated_at", "2015-05-22 06:15:19.619398"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "doctor_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:19.619989"], ["optionNum", 2], ["question_id", 4], ["updated_at", "2015-05-22 06:15:19.619989"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "doctor_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:19.620580"], ["optionNum", 1], ["question_id", 5], ["updated_at", "2015-05-22 06:15:19.620580"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "doctor_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:19.621125"], ["optionNum", 2], ["question_id", 6], ["updated_at", "2015-05-22 06:15:19.621125"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150518000800"]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+Migrating to AddUserVotes (20150518001335)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "user_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:19.631184"], ["optionNum", 1], ["question_id", 1], ["updated_at", "2015-05-22 06:15:19.631184"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "user_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:19.632463"], ["optionNum", 2], ["question_id", 2], ["updated_at", "2015-05-22 06:15:19.632463"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "user_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:19.633048"], ["optionNum", 1], ["question_id", 3], ["updated_at", "2015-05-22 06:15:19.633048"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "user_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:19.633589"], ["optionNum", 2], ["question_id", 4], ["updated_at", "2015-05-22 06:15:19.633589"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "user_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:19.634119"], ["optionNum", 1], ["question_id", 5], ["updated_at", "2015-05-22 06:15:19.634119"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "user_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:19.634691"], ["optionNum", 2], ["question_id", 6], ["updated_at", "2015-05-22 06:15:19.634691"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150518001335"]]
+  [1m[35m (1.6ms)[0m  commit transaction
+Migrating to CreatePapers (20150518033040)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "papers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "optionNum" integer, "url" varchar(255), "doctor_id" integer, "question_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150518033040"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+Migrating to PaperId (20150522051401)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "papers" ADD "question_id" integer
+SQLite3::SQLException: duplicate column name: question_id: ALTER TABLE "papers" ADD "question_id" integer
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateDoctors (20150426205500)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "doctors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "docScore" integer, "specialty" varchar(255), "school" varchar(255), "knownFor" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150426205500"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+Migrating to CreateQuestions (20150426205641)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "questions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "text" varchar(255), "option1" varchar(255), "option2" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150426205641"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+Migrating to CreateResponses (20150426205733)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "responses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "agreesNum" integer, "text" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150426205733"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+Migrating to CreateAgrees (20150426205739)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "agrees" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150426205739"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+Migrating to CreateNormalUsers (20150426205755)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "normal_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar(255), "salt" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150426205755"]]
+  [1m[35m (1.3ms)[0m  commit transaction
+Migrating to CreateUserVotes (20150426205808)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "user_votes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "optionNum" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150426205808"]]
+  [1m[35m (1.3ms)[0m  commit transaction
+Migrating to CreateDoctorVotes (20150426205814)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "doctor_votes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "optionNum" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150426205814"]]
+  [1m[35m (26.6ms)[0m  commit transaction
+Migrating to AddAuth (20150505045552)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "normal_users" ADD "encrypted_password" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "normal_users" ADD "email" varchar(255)[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "doctors" ADD "username" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "doctors" ADD "email" varchar(255)[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "doctors" ADD "encrypted_password" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "doctors" ADD "salt" varchar(255)[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150505045552"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+Migrating to Addphotolink (20150505061306)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "questions" ADD "photo_link" varchar(255)[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150505061306"]]
+  [1m[36m (2.0ms)[0m  [1mcommit transaction[0m
+Migrating to AddUsers (20150517221843)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "normal_users" ("created_at", "email", "updated_at", "username") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:59.640109"], ["email", "jpekins@gmail.com"], ["updated_at", "2015-05-22 06:15:59.640109"], ["username", "John"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "normal_users" ("created_at", "email", "updated_at", "username") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:59.643193"], ["email", "fake@fake.com"], ["updated_at", "2015-05-22 06:15:59.643193"], ["username", "Tanner"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "normal_users" ("created_at", "email", "updated_at", "username") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:59.643938"], ["email", "fake@fake.com"], ["updated_at", "2015-05-22 06:15:59.643938"], ["username", "Abraham"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "normal_users" ("created_at", "email", "updated_at", "username") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:59.644460"], ["email", "fake@fake.com"], ["updated_at", "2015-05-22 06:15:59.644460"], ["username", "Emily"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "normal_users" ("created_at", "email", "updated_at", "username") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:59.644982"], ["email", "fake@fake.com"], ["updated_at", "2015-05-22 06:15:59.644982"], ["username", "Oneida"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "normal_users" ("created_at", "email", "updated_at", "username") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:59.645493"], ["email", "fake@fake.com"], ["updated_at", "2015-05-22 06:15:59.645493"], ["username", "Thanh"]]
+  [1m[36mNormalUser Load (0.1ms)[0m  [1mSELECT "normal_users".* FROM "normal_users"[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "normal_users" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "normal_users"."id" = 1  [["encrypted_password", "2cc60996c74dc23c4301df30dd1629c7a400aaac52b1ed128b2ded2aea128009"], ["salt", "fcaf0f9ff2c05698a1fdf323b0da7e57"], ["updated_at", "2015-05-22 06:15:59.648844"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "normal_users" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "normal_users"."id" = 2[0m  [["encrypted_password", "8dd0aef4a1a8213bbb973f27507c73f67c94e79fe15a87beaef05a7634f84159"], ["salt", "f12c00b64e9302044343f397031c855c"], ["updated_at", "2015-05-22 06:15:59.650545"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "normal_users" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "normal_users"."id" = 3  [["encrypted_password", "e040318585e4da7e2e67b2aecd2abbdfea036822b967cdac340fe9ab863fd923"], ["salt", "f2468c8a61ec1f3cddbec001d8ff35f4"], ["updated_at", "2015-05-22 06:15:59.651178"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "normal_users" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "normal_users"."id" = 4[0m  [["encrypted_password", "6cf182a9d1d290f4d797875ae910dfa834754a27b46a02ff954136c47e31deb7"], ["salt", "49f9a83d9b9dc25e0f059ca1b1b9e20a"], ["updated_at", "2015-05-22 06:15:59.651736"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "normal_users" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "normal_users"."id" = 5  [["encrypted_password", "e0063dc7baf87a5db3715798b4132a2eb060dcf202d89c54171eb6999629fd46"], ["salt", "50e26d8b4dea3d5e43c68365b95ac6e9"], ["updated_at", "2015-05-22 06:15:59.652314"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "normal_users" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "normal_users"."id" = 6[0m  [["encrypted_password", "486653e72ff8da4ed97b6023db3ad3be9a8c33555023d8b6c302a5ec7c60bde6"], ["salt", "70034decc3f256ebd32b74b4738e2178"], ["updated_at", "2015-05-22 06:15:59.652875"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150517221843"]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+Migrating to AddDoctors (20150517224130)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "doctors" ("created_at", "docScore", "email", "knownFor", "school", "specialty", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:59.667506"], ["docScore", 100], ["email", "jpekins@gmail.com"], ["knownFor", "Child Nutrition"], ["school", "UC Irvine School of Medicine"], ["specialty", "Pediatrics"], ["updated_at", "2015-05-22 06:15:59.667506"], ["username", "drJohn"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "doctors" ("created_at", "docScore", "email", "knownFor", "school", "specialty", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:59.669004"], ["docScore", 70], ["email", "fake@fake.com"], ["knownFor", "Chest Pain"], ["school", "Stanford School of Medicine"], ["specialty", "Internal Medicine"], ["updated_at", "2015-05-22 06:15:59.669004"], ["username", "drTanner"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "doctors" ("created_at", "docScore", "email", "knownFor", "school", "specialty", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:59.669804"], ["docScore", 80], ["email", "fake@fake.com"], ["knownFor", "Diabetes"], ["school", "Ross University School of Medicine"], ["specialty", "Internal Medicine"], ["updated_at", "2015-05-22 06:15:59.669804"], ["username", "drAbraham"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "doctors" ("created_at", "docScore", "email", "knownFor", "school", "specialty", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:59.670518"], ["docScore", 50], ["email", "fake@fake.com"], ["knownFor", "Hysteroscopy"], ["school", "University of Colorado Denver School of Medicine"], ["specialty", "Obstetrics and Gynecology"], ["updated_at", "2015-05-22 06:15:59.670518"], ["username", "drEmily"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "doctors" ("created_at", "docScore", "email", "knownFor", "school", "specialty", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:59.671146"], ["docScore", 40], ["email", "fake@fake.com"], ["knownFor", "Female Health"], ["school", "Duke University School of Medicine"], ["specialty", "Internal Medicine"], ["updated_at", "2015-05-22 06:15:59.671146"], ["username", "drOneida"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "doctors" ("created_at", "docScore", "email", "knownFor", "school", "specialty", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:59.671765"], ["docScore", 60], ["email", "fake@fake.com"], ["knownFor", "Child Surgery"], ["school", "UC Berkeley School of Medicine"], ["specialty", "Pediatrics"], ["updated_at", "2015-05-22 06:15:59.671765"], ["username", "drThanh"]]
+  [1m[36mDoctor Load (0.1ms)[0m  [1mSELECT "doctors".* FROM "doctors"[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "doctors" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "doctors"."id" = 1  [["encrypted_password", "68aa379cd18b6a9dcc2c100c36eba97e0db26cd06f3db5d7a456f420777a621f"], ["salt", "2ec626973355034fe755a26dfba3751b"], ["updated_at", "2015-05-22 06:15:59.672862"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "doctors" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "doctors"."id" = 2[0m  [["encrypted_password", "fb4d727597e56d7cd1afce0bc114a006b120e14ebc74c055b38260b4a1a0b7f8"], ["salt", "9287188a064a823792e5e08108406c8e"], ["updated_at", "2015-05-22 06:15:59.673585"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "doctors" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "doctors"."id" = 3  [["encrypted_password", "899c252168e8bf2653c6f85d571ebce3972ec9de5997e797ab5e80c70b43887f"], ["salt", "08d9213e3f270a336a242b10f50731fe"], ["updated_at", "2015-05-22 06:15:59.674121"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "doctors" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "doctors"."id" = 4[0m  [["encrypted_password", "4d863bac2936d6a039fede2fed40fe4ea2640322c4a592215bedd3bfb3390c1e"], ["salt", "644815d549ebe615241eb45ad6193e85"], ["updated_at", "2015-05-22 06:15:59.674697"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "doctors" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "doctors"."id" = 5  [["encrypted_password", "330f0ebf27e162dd2f5fcfbca28031f35367e71942a1ba0eec984844254bd50b"], ["salt", "3d6af8f0095da734ecddb3094b43b950"], ["updated_at", "2015-05-22 06:15:59.675415"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "doctors" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "doctors"."id" = 6[0m  [["encrypted_password", "c118368bd3021967d6340f4f7ceee8eae20cfd6ced4e0e8b99b30c7f50e32fda"], ["salt", "057ea35c0380462f04e23fd8589dd84a"], ["updated_at", "2015-05-22 06:15:59.676066"]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150517224130"]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+Migrating to AddUserIdQuestions (20150517232848)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "questions" ADD "normal_user_id" integer[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150517232848"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+Migrating to AddDoctorIdResponses (20150517234520)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "responses" ADD "doctor_id" integer[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150517234520"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+Migrating to AddQuestionIdUserVote (20150517234709)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "user_votes" ADD "question_id" integer[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150517234709"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+Migrating to AddQuestionIdDoctorVote (20150517234926)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "doctor_votes" ADD "question_id" integer[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150517234926"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+Migrating to AddResponseIdDoctorIdAgree (20150517235138)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "agrees" ADD "response_id" integer[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "agrees" ADD "doctor_id" integer
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150517235138"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+Migrating to AddResponses (20150518000025)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "responses" ("agreesNum", "created_at", "doctor_id", "text", "updated_at") VALUES (?, ?, ?, ?, ?)  [["agreesNum", 1], ["created_at", "2015-05-22 06:15:59.738239"], ["doctor_id", 1], ["text", "so dumb"], ["updated_at", "2015-05-22 06:15:59.738239"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "responses" ("agreesNum", "created_at", "doctor_id", "text", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["agreesNum", 2], ["created_at", "2015-05-22 06:15:59.739553"], ["doctor_id", 2], ["text", "so beautiful"], ["updated_at", "2015-05-22 06:15:59.739553"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "responses" ("agreesNum", "created_at", "doctor_id", "text", "updated_at") VALUES (?, ?, ?, ?, ?)  [["agreesNum", 3], ["created_at", "2015-05-22 06:15:59.740160"], ["doctor_id", 3], ["text", "so smart"], ["updated_at", "2015-05-22 06:15:59.740160"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "responses" ("agreesNum", "created_at", "doctor_id", "text", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["agreesNum", 4], ["created_at", "2015-05-22 06:15:59.741187"], ["doctor_id", 4], ["text", "so insightful"], ["updated_at", "2015-05-22 06:15:59.741187"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "responses" ("agreesNum", "created_at", "doctor_id", "text", "updated_at") VALUES (?, ?, ?, ?, ?)  [["agreesNum", 5], ["created_at", "2015-05-22 06:15:59.742385"], ["doctor_id", 5], ["text", "so helpful"], ["updated_at", "2015-05-22 06:15:59.742385"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "responses" ("agreesNum", "created_at", "doctor_id", "text", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["agreesNum", 6], ["created_at", "2015-05-22 06:15:59.743095"], ["doctor_id", 6], ["text", "so life-changing!"], ["updated_at", "2015-05-22 06:15:59.743095"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150518000025"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+Migrating to AddAgrees (20150518000515)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "agrees" ("created_at", "doctor_id", "response_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:59.752693"], ["doctor_id", 1], ["response_id", 1], ["updated_at", "2015-05-22 06:15:59.752693"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "agrees" ("created_at", "doctor_id", "response_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:59.754128"], ["doctor_id", 2], ["response_id", 2], ["updated_at", "2015-05-22 06:15:59.754128"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "agrees" ("created_at", "doctor_id", "response_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:59.754729"], ["doctor_id", 3], ["response_id", 3], ["updated_at", "2015-05-22 06:15:59.754729"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "agrees" ("created_at", "doctor_id", "response_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:59.755297"], ["doctor_id", 4], ["response_id", 4], ["updated_at", "2015-05-22 06:15:59.755297"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "agrees" ("created_at", "doctor_id", "response_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:59.755825"], ["doctor_id", 5], ["response_id", 5], ["updated_at", "2015-05-22 06:15:59.755825"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "agrees" ("created_at", "doctor_id", "response_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:59.756352"], ["doctor_id", 6], ["response_id", 6], ["updated_at", "2015-05-22 06:15:59.756352"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150518000515"]]
+  [1m[35m (1.6ms)[0m  commit transaction
+Migrating to AddDoctorVotes (20150518000800)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "doctor_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:59.765548"], ["optionNum", 1], ["question_id", 1], ["updated_at", "2015-05-22 06:15:59.765548"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "doctor_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:59.766854"], ["optionNum", 2], ["question_id", 2], ["updated_at", "2015-05-22 06:15:59.766854"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "doctor_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:59.767403"], ["optionNum", 1], ["question_id", 3], ["updated_at", "2015-05-22 06:15:59.767403"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "doctor_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:59.767990"], ["optionNum", 2], ["question_id", 4], ["updated_at", "2015-05-22 06:15:59.767990"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "doctor_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:59.768537"], ["optionNum", 1], ["question_id", 5], ["updated_at", "2015-05-22 06:15:59.768537"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "doctor_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:59.769048"], ["optionNum", 2], ["question_id", 6], ["updated_at", "2015-05-22 06:15:59.769048"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150518000800"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+Migrating to AddUserVotes (20150518001335)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:59.777398"], ["optionNum", 1], ["question_id", 1], ["updated_at", "2015-05-22 06:15:59.777398"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "user_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:59.778683"], ["optionNum", 2], ["question_id", 2], ["updated_at", "2015-05-22 06:15:59.778683"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "user_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:59.779232"], ["optionNum", 1], ["question_id", 3], ["updated_at", "2015-05-22 06:15:59.779232"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "user_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:59.779784"], ["optionNum", 2], ["question_id", 4], ["updated_at", "2015-05-22 06:15:59.779784"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "user_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:15:59.780310"], ["optionNum", 1], ["question_id", 5], ["updated_at", "2015-05-22 06:15:59.780310"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "user_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:15:59.780875"], ["optionNum", 2], ["question_id", 6], ["updated_at", "2015-05-22 06:15:59.780875"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150518001335"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+Migrating to CreatePapers (20150518033040)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "papers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "optionNum" integer, "url" varchar(255), "doctor_id" integer, "question_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150518033040"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+Migrating to UserInfo (20150522061307)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "users" ADD "birth_date" datetime
+SQLite3::SQLException: no such table: users: ALTER TABLE "users" ADD "birth_date" datetime
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.3ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateDoctors (20150426205500)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "doctors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "docScore" integer, "specialty" varchar(255), "school" varchar(255), "knownFor" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150426205500"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+Migrating to CreateQuestions (20150426205641)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "questions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "text" varchar(255), "option1" varchar(255), "option2" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150426205641"]]
+  [1m[35m (19.6ms)[0m  commit transaction
+Migrating to CreateResponses (20150426205733)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "responses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "agreesNum" integer, "text" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150426205733"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+Migrating to CreateAgrees (20150426205739)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "agrees" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150426205739"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+Migrating to CreateNormalUsers (20150426205755)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "normal_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar(255), "salt" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150426205755"]]
+  [1m[35m (1.7ms)[0m  commit transaction
+Migrating to CreateUserVotes (20150426205808)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "user_votes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "optionNum" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150426205808"]]
+  [1m[35m (1.1ms)[0m  commit transaction
+Migrating to CreateDoctorVotes (20150426205814)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "doctor_votes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "optionNum" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150426205814"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+Migrating to AddAuth (20150505045552)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "normal_users" ADD "encrypted_password" varchar(255)
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "normal_users" ADD "email" varchar(255)[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "doctors" ADD "username" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "doctors" ADD "email" varchar(255)[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "doctors" ADD "encrypted_password" varchar(255)
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "doctors" ADD "salt" varchar(255)[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150505045552"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+Migrating to Addphotolink (20150505061306)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "questions" ADD "photo_link" varchar(255)[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150505061306"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+Migrating to AddUsers (20150517221843)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "normal_users" ("created_at", "email", "updated_at", "username") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:16:47.342112"], ["email", "jpekins@gmail.com"], ["updated_at", "2015-05-22 06:16:47.342112"], ["username", "John"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "normal_users" ("created_at", "email", "updated_at", "username") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:16:47.345199"], ["email", "fake@fake.com"], ["updated_at", "2015-05-22 06:16:47.345199"], ["username", "Tanner"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "normal_users" ("created_at", "email", "updated_at", "username") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:16:47.346204"], ["email", "fake@fake.com"], ["updated_at", "2015-05-22 06:16:47.346204"], ["username", "Abraham"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "normal_users" ("created_at", "email", "updated_at", "username") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:16:47.346738"], ["email", "fake@fake.com"], ["updated_at", "2015-05-22 06:16:47.346738"], ["username", "Emily"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "normal_users" ("created_at", "email", "updated_at", "username") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:16:47.347386"], ["email", "fake@fake.com"], ["updated_at", "2015-05-22 06:16:47.347386"], ["username", "Oneida"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "normal_users" ("created_at", "email", "updated_at", "username") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:16:47.348070"], ["email", "fake@fake.com"], ["updated_at", "2015-05-22 06:16:47.348070"], ["username", "Thanh"]]
+  [1m[36mNormalUser Load (0.1ms)[0m  [1mSELECT "normal_users".* FROM "normal_users"[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "normal_users" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "normal_users"."id" = 1  [["encrypted_password", "d47d11a7ec7b7fc4ff34e1aa7588673be9236a77c948b2c061882d334615b0bf"], ["salt", "c20b0572adf1b13e5617279f7d04ec49"], ["updated_at", "2015-05-22 06:16:47.351630"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "normal_users" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "normal_users"."id" = 2[0m  [["encrypted_password", "46ebf691ed474012b233234ec9b6a0cc7822e2043ae850a01b11e1838a3d7b27"], ["salt", "bab3730f897b822b8635c9383e4f25d1"], ["updated_at", "2015-05-22 06:16:47.353359"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "normal_users" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "normal_users"."id" = 3  [["encrypted_password", "ce0f59c98bf27ca7008f0a13bc89e09550992988c102e6153127407f5726e2fc"], ["salt", "a52ac03bb46b982fe73abfcb7dcf2f6a"], ["updated_at", "2015-05-22 06:16:47.353958"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "normal_users" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "normal_users"."id" = 4[0m  [["encrypted_password", "a305f9bbe898ab26c158ce9bd5a418c8a31e6cc2f1d7430d525394b6a7bef864"], ["salt", "2681dd3ba8514e09afbacff9125f35d2"], ["updated_at", "2015-05-22 06:16:47.354484"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "normal_users" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "normal_users"."id" = 5  [["encrypted_password", "1cd86054aaa0a51cec3462892fee57c88ed37e9418d58b52f7ea3e253a9960ba"], ["salt", "c3542a6c1bdda1f6db5c6ecc68dc8e7f"], ["updated_at", "2015-05-22 06:16:47.355137"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "normal_users" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "normal_users"."id" = 6[0m  [["encrypted_password", "cb6704a9917651283467d6fd2e29afb4192c198a9580a6d7b3694189346dd976"], ["salt", "60d540d1578ff04b72f2bcd75b330715"], ["updated_at", "2015-05-22 06:16:47.355780"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150517221843"]]
+  [1m[36m (2.0ms)[0m  [1mcommit transaction[0m
+Migrating to AddDoctors (20150517224130)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "doctors" ("created_at", "docScore", "email", "knownFor", "school", "specialty", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:16:47.371122"], ["docScore", 100], ["email", "jpekins@gmail.com"], ["knownFor", "Child Nutrition"], ["school", "UC Irvine School of Medicine"], ["specialty", "Pediatrics"], ["updated_at", "2015-05-22 06:16:47.371122"], ["username", "drJohn"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "doctors" ("created_at", "docScore", "email", "knownFor", "school", "specialty", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", "2015-05-22 06:16:47.372603"], ["docScore", 70], ["email", "fake@fake.com"], ["knownFor", "Chest Pain"], ["school", "Stanford School of Medicine"], ["specialty", "Internal Medicine"], ["updated_at", "2015-05-22 06:16:47.372603"], ["username", "drTanner"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "doctors" ("created_at", "docScore", "email", "knownFor", "school", "specialty", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:16:47.373260"], ["docScore", 80], ["email", "fake@fake.com"], ["knownFor", "Diabetes"], ["school", "Ross University School of Medicine"], ["specialty", "Internal Medicine"], ["updated_at", "2015-05-22 06:16:47.373260"], ["username", "drAbraham"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "doctors" ("created_at", "docScore", "email", "knownFor", "school", "specialty", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", "2015-05-22 06:16:47.373882"], ["docScore", 50], ["email", "fake@fake.com"], ["knownFor", "Hysteroscopy"], ["school", "University of Colorado Denver School of Medicine"], ["specialty", "Obstetrics and Gynecology"], ["updated_at", "2015-05-22 06:16:47.373882"], ["username", "drEmily"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "doctors" ("created_at", "docScore", "email", "knownFor", "school", "specialty", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:16:47.374495"], ["docScore", 40], ["email", "fake@fake.com"], ["knownFor", "Female Health"], ["school", "Duke University School of Medicine"], ["specialty", "Internal Medicine"], ["updated_at", "2015-05-22 06:16:47.374495"], ["username", "drOneida"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "doctors" ("created_at", "docScore", "email", "knownFor", "school", "specialty", "updated_at", "username") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", "2015-05-22 06:16:47.375106"], ["docScore", 60], ["email", "fake@fake.com"], ["knownFor", "Child Surgery"], ["school", "UC Berkeley School of Medicine"], ["specialty", "Pediatrics"], ["updated_at", "2015-05-22 06:16:47.375106"], ["username", "drThanh"]]
+  [1m[36mDoctor Load (0.1ms)[0m  [1mSELECT "doctors".* FROM "doctors"[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "doctors" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "doctors"."id" = 1  [["encrypted_password", "d8d5930c344460cb2a505e0c4314a4a02e0307e3f0d25b7eb4ad0b5010b99581"], ["salt", "7db960e5e363c6c1f9946e807566906b"], ["updated_at", "2015-05-22 06:16:47.376158"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "doctors" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "doctors"."id" = 2[0m  [["encrypted_password", "c485155cf1e592f3390f3ca48484fd52e0a0b2438a25ae4cd290abe38ece9ef8"], ["salt", "bc2e4331f86baaf1d1cf38f0f4e90e52"], ["updated_at", "2015-05-22 06:16:47.376897"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "doctors" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "doctors"."id" = 3  [["encrypted_password", "dbb1e9d3bee587acd7c5f742ed118dcf322d8787c88338a53322d50d6c55a856"], ["salt", "bac0a6c840890b795288befdad81dfab"], ["updated_at", "2015-05-22 06:16:47.377431"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "doctors" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "doctors"."id" = 4[0m  [["encrypted_password", "64011d3f8caabfa123cb1539e82cd74730317ae81933d19c678992c6b31e9f7f"], ["salt", "bea7c3849e94960b00bbd522cefaf6c8"], ["updated_at", "2015-05-22 06:16:47.377962"]]
+  [1m[35mSQL (0.1ms)[0m  UPDATE "doctors" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "doctors"."id" = 5  [["encrypted_password", "e37d35bce1a8f520b205c8cd327fd8d36ebd9153309bb45be073c438ff41d061"], ["salt", "eac6c7f5fef25a0cd4d7f05b423ffb1c"], ["updated_at", "2015-05-22 06:16:47.378517"]]
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "doctors" SET "encrypted_password" = ?, "salt" = ?, "updated_at" = ? WHERE "doctors"."id" = 6[0m  [["encrypted_password", "9e68b52e4835f2dcfb41f9a033b73cb5e7c3dccd802ec0cd75484c56a09fc6bb"], ["salt", "b321e9a3f1e6d03a5437e54d7f289758"], ["updated_at", "2015-05-22 06:16:47.379042"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150517224130"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+Migrating to AddUserIdQuestions (20150517232848)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "questions" ADD "normal_user_id" integer[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150517232848"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+Migrating to AddDoctorIdResponses (20150517234520)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "responses" ADD "doctor_id" integer[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150517234520"]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+Migrating to AddQuestionIdUserVote (20150517234709)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "user_votes" ADD "question_id" integer[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150517234709"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+Migrating to AddQuestionIdDoctorVote (20150517234926)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "doctor_votes" ADD "question_id" integer[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150517234926"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+Migrating to AddResponseIdDoctorIdAgree (20150517235138)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "agrees" ADD "response_id" integer[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "agrees" ADD "doctor_id" integer
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150517235138"]]
+  [1m[35m (2.0ms)[0m  commit transaction
+Migrating to AddResponses (20150518000025)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "responses" ("agreesNum", "created_at", "doctor_id", "text", "updated_at") VALUES (?, ?, ?, ?, ?)  [["agreesNum", 1], ["created_at", "2015-05-22 06:16:47.442381"], ["doctor_id", 1], ["text", "so dumb"], ["updated_at", "2015-05-22 06:16:47.442381"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "responses" ("agreesNum", "created_at", "doctor_id", "text", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["agreesNum", 2], ["created_at", "2015-05-22 06:16:47.444248"], ["doctor_id", 2], ["text", "so beautiful"], ["updated_at", "2015-05-22 06:16:47.444248"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "responses" ("agreesNum", "created_at", "doctor_id", "text", "updated_at") VALUES (?, ?, ?, ?, ?)  [["agreesNum", 3], ["created_at", "2015-05-22 06:16:47.445582"], ["doctor_id", 3], ["text", "so smart"], ["updated_at", "2015-05-22 06:16:47.445582"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "responses" ("agreesNum", "created_at", "doctor_id", "text", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["agreesNum", 4], ["created_at", "2015-05-22 06:16:47.446422"], ["doctor_id", 4], ["text", "so insightful"], ["updated_at", "2015-05-22 06:16:47.446422"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "responses" ("agreesNum", "created_at", "doctor_id", "text", "updated_at") VALUES (?, ?, ?, ?, ?)  [["agreesNum", 5], ["created_at", "2015-05-22 06:16:47.447125"], ["doctor_id", 5], ["text", "so helpful"], ["updated_at", "2015-05-22 06:16:47.447125"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "responses" ("agreesNum", "created_at", "doctor_id", "text", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["agreesNum", 6], ["created_at", "2015-05-22 06:16:47.447855"], ["doctor_id", 6], ["text", "so life-changing!"], ["updated_at", "2015-05-22 06:16:47.447855"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150518000025"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+Migrating to AddAgrees (20150518000515)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "agrees" ("created_at", "doctor_id", "response_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:16:47.459256"], ["doctor_id", 1], ["response_id", 1], ["updated_at", "2015-05-22 06:16:47.459256"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "agrees" ("created_at", "doctor_id", "response_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:16:47.460841"], ["doctor_id", 2], ["response_id", 2], ["updated_at", "2015-05-22 06:16:47.460841"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "agrees" ("created_at", "doctor_id", "response_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:16:47.462189"], ["doctor_id", 3], ["response_id", 3], ["updated_at", "2015-05-22 06:16:47.462189"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "agrees" ("created_at", "doctor_id", "response_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:16:47.463340"], ["doctor_id", 4], ["response_id", 4], ["updated_at", "2015-05-22 06:16:47.463340"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "agrees" ("created_at", "doctor_id", "response_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:16:47.464272"], ["doctor_id", 5], ["response_id", 5], ["updated_at", "2015-05-22 06:16:47.464272"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "agrees" ("created_at", "doctor_id", "response_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:16:47.465191"], ["doctor_id", 6], ["response_id", 6], ["updated_at", "2015-05-22 06:16:47.465191"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150518000515"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+Migrating to AddDoctorVotes (20150518000800)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "doctor_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:16:47.475593"], ["optionNum", 1], ["question_id", 1], ["updated_at", "2015-05-22 06:16:47.475593"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "doctor_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:16:47.477020"], ["optionNum", 2], ["question_id", 2], ["updated_at", "2015-05-22 06:16:47.477020"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "doctor_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:16:47.478006"], ["optionNum", 1], ["question_id", 3], ["updated_at", "2015-05-22 06:16:47.478006"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "doctor_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:16:47.478946"], ["optionNum", 2], ["question_id", 4], ["updated_at", "2015-05-22 06:16:47.478946"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "doctor_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:16:47.479550"], ["optionNum", 1], ["question_id", 5], ["updated_at", "2015-05-22 06:16:47.479550"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "doctor_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:16:47.480081"], ["optionNum", 2], ["question_id", 6], ["updated_at", "2015-05-22 06:16:47.480081"]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150518000800"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+Migrating to AddUserVotes (20150518001335)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:16:47.488847"], ["optionNum", 1], ["question_id", 1], ["updated_at", "2015-05-22 06:16:47.488847"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "user_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:16:47.490222"], ["optionNum", 2], ["question_id", 2], ["updated_at", "2015-05-22 06:16:47.490222"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "user_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:16:47.490815"], ["optionNum", 1], ["question_id", 3], ["updated_at", "2015-05-22 06:16:47.490815"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "user_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:16:47.491346"], ["optionNum", 2], ["question_id", 4], ["updated_at", "2015-05-22 06:16:47.491346"]]
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "user_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:16:47.491868"], ["optionNum", 1], ["question_id", 5], ["updated_at", "2015-05-22 06:16:47.491868"]]
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "user_votes" ("created_at", "optionNum", "question_id", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", "2015-05-22 06:16:47.492386"], ["optionNum", 2], ["question_id", 6], ["updated_at", "2015-05-22 06:16:47.492386"]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150518001335"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+Migrating to CreatePapers (20150518033040)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "papers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "optionNum" integer, "url" varchar(255), "doctor_id" integer, "question_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150518033040"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+Migrating to UserInfo (20150522061307)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "normal_users" ADD "birth_date" datetime
+  [1m[36m (0.1ms)[0m  [1mALTER TABLE "normal_users" ADD "gender" text[0m
+  [1m[35m (0.1ms)[0m  ALTER TABLE "normal_users" ADD "location" text
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150522061307"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "questions" ("created_at", "normal_user_id", "option1", "option2", "photo_link", "text", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", "2015-05-22 06:16:47.587585"], ["normal_user_id", 1], ["option1", "No such thing"], ["option2", "There are superfoods"], ["photo_link", "http://www.itslavida.com/files/2015/01/superfoods-1000x500.jpg"], ["text", "What should I buy at the grocery store to stay healthy? Which foods are superfoods?"], ["title", "Are superfoods a real thing?"], ["updated_at", "2015-05-22 06:16:47.587585"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "questions" ("created_at", "normal_user_id", "option1", "option2", "photo_link", "text", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:16:47.590623"], ["normal_user_id", 1], ["option1", "Gatorade"], ["option2", "Water"], ["photo_link", "http://briangreen.net/files/2013/10/elixir-00-640x480.jpg"], ["text", "What to do if I do an hour full body workout should what to do if i drink water or gatorade while i work out?"], ["title", "Is gatorade better for you than water when exercising?"], ["updated_at", "2015-05-22 06:16:47.590623"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "questions" ("created_at", "normal_user_id", "option1", "option2", "photo_link", "text", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", "2015-05-22 06:16:47.593454"], ["normal_user_id", 2], ["option1", "Supplements are necessary to build muscle mass."], ["option2", "Muscle mass can be built through exercise."], ["photo_link", "http://cosmouk.cdnds.net/15/11/nrm_1425906239-pillsandsupplements.jpg"], ["text", "Are supplements necessary to build muscle mass?"], ["title", "Are supplements necessary to build muscle mass?"], ["updated_at", "2015-05-22 06:16:47.593454"]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "questions" ("created_at", "normal_user_id", "option1", "option2", "photo_link", "text", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:16:47.596665"], ["normal_user_id", 2], ["option1", "Lactic acid causes delayed onset muscle soreness"], ["option2", "Delayed onset muscle soreness is a natural outcome of physical activity."], ["photo_link", "http://www.bicyclestore.com.au/media/wysiwyg/LacticA.jpg"], ["text", "I’ve heard lactic acid is caused by soreness. Is this true?"], ["title", "Does lactic acid cause muscle soreness?"], ["updated_at", "2015-05-22 06:16:47.596665"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "questions" ("created_at", "normal_user_id", "option1", "option2", "photo_link", "text", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", "2015-05-22 06:16:47.600214"], ["normal_user_id", 3], ["option1", "BMI should be used to evaluate good health."], ["option2", "Waist circumference should be added to BMI to evaluate good health."], ["photo_link", "http://www.apotheke-innsbruck.at/page/media/bmi.jpg"], ["text", "I received a good BMI rating last time at the doctors? Am I healthy?"], ["title", "Am I in good health if I have a good BMI reading?"], ["updated_at", "2015-05-22 06:16:47.600214"]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "questions" ("created_at", "normal_user_id", "option1", "option2", "photo_link", "text", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:16:47.603071"], ["normal_user_id", 3], ["option1", "Eggs cause heart disease."], ["option2", "Effect of egg consumption on blood cholesterol is minimal."], ["photo_link", "https://moviewriternyu.files.wordpress.com/2013/10/eggs.jpg"], ["text", "Can I now eat eggs as a part of a healthy diet? "], ["title", "Should eggs be a part of a healthy diet?"], ["updated_at", "2015-05-22 06:16:47.603071"]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "questions" ("created_at", "normal_user_id", "option1", "option2", "photo_link", "text", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", "2015-05-22 06:16:47.605796"], ["normal_user_id", 4], ["option1", "Vitamin E protects against disease."], ["option2", "Supplementing with Vitamin E may slightly lower lifespan."], ["photo_link", "http://www.empoweringeverydaywomen.com/images/easter-eggs1000.jpg"], ["text", "Does supplemental vitamin E protect against disease?"], ["title", "Should I be supplementing my diet with vitamin E?"], ["updated_at", "2015-05-22 06:16:47.605796"]]
+  [1m[36m (2.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "questions" ("created_at", "normal_user_id", "option1", "option2", "photo_link", "text", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:16:47.609703"], ["normal_user_id", 4], ["option1", "Herbal supplements are natural and good for you."], ["option2", "Some herbal supplements cause liver toxicity."], ["photo_link", "http://hairsupplements.org/wp-content/uploads/2014/03/HairSupplements1.jpg"], ["text", "Can herbal supplements be taken like medicine?"], ["title", "Does the idea that herbal supplements are natural mean they are safe?"], ["updated_at", "2015-05-22 06:16:47.609703"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "questions" ("created_at", "normal_user_id", "option1", "option2", "photo_link", "text", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["created_at", "2015-05-22 06:16:47.613297"], ["normal_user_id", 5], ["option1", "Antibiotics are for colds."], ["option2", "Antibiotics should be used in the treatment of bacterial infections."], ["photo_link", "http://www.pbiforum.net/images/cache/1000x500/crop/images%7Ccms-image-000000894.jpg"], ["text", "Why won’t my doctor give me an antibiotic for my cold?"], ["title", "Will an antibiotic cure a cold?"], ["updated_at", "2015-05-22 06:16:47.613297"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "questions" ("created_at", "normal_user_id", "option1", "option2", "photo_link", "text", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2015-05-22 06:16:47.616598"], ["normal_user_id", 5], ["option1", "Ulcers are caused by stress, food, and spices."], ["option2", "Ulcers are caused by the bacteria Helicobacter pylori."], ["photo_link", "http://indianparentsforum.com/home/wp-content/uploads/2015/03/how-to-deal-with-stress.jpg"], ["text", "Is it true that certain foods cause ulcers?"], ["title", "Are ulcers caused by stress?"], ["updated_at", "2015-05-22 06:16:47.616598"]]
+  [1m[35m (2.0ms)[0m  commit transaction

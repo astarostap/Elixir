@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150522051401) do
+ActiveRecord::Schema.define(version: 20150522061307) do
 
   create_table "agrees", force: true do |t|
     t.datetime "created_at"
@@ -47,6 +47,9 @@ ActiveRecord::Schema.define(version: 20150522051401) do
     t.datetime "updated_at"
     t.string   "encrypted_password"
     t.string   "email"
+    t.datetime "birth_date"
+    t.text     "gender"
+    t.text     "location"
   end
 
   create_table "papers", force: true do |t|
@@ -56,7 +59,6 @@ ActiveRecord::Schema.define(version: 20150522051401) do
     t.integer  "question_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "question_id"
   end
 
   create_table "questions", force: true do |t|
