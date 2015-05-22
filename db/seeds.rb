@@ -10,6 +10,7 @@
 questions_list = [
   [ "Are superfoods a real thing?", "What should I buy at the grocery store to stay healthy? Which foods are superfoods?", "No such thing", "There are superfoods", "http://www.itslavida.com/files/2015/01/superfoods-1000x500.jpg", 1],
   [ "Is gatorade better for you than water when exercising?", "What to do if I do an hour full body workout should what to do if i drink water or gatorade while i work out?", "Gatorade", "Water", "http://briangreen.net/files/2013/10/elixir-00-640x480.jpg", 1 ],
+
   [ "Are supplements necessary to build muscle mass?", "Are supplements necessary to build muscle mass?", "Supplements are necessary to build muscle mass.", "Muscle mass can be built through exercise.", "http://cosmouk.cdnds.net/15/11/nrm_1425906239-pillsandsupplements.jpg", 2],
   [ "Does lactic acid cause muscle soreness?", "I’ve heard lactic acid is caused by soreness. Is this true?", "Lactic acid causes delayed onset muscle soreness", "Delayed onset muscle soreness is a natural outcome of physical activity.", "http://www.bicyclestore.com.au/media/wysiwyg/LacticA.jpg", 2],
   [ "Am I in good health if I have a good BMI reading?", "I received a good BMI rating last time at the doctors? Am I healthy?", "BMI should be used to evaluate good health.", "Waist circumference should be added to BMI to evaluate good health.", "http://www.apotheke-innsbruck.at/page/media/bmi.jpg", 3],
