@@ -42,7 +42,7 @@
           <div class="control-group">
             <div class="checkbox">
               <label>
-                <input type="checkbox" name="user[is_doctor]" value="doctor" onclick="showDiv(doctorData)"> Are you a doctor? </input>
+                <input type="checkbox" name="user[is_doctor]" value="doctor" onchange="showDiv('doctorData')"> Are you a doctor? </input>
               </label>
             </div>
           </div>
@@ -51,10 +51,23 @@
               <div class="control-group" >
                 <label class="control-label"  for="text">Doctor School</label>
                   <div class="controls">
-                      <input type="text" class="form-control" id="user_email" name="user[email]">
+                      <input type="text" class="form-control" id="user_email" name="user[docSchool]">
+                  </div>
+              </div>
+              <div class="control-group" >
+                <label class="control-label"  for="text">Doctor Specialty</label>
+                  <div class="controls">
+                      <input type="text" class="form-control" id="user_specialty" name="user[docSpecialty]">
+                  </div>
+              </div>
+              <div class="control-group" >
+                <label class="control-label"  for="text">KnownFor</label>
+                  <div class="controls">
+                    <input type="text" class="form-control" id="user_email" name="user[knownFor]">
                   </div>
               </div>
           </div>
+          </br>
 					<div>
 						<button class="btn btn-primary">Create Account</button>
 					</div>

@@ -8,10 +8,10 @@ class UsersController < ApplicationController
 
 		if f[:is_doctor]
 			@new_user = Doctor.new
-			@new_user.docScore = 100
-			@new_user.specialty = "wiiiiii"
-			@new_user.school = "woooo"
-			@new_user.knownFor = "waaaaa"
+			@new_user.docScore = 80
+			@new_user.specialty = f[:docSpecialty]
+			@new_user.school = f[:docSchool]
+			@new_user.knownFor = f[:knownFor]
 			session[:is_doctor] = true
 		else
 			@new_user = NormalUser.new
