@@ -1,0 +1,45 @@
+#owl-demo {
+	position:relative;
+}
+
+#question-title {
+/*	color: white;*/
+}
+
+#outer-div {
+/*	position:absolute;
+	background-color: #9999FF;
+	top:100px;
+	height: 900px;
+	width: 100%;
+}*/
+}
+div.owl-item > div {
+    display:table-cell;
+    vertical-align:middle;
+}
+.boxed {
+  border: 1px solid green;
+  position:relative;
+  width: 500px;
+  height: 100px;
+}
+.outside-container {
+    position:relative;
+}
+.inside-textbox {
+    position: absolute;
+    text-align: center;
+	vertical-align: middle;
+	line-height: 90px;
+    background-color: black;
+    color: white;
+    height: 100px;
+    width: 1000px;
+    left: 12%;
+    top:80%;
+    font-size: 30px;
+	font-size:30px;
+	color:#fff;
+	text-shadow:0 0 30px #fff, 0 0 70px #ffff00;
+}
