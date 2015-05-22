@@ -43,23 +43,46 @@ class UsersController < ApplicationController
 
 	def post_login
 		f = params[:user]
-		if not NormalUser.find_by_username(f[:username]) 
-			flash.notice = "Wrong username or password, try again!"
-			redirect_to :controller => "users",  :action => "login"
-
-		else
-			@user = NormalUser.find_by_username(f[:username])
-			if not @user.password_valid(f[:password])
+		if not f[:is_doctor]
+			if not NormalUser.find_by_username(f[:username]) 
 				flash.notice = "Wrong username or password, try again!"
 				redirect_to :controller => "users",  :action => "login"
-			else
-                @user_id = @user.id
-				session[:id] = @user_id
-				session[:username] = @user.username
-				flash.notice = "Welcome " + @user.username + "!"
-				redirect_to :controller => "questions"
-			end
 
+			else
+				@user = NormalUser.find_by_username(f[:username])
+				if not @user.password_valid(f[:password])
+					flash.notice = "Wrong username or password, try again!"
+					redirect_to :controller => "users",  :action => "login"
+				else
+               		@user_id = @user.id
+					session[:id] = @user_id
+					session[:username] = @user.username
+					session[:is_doctor] = false
+					flash.notice = "Welcome " + @user.username + "!"
+					redirect_to :controller => "questions"
+				end
+
+			end
+		else
+			if not Doctor.find_by_username(f[:username]) 
+				flash.notice = "Wrong username or password, try again!"
+				redirect_to :controller => "users",  :action => "login"
+
+			else
+				@user = Doctor.find_by_username(f[:username])
+				if not @user.password_valid(f[:password])
+					flash.notice = "Wrong username or password, try again!"
+					redirect_to :controller => "users",  :action => "login"
+				else
+               		@user_id = @user.id
+					session[:id] = @user_id
+					session[:username] = @user.username
+					session[:is_doctor] = true
+					flash.notice = "Welcome " + @user.username + "!"
+					redirect_to :controller => "questions"
+				end
+
+			end
 		end
 	end
 
