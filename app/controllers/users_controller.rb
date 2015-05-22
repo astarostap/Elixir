@@ -5,7 +5,19 @@ class UsersController < ApplicationController
   
   	def create
 		f = params[:user]
-		@new_user = NormalUser.new
+
+		if f[:is_doctor]
+			@new_user = Doctor.new
+			@new_user.docScore = 100
+			@new_user.specialty = "wiiiiii"
+			@new_user.school = "woooo"
+			@new_user.knownFor = "waaaaa"
+			session[:is_doctor] = true
+		else
+			@new_user = NormalUser.new
+			session[:is_doctor] = false
+		end
+
 		@new_user.password=(f[:password])
 		@new_user.username = f[:username]
 		@new_user.email = f[:email]
@@ -21,7 +33,7 @@ class UsersController < ApplicationController
 				redirect_to :controller => "questions"
 			else
 				flash.notice = "Didn't save the user"
-				redirect_to :controller => "questions"
+				redirect_to :controller => "users", :id => @user_id, :action => "new"
 			end
 		end
   	end
@@ -36,10 +48,7 @@ class UsersController < ApplicationController
 			redirect_to :controller => "users",  :action => "login"
 
 		else
-		
 			@user = NormalUser.find_by_username(f[:username])
-			puts(@user)
-
 			if not @user.password_valid(f[:password])
 				flash.notice = "Wrong username or password, try again!"
 				redirect_to :controller => "users",  :action => "login"
