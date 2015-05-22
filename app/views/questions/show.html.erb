@@ -9,14 +9,21 @@
 		<p id="question_text"><%= @question.text %></p>
 	</div>
 
+	<!-- Row containing option texts and vote bars -->
 	<table class="centered" id="option_table">
 		<tr>
+			<!-- Options 1 text box -->
 			<td>
 				<div id="option1" class="option_div">
-					<p class="option_text"><%= @question.option1 %></p>
+					<div class="option_text_div">
+						<p class="option_text"><%= @question.option1 %></p>
+					</div>
 				</div>
 			</td>
+
+			<!-- vote bars -->
 			<td>
+				<!-- user vote bar -->
 				<div id="vote_div">
 					<h3> Users </h3>
 					<table id="vote_line" class="centered"><tr>
@@ -26,6 +33,7 @@
 					</tr></table>
 				</div>
 
+				<!-- doctor vote bar -->
 				<div id="vote_div">
 					<h3> Doctors </h3>
 					<table id="vote_line" class="centered"><tr>
@@ -35,9 +43,13 @@
 					</tr></table>
 				</div>
 			</td>
+
+			<!-- option 2 text box -->
 			<td>
 				<div id="option2" class="option_div">
-					<p class="option_text"><%= @question.option2 %></p>
+					<div class="option_text_div">
+						<p class="option_text"><%= @question.option2 %></p>
+					</div>
 				</div>
 			</td>
 		</tr>

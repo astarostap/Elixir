@@ -87,10 +87,20 @@ button {
 }
 
 .option_div {
+	display: table-cell;
 	width: 250px;
 	height: 250px;
+	vertical-align: middle;
+	text-align: center;
 	background: #1995dc;
 	border-radius: 10px;
+}
+
+.option_text_div {
+	display: inline-block;
+	width: 80%;
+	height: 80%;
+	margin: 0 auto;
 }
 
 .option_text {

@@ -1,7 +1,10 @@
 class QuestionsController < ApplicationController
 	def show
-		/q_id = params[:qid]
-		@active_question = questions.find(q_id)/
+		q_id = params[:id]
+		q_id = 1
+		@active_question = Question.find(q_id)
+		puts @active_question.doctor_votes
+
 		text = "omg this is a really long and interesting question and I love pie so much. God I wish I had some pie right now, I would be so happy...."
 		o1 = "this is a really long option 1 but I want to test if it wraps correctly. I'm just going to keep writing until something really big and stupid happens to my poor comment space. Abraham is a douche; look at him wearing that stupid leather jacket. And a pocket on his T-shirt? What a nerd..." 
 		
