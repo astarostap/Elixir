@@ -41,7 +41,21 @@ $(document).ready(function() {
 	var chart = new Chart(ctx).Doughnut(data, options);
 	var legend = chart.generateLegend();
 	$("#user_legend_div").append(legend);
+
+
 });
+
+function init_graphs() {
+    var ctx = $("#doc_canvas").get(0).getContext("2d");
+    var chart = new Chart(ctx).Doughnut(data, options);
+    var legend = chart.generateLegend();
+    $("#doc_legend_div").append(legend);
+
+    var ctx = $("#user_canvas").get(0).getContext("2d");
+    var chart = new Chart(ctx).Doughnut(data, options);
+    var legend = chart.generateLegend();
+    $("#user_legend_div").append(legend);
+}
 
 function display_doc_filters(val) {
     display_filter("doc_filter", val);
@@ -61,4 +75,18 @@ function display_filter(class_name, val) {
             else  $(elems[i]).hide();
         }
     }
+}
+
+function show_add_div(index) {
+    $("#add_comment_div_" + index).slideDown("slow", null);
+    window.scrollBy(0, 120); //make it based on bottom of div on page
+}
+
+function hide_add_div(index) {
+    $("#add_comment_div_" + index).slideUp("slow", null);
+    $("#add_ta" +index).value = "";
+}
+
+function count_vote() {
+    console.log("hi");
 }

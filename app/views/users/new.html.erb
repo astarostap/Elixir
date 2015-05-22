@@ -3,6 +3,8 @@
   <div><h3><%= flash.notice %></h3></div>
 <%end%> 
 
+<%= javascript_include_tag 'new_form'%>
+
 <div id="outer" style="width:100%">  
 
 <div style="width: 30%; margin: 0 auto" class="" id="loginModal">
@@ -19,25 +21,56 @@
                 		<div class="controls">
                   		<input type="text" class="form-control" id="user_username" name="user[username]">
                 	</div>
-                	<div class="control-group">
-               			<label class="control-label"  for="text">Email</label>
-                		<div class="controls">
-                  		<input type="text" class="form-control" id="user_email" name="user[email]">
-                	</div>
-                	<div class="control-group">
-               			<label class="control-label"  for="text">Password</label>
-                		<div class="controls">
-                  		<input type="text" class="form-control" id="user_password" name="user[password]">
-                	</div>
-                	<div class="control-group">
-               			<label class="control-label"  for="text">Password Confirmation</label>
-                		<div class="controls">
-                  		<input type="text" class="form-control" id="user_password_confirmation" name="user[password_confirmation]">
-                	</div>
-                	</br>
-						<div>
-							<button class="btn btn-primary">Create Account</button>
-						</div>
+          <div class="control-group">
+            <label class="control-label"  for="text">Email</label>
+              <div class="controls">
+                  <input type="text" class="form-control" id="user_email" name="user[email]">
+              </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label"  for="text">Password</label>
+            <div class="controls">
+              <input type="password" class="form-control" id="user_password" name="user[password]">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label"  for="text">Password Confirmation</label>
+            <div class="controls">
+              <input type="password" class="form-control" id="user_password_confirmation" name="user[password_confirmation]">
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="user[is_doctor]" value="doctor" onchange="showDiv('doctorData')"> Are you a doctor? </input>
+              </label>
+            </div>
+          </div>
+          </br>
+          <div id="doctorData" style="display:none;" >
+              <div class="control-group" >
+                <label class="control-label"  for="text">Doctor School</label>
+                  <div class="controls">
+                      <input type="text" class="form-control" id="user_email" name="user[docSchool]">
+                  </div>
+              </div>
+              <div class="control-group" >
+                <label class="control-label"  for="text">Doctor Specialty</label>
+                  <div class="controls">
+                      <input type="text" class="form-control" id="user_specialty" name="user[docSpecialty]">
+                  </div>
+              </div>
+              <div class="control-group" >
+                <label class="control-label"  for="text">KnownFor</label>
+                  <div class="controls">
+                    <input type="text" class="form-control" id="user_email" name="user[knownFor]">
+                  </div>
+              </div>
+          </div>
+          </br>
+					<div>
+						<button class="btn btn-primary">Create Account</button>
+					</div>
 					<% end %>
 				</div>
 			</div>
