@@ -20,6 +20,21 @@ class QuestionsController < ApplicationController
   		@first, *@rest = @all_questions
 	end
 
+	def show_paper
+		q = params[:question_id]
+		@paper = Paper.find(q)
+	end
+
+	def create_paper
+		p = params[:paper]
+		@paper = Paper.new
+		@paper.optionNum = p[:optionNum]
+		@paper.doctor_id = p[:doctor_id]
+		@paper.question_id = p[:question_id]
+		@paper.url = p[:url]
+		@paper.save
+	end
+
 	def query
 		@result = []
 		if params[:query] == nil then
