@@ -60,6 +60,9 @@ Rails.application.routes.draw do
   get 'users/logout' => 'users#logout'
 
   post 'questions/query' => 'questions#query'
+  get 'questions/show_paper' => 'questions#show_paper'
+  post 'questions/create_paper' => 'questions#create_paper'
+
 
   resources :questions
   resources :users
