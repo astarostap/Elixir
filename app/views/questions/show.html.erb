@@ -356,4 +356,45 @@
 			</div>
 		</div>
 	</div>
+
+	<% if session[:is_doctor] %>
+            <button type="button" class="btn btn-primary" onclick="showDiv('create_paper')"><h4>Add Source</h4></button>
+          	</br>
+          	<div id="create_paper" style="display:none;" >
+			<div style="width: 30%; margin: 0 auto" class="">
+				<div class="modal-body">
+					<div class="well">
+						<div >
+							<%= form_tag({controller: "questions", action: "create_paper"}, method: "post", html: {role: "form"}) do%>
+							</br>
+							<label class="control-label"  for="text">What option number is this source for?</label>
+	            			</br>
+							<div class="btn-group">
+				              <input type="radio" name="paper[optionNum]" value="1"> 1 			              
+				              <input type="radio" name="paper[optionNum]" value="1"> 2
+							</div>
+							
+							<input type="hidden" name="paper[question_id]" value=<%= @active_question.id %>></input>
+							</br>
+						</br>
+							<div class="control-group">
+				            <label class="control-label"  for="text">Source URL</label>
+				              <div class="controls">
+				                  <input type="text" class="form-control" id="paper_url" name="paper[url]">
+				              </div>
+	          				</div>
+	          			</br>
+	          				<div class="control-group">
+								<!-- Button -->
+								<div class="controls">
+									<button type="submit" class="btn btn-primary">Submit Source</button>
+								</div>
+							</div>
+						<% end %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<% end %>
 </div>
