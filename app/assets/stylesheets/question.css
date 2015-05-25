@@ -73,7 +73,7 @@ button {
 	height: 100px;
 }
 
-#vote_line {
+.vote_line {
 	border-collapse: separate;
 	border-spacing: 3px;
 	width: 200px;
@@ -86,6 +86,10 @@ button {
 	border-radius: 7px;
 }
 
+.inner_vote_bar {
+	/*display: inline;*/
+}
+
 .option_div {
 	display: table-cell;
 	width: 250px;
@@ -94,6 +98,7 @@ button {
 	text-align: center;
 	background: #1995dc;
 	border-radius: 10px;
+	cursor: pointer;
 }
 
 .option_text_div {

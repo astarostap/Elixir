@@ -2,11 +2,11 @@
 <%= javascript_include_tag 'question'%>
 <div id="page_container">
 	<div id="title">
-		<h1><%= @question.title %></h1>
+		<h1><%= @active_question.title %></h1>
 	</div>
 
 	<div id="question_text_div" class="centered">
-		<p id="question_text"><%= @question.text %></p>
+		<p id="question_text"><%= @active_question.text %></p>
 	</div>
 
 	<!-- Row containing option texts and vote bars -->
@@ -16,7 +16,7 @@
 			<td>
 				<div id="option1" class="option_div">
 					<div class="option_text_div">
-						<p class="option_text"><%= @question.option1 %></p>
+						<p class="option_text"><%= @active_question.option1 %></p>
 					</div>
 				</div>
 			</td>
@@ -26,20 +26,30 @@
 				<!-- user vote bar -->
 				<div id="vote_div">
 					<h3> Users </h3>
-					<table id="vote_line" class="centered"><tr>
-						<td>100%</td>
-						<td><div class="centered vote_bar" id="user_votes"></div></td>
-						<td>100%</td>
+					<table class="centered vote_line"><tr>
+						<td id="user_left_percent"></td>
+						<td><div class="centered vote_bar" id="user_votes">
+							<table><tr>
+								<td class="inner_vote_bar" id="user_vote_bar_left"></td>
+								<td class="inner_vote_bar" id="user_vote_bar_right"></td>
+							</tr></table>
+						</div></td>
+						<td id="user_right_percent"></td>
 					</tr></table>
 				</div>
 
 				<!-- doctor vote bar -->
 				<div id="vote_div">
 					<h3> Doctors </h3>
-					<table id="vote_line" class="centered"><tr>
-						<td>100%</td>
-						<td><div class="centered vote_bar" id="doc_votes"></div></td>
-						<td>100%</td>
+					<table class="centered vote_line"><tr>
+						<td id="doctor_left_percent"></td>
+						<td><div class="centered vote_bar" id="doctor_votes">
+							<table><tr>
+								<td class="inner_vote_bar" id="doctor_vote_bar_left"></td>
+								<td class="inner_vote_bar" id="doctor_vote_bar_right"></td>
+							</tr></table>
+						</div></td>
+						<td id="doctor_right_percent"></td>
 					</tr></table>
 				</div>
 			</td>
@@ -48,7 +58,7 @@
 			<td>
 				<div id="option2" class="option_div">
 					<div class="option_text_div">
-						<p class="option_text"><%= @question.option2 %></p>
+						<p class="option_text"><%= @active_question.option2 %></p>
 					</div>
 				</div>
 			</td>
@@ -66,7 +76,7 @@
 		<!-- graph criterion and "filters" title --> 
 		<tr> 
 			<td style="height:40px;">
-				<select id="doc_criteria" onchange="display_doc_filters(this.value);">
+				<select id="doc_criteria" onchange="criteria_selected(this.value, 'doctor');">
 					<option value=-1>Select a criterion</option>
 					<option value=1>Option Number</option>
 					<option value=2>Specialty</option>
@@ -80,12 +90,12 @@
 			<td class="stat_gap"></td>
 
 			<td>
-				<select id="user_criteria" onchange="display_user_filters(this.value);">
+				<select id="user_criteria" onchange="criteria_selected(this.value, 'user');">
 					<option value=-1>Select a criterion</option>
-					<option value=1>Option Number</option>
-					<option value=2>Age</option>
-					<option value=3>Gender</option>
-					<option value=4>Location</option>
+					<option value=0>Option Number</option>
+					<option value=1>Age</option>
+					<option value=2>Gender</option>
+					<option value=3>Location</option>
 				</select>
 			</td>
 
@@ -98,10 +108,10 @@
 		<tr>
 			<!-- Doctor graph -->
 			<td>
-				<div id="doc_chart_div" class="centered">
+				<div id="doctor_chart_div" class="centered">
 					<div class="chart_container centered">
 						<div class="graph_container">
-							<canvas class="doughnut_canvas" id="doc_canvas"></canvas>
+							<canvas class="doughnut_canvas" id="doctor_canvas"></canvas>
 						</div>
 						<div id="doc_legend_div"></div>
 					</div>
@@ -110,16 +120,16 @@
 
 			<!-- Doctor Filters -->
 			<td class="filter_td">
-				<select id='doc_specialty_filter' class='dropdown doc_filter' onchange='update_doc_chart(this.id, this.value);'>
+				<select id='doc_option_filter' class='dropdown doc_filter' onchange='filter_selected(this.id, this.value);'>
 					<option value=-1>Option Number</option>
 				</select>
-				<select id='doc_specialty_filter' class='dropdown doc_filter' onchange='update_doc_chart(this.id, this.value);'>
+				<select id='doc_specialty_filter' class='dropdown doc_filter' onchange='filter_selected(this.id, this.value);'>
 					<option value=-1>Specialty</option>
 				</select>
-				<select id='doc_years_filter' class='dropdown doc_filter' onchange='update_doc_chart(this.id, this.value);'>
+				<select id='doc_YIP_filter' class='dropdown doc_filter' onchange='filter_selected(this.id, this.value);'>
 					<option value=-1>Years in Practice</option>
 				</select>
-				<select id='doc_rating_filter' class='dropdown doc_filter' onchange='update_doc_chart(this.id, this.value);'>
+				<select id='doc_rating_filter' class='dropdown doc_filter' onchange='filter_selected(this.id, this.value);'>
 					<option value=-1>Rating</option>
 				</select>
 			</td>
@@ -140,16 +150,16 @@
 
 			<!-- User Filters -->
 			<td class="filter_td">
-				<select id='user_specialty_filter' class='dropdown user_filter' onchange='update_doc_chart(this.id, this.value);'>
+				<select id='user_option_filter' class='dropdown user_filter' onchange='update_doc_chart(this.id, this.value);'>
 					<option value=-1>Option Number</option>
 				</select>
-				<select id='user_specialty_filter' class='dropdown user_filter' onchange='update_user_chart(this.id, this.value);'>
+				<select id='user_age_filter' class='dropdown user_filter' onchange='update_user_chart(this.id, this.value);'>
 					<option value=-1>Age</option>
 				</select>
-				<select id='user_years_filter' class='dropdown user_filter' onchange='update_user_chart(this.id, this.value);'>
+				<select id='user_gender_filter' class='dropdown user_filter' onchange='update_user_chart(this.id, this.value);'>
 					<option value=-1>Gender</option>
 				</select>
-				<select id='user_rating_filter' class='dropdown user_filter' onchange='update_user_chart(this.id, this.value);'>
+				<select id='user_location_filter' class='dropdown user_filter' onchange='update_user_chart(this.id, this.value);'>
 					<option value=-1>Location</option>
 				</select>
 			</td>
