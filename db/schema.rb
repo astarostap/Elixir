@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150525025337) do
+
+ActiveRecord::Schema.define(version: 20150522080641) do
+
 
   create_table "agrees", force: true do |t|
     t.datetime "created_at"
