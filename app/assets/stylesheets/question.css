@@ -86,10 +86,6 @@ button {
 	border-radius: 7px;
 }
 
-.inner_vote_bar {
-	/*display: inline;*/
-}
-
 .option_div {
 	display: table-cell;
 	width: 250px;
@@ -180,7 +176,7 @@ button {
 
 /*graph and legend*/
 .chart_container { 
-	width:300px;
+	width:350px;
 	height:200px;
   	position: relative;
 }
@@ -202,20 +198,21 @@ button {
 .doughnut_legend {
 	list-style: none;
   	position: absolute;
-  	right: 10px;
   	top: 0;
+  	max-width: 120px;
+  	padding-left: 20px;
 }
 
 /*contains colored block and word*/
 .doughnut_legend li {
   	display: block;
-  	padding-left: 30px;
   	position: relative;
   	margin-bottom: 4px;
   	border-radius: 5px;
   	padding: 2px 8px 2px 28px;
   	font-size: 14px;
   	text-align: left;
+  	float: left;
 }
 
 /*only colored block*/
@@ -227,6 +224,11 @@ button {
   	width: 20px;
   	height: 20px;
   	border-radius: 5px;
+}
+
+.legend_div {
+	width: 120px;
+	height: 200px;
 }
 
 .stat_gap {
