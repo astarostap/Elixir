@@ -24,7 +24,7 @@
             <td class="result_cell"> 
               <div class="panel panel-primary" style="height:100px;">
                 <div class="panel-heading">
-                  <h3 class="panel-title" id="panel-title" > <%= link_to(q.title, :controller => "questions", :action => "show", :id => q.id) %> <%= q.doctor_votes.count %> votes</h3>
+                  <h3 class="panel-title" id="panel-title" > <%= link_to(q.title, :controller => "questions", :action => "show", :id => q.id) %></h3>
                 </div>
                 <div class="panel-body">
                   <%= q.text %>
