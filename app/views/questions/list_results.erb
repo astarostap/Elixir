@@ -11,16 +11,20 @@
     </div>
 
 <div style="position:relative;top:100px;">
+
   <% for q in @result do%>
     <div class="query_result">
        <table class="table" style="width:100%;1px solid black;">
           <tr>
-            <td class="pic_cell"><%= link_to(image_tag(q.photo_link, :style => "position:relative;width:100%;height:75px;"), :controller => "questions", :action => "show", :id => q.id) %> </td>
+            <td class="pic_cell" style="text-align:center;"><%= link_to(image_tag(q.photo_link, :style => "position:relative;width:100%;height:75px;"), :controller => "questions", :action => "show", :id => q.id) %> 
+            </br>
+            <h5><%= q.doctor_votes.count %> votes </h5>
+            </td>
             
             <td class="result_cell"> 
               <div class="panel panel-primary" style="height:100px;">
                 <div class="panel-heading">
-                  <h3 class="panel-title" id="panel-title" > <%= link_to(q.title, :controller => "questions", :action => "show", :id => q.id) %> </h3>
+                  <h3 class="panel-title" id="panel-title" > <%= link_to(q.title, :controller => "questions", :action => "show", :id => q.id) %> <%= q.doctor_votes.count %> votes</h3>
                 </div>
                 <div class="panel-body">
                   <%= q.text %>
