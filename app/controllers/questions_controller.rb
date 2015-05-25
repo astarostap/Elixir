@@ -33,11 +33,12 @@ class QuestionsController < ApplicationController
 	def create_paper
 		p = params[:paper]
 		@paper = Paper.new
-		@paper.optionNum = p[:optionNum]
-		@paper.doctor_id = p[:doctor_id]
+		@paper.optionNum = p[:optionNum].to_i
+		@paper.doctor_id = session[:id]
 		@paper.question_id = p[:question_id]
 		@paper.url = p[:url]
 		@paper.save
+		redirect_to :controller => "questions", :id => p[:question_id].to_i, :action => "show"
 	end
 
 	def query

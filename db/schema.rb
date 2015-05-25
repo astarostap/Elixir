@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150522050420) do
+ActiveRecord::Schema.define(version: 20150525025337) do
 
   create_table "agrees", force: true do |t|
     t.datetime "created_at"
@@ -39,6 +39,9 @@ ActiveRecord::Schema.define(version: 20150522050420) do
     t.string   "email"
     t.string   "encrypted_password"
     t.string   "salt"
+    t.text     "gender"
+    t.text     "location"
+    t.datetime "birth_date"
   end
 
   create_table "normal_users", force: true do |t|

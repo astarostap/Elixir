@@ -49,7 +49,11 @@
                 <%=link_to "Ask?", controller: "questions", action: "new"%>
             </li>
             <% if session[:id] %>
-               <% namestr = "Hi " + session[:username] + "!"%>
+                <% if not session[:is_doctor] %>
+                  <% namestr = "Hi " + session[:username] + "!"%>
+                <% else %>
+                  <% namestr = "Hi Dr." + session[:username] + "!"%>
+                <% end %>
               <li><%=link_to namestr %> </li>
               <li><%=link_to "Logout", controller: "users", action: "logout"%></li>
             <% else %>
