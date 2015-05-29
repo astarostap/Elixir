@@ -289,10 +289,15 @@
 		<button id="discussion_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'discussion_section');" value="Discussion">Show Discussion</button>
 	</div>
 
-	<div id="discussion_section" class="section_div">
-		<h2 class="centered">Discussion</h2>
-		<div class="centered">
+	<div id="discussion_section" class="centered">
 
+		<!-- left column of discussion section -->
+		<div id="left_col" class="centered disc_col">
+			<!-- title with "add comment" button -->
+			<div class="centered disc_header_div">
+				<h4 class="float_left">Option 1</h4>
+				<button type="button" class="float_right add_comment" onclick="show_add_div(1);">Add Comment</button>
+			</div>
 
 			<!-- comment text area with "post" and "cancel" buttons -->
 
@@ -302,6 +307,7 @@
 					<button type="button" class="float_left" id="add_comment_left" onclick="add_comment_left()">Post</button>
 					<button type="button" class="float_right" onclick="hide_add_div(1);">Cancel</button>
 				</div>
+			</div>
 
 			<!-- list of comments -->
 			<div class="centered">
@@ -317,43 +323,31 @@
 									<p><strong>Username goes here</strong></p>
 								</div>
 
-				<!-- list of comments -->
-				<div class="centered">
-					<ul class="disc_ul">
-						<% for i in 0..(@comments[0].length - 1) %>
-							<li class="disc_li">
-
-								<!-- header for each comment with profile/comment info -->
-								<div class="comment_header">
-									<!-- profile picture and username floating left -->
-									<div class="float_left" style="text-align: left;">
-										<%= image_tag("goat.jpg", class:"profile_picture") %> 
-										<p><strong>Username goes here</strong></p>
+								<!-- up and down vote buttons with current rating -->
+								<div class="float_right" style="text-align: right;">
+									<div class="inline comment_rating">
+										(+9001)
 									</div>
-
-									<!-- up and down vote buttons with current rating -->
-									<div class="float_right" style="text-align: right;">
-										<div class="inline comment_rating">
-											(+9001)
-										</div>
-										<div class="inline">
-											<input type="image" class="sentiment_button" src="/assets/thumbs-up.jpg" onclick="count_vote();">
-										</div>
-										<div class="inline">
-											<input type="image" class="sentiment_button" src="/assets/thumbs-down.jpg" onclick="count_vote();">
-										</div>
+									<div class="inline">
+										<input type="image" class="sentiment_button" src="/assets/thumbs-up.jpg" onclick="count_vote();">
+									</div>
+									<div class="inline">
+										<input type="image" class="sentiment_button" src="/assets/thumbs-down.jpg" onclick="count_vote();">
 									</div>
 								</div>
+							</div>
 
-								<div class="comment_body">
-									<%= @comments[0][i] %>
-								</div>
-								
-							</li>
-						<% end %>
-					</ul>
-				</div>
+							<div class="comment_body">
+								<%= @comments[0][i] %>
+							</div>
+							
+						</li>
+					<% end %>
+				</ul>
 			</div>
+		</div>
+
+		<div class="disc_gap"></div>
 
 		<div id="right_col" class="centered disc_col">
 			<!-- title with "add comment" button -->
@@ -388,34 +382,19 @@
 									<p><strong>Username goes here</strong></p>
 								</div>
 
-				<!-- list of comments -->
-				<div class="centered">
-					<div>
-						<ul class="disc_ul">
-							<% for i in 0..(@comments[1].length - 1) %>
-							<li class="disc_li">
-
-								<!-- header for each comment with profile/comment info -->
-								<div class="comment_header">
-									<!-- profile picture and username floating left -->
-									<div class="float_left" style="text-align: left;">
-										<%= image_tag("goat.jpg", class:"profile_picture") %> 
-										<p><strong>Username goes here</strong></p>
+								<!-- up and down vote buttons with current rating -->
+								<div class="float_right" style="text-align: right;">
+									<div class="inline comment_rating">
+										(+9001)
 									</div>
-
-									<!-- up and down vote buttons with current rating -->
-									<div class="float_right" style="text-align: right;">
-										<div class="inline comment_rating">
-											(+9001)
-										</div>
-										<div class="inline">
-											<input type="image" class="sentiment_button" src="/assets/thumbs-up.jpg" onclick="count_vote();">
-										</div>
-										<div class="inline">
-											<input type="image" class="sentiment_button" src="/assets/thumbs-down.jpg" onclick="count_vote();">
-										</div>
+									<div class="inline">
+										<input type="image" class="sentiment_button" src="/assets/thumbs-up.jpg" onclick="count_vote();">
+									</div>
+									<div class="inline">
+										<input type="image" class="sentiment_button" src="/assets/thumbs-down.jpg" onclick="count_vote();">
 									</div>
 								</div>
+							</div>
 
 							<div class="comment_body" id="comment_body_right">
 								<%= @comments[1][i] %>
