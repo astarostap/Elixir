@@ -136,12 +136,13 @@ function add_dropdown_options(type) {
 /* Voting management JS */
 /*--------------------- */
 function option_vote(option_num) {
-    if(already_voted()) {
+    if(current_user == null) {
+        alert("You must be logged in to vote.");
+    } else if(already_voted()) {
         alert("You have already voted on this question.");
     } else {
         var URL = "http://localhost:3000/questions/option_vote?option=" + option_num;
-        $.post(URL);
-        get_votes();
+        $.post(URL, function() {get_votes();});
     }
 }
 
@@ -156,6 +157,7 @@ function get_votes() {
             if(this.status == 200) {
                 data = JSON.parse(obj.xhr.responseText);
                 votes = data["votes"];
+                console.log(votes)
                 current_user = data["curr"];
                 display_all_votes();
             }
@@ -191,6 +193,9 @@ function display_votes(name) {
     console.log(percents);
     var width = $("#" + name + "_votes").width();
     var height = $("#" + name + "_votes").height();
+    var widths = [percents[0] * width, percents[1] * width];
+    if(widths[0] + widths[1] < width) widths[0] += 1;
+    
     if(percents[0] == -1) {
         var left_div = $("#" + name + "_vote_bar_left");
         left_div.width(width).height(height);
@@ -198,10 +203,8 @@ function display_votes(name) {
         return;
     }
 
-    var widths = [percents[0] * width, percents[1] * width];
-    if(widths[0] + widths[1] < width) widths[0] += 1;
-
     var left_div = $("#" + name + "_vote_bar_left");
+    left_div.html("");
     left_div.width(widths[0]).height(height);
     left_div.css("background", "green");
     left_div.css("border-top-left-radius", "5px");
@@ -215,6 +218,10 @@ function display_votes(name) {
     right_div.css("border-bottom-right-radius", "5px");
     $("#" + name + "_right_percent").html(Math.round(percents[1] * 100) + "%");
 
+    round_opposite_corners(widths, right_div, left_div);
+}
+
+function round_opposite_corners(widths, right_div, left_div) {
     if(widths[0] == 0) {
         right_div.css("border-top-left-radius", "5px");
         right_div.css("border-bottom-left-radius", "5px");
@@ -593,7 +600,7 @@ function toggleVisibility(button_id, div_id) {
 /* ------------------- */
 function show_add_div(index) {
     $("#add_comment_div_" + index).slideDown("slow", null);
-    window.scrollBy(0, 120); //make it based on bottom of div on page
+    //window.scrollBy(0, 120); //make it based on bottom of div on page
 }
 
 function hide_add_div(index) {
@@ -601,43 +608,56 @@ function hide_add_div(index) {
     $("#add_ta" +index).value = "";
 }
 
-function add_comment_left() {
-    var comment = $("#add_ta1").val();
-    var div = document.getElementById('ins_comment_left');
-    div.innerHTML += '<li class="disc_li"> \
-                            <div class="comment_header"> \
-                                <div class="float_left" style="text-align: left;"> \
-                                    <img alt="Goat" class="profile_picture" src="/assets/goat.jpg" /> \
-                                    <p><strong>Username goes here</strong></p> \
-                                </div> \
-                                <div class="float_right" style="text-align: right;"> \
-                                    <div class="inline comment_rating"> \
-                                        (+9001) \
-                                    </div> \
-                                    <div class="inline"> \
-                                        <input type="image" class="sentiment_button" src="/assets/thumbs-up.jpg" onclick="count_vote();"> \
-                                    </div> \
-                                    <div class="inline"> \
-                                        <input type="image" class="sentiment_button" src="/assets/thumbs-down.jpg" onclick="count_vote();"> \
-                                    </div> \
-                                </div> \
-                            </div> \
-                            <div class="comment_body"> \
-                                ' + comment + ' \
-                            </div> \
-                        </li>';
+function add_comment(side) {
+    if(current_user == null) {
+        alert("You must be signed in to comment.");
+        return;
+    }
+    var option = (side == "left") ? "1" : "2";
+    var comment = $("#" + side + "_add_ta").val();
+    $("#" + side + "_comment_list").append(generate_comment_html(comment));
+    $("#" + side + "_add_ta").val('');
+    hide_add_div(option)
+
+    data = {
+        'text': comment,
+        'option': option
+    };
+
     $.ajax({
         type: "POST",
-        url: "http://localhost:3000/questions/create_comment?test=5",
-        data: JSON.stringify({'text': comment}),
-        contentType: 'application/json', // format of request payload
+        url: "http://localhost:3000/questions/create_comment",
+        data: JSON.stringify(data),
+        contentType: 'application/json', 
+        error:  function(response) {
+            alert("Your comment failed to save. Please try again.");
+        }
     });
 }
 
-function add_comment_right() {
-    var comment = $("#add_ta2").val();
-    var div = document.getElementById('ins_comment_right');
-    div.innerHTML = div.innerHTML + comment;
+function generate_comment_html(comment) {
+    return '<li class="disc_li"> \
+                <div class="comment_header"> \
+                    <div class="float_left" style="text-align: left;"> \
+                        <img alt="Goat" class="profile_picture" src="/assets/goat.jpg" /> \
+                        <p><strong>' + current_user.username + '</strong></p> \
+                    </div> \
+                    <div class="float_right" style="text-align: right;"> \
+                        <div class="inline comment_rating"> \
+                            (0) \
+                        </div> \
+                        <div class="inline"> \
+                            <input type="image" class="sentiment_button" src="/assets/thumbs-up.jpg" onclick="count_vote();"> \
+                        </div> \
+                        <div class="inline"> \
+                            <input type="image" class="sentiment_button" src="/assets/thumbs-down.jpg" onclick="count_vote();"> \
+                        </div> \
+                    </div> \
+                </div> \
+                <div class="comment_body"> \
+                    ' + comment + ' \
+                </div> \
+            </li>';
 }
 
 function count_vote() {
