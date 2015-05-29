@@ -1,7 +1,5 @@
 <%= stylesheet_link_tag "question" %>
-
 <div id="page_container">
-
 	<div id="title">
 		<h1><%= @active_question.title %></h1>
 	</div>
@@ -56,7 +54,7 @@
 			<!-- option 2 text box -->
 			<td>
 				<div id="option2" class="option_div">
-					<p class="option_text"><%= @active_question.option2 + " omg so much text this is awesome"%></p>
+					<p class="option_text"><%= @active_question.option2 %></p>
 				</div>
 			</td>
 		</tr>
@@ -225,7 +223,7 @@
 								<% doc = @docs[0][i] %>
 								<tr>
 									<td></td>
-									<td class="pic_cell"><%= image_tag("goat.jpg", class:"profile_picture") %></td> 
+									<td class="pic_cell"><%= image_tag("prof0.jpg", class:"profile_picture") %></td> 
 									<td class="doc_cell"><%= doc.username %></td>
 									<td><%= doc.specialty %></td>
 									<td><%= doc.docScore %></td>
@@ -264,7 +262,7 @@
 								<% doc = @docs[1][i] %>
 								<tr>
 									<td></td>
-									<td class="pic_cell"><%= image_tag("goat.jpg", class:"profile_picture") %></td> 
+									<td class="pic_cell"><%= image_tag("prof0.jpg", class:"profile_picture") %></td> 
 									<td class="doc_cell"><%= doc.username %></td>
 									<td><%= doc.specialty %></td>
 									<td><%= doc.docScore %></td>
@@ -323,7 +321,8 @@
 							<div class="comment_header">
 								<!-- profile picture and username floating left -->
 								<div class="float_left" style="text-align: left;">
-									<%= image_tag("goat.jpg", class:"profile_picture") %> 
+									<% image_name = "prof" + response[:num] + ".jpg" %>
+									<%= image_tag(image_name, class:"profile_picture") %> 
 									<p><strong><%= response[:username] %></strong></p>
 								</div>
 
@@ -380,7 +379,8 @@
 							<div class="comment_header">
 								<!-- profile picture and username floating left -->
 								<div class="float_left" style="text-align: left;">
-									<%= image_tag("goat.jpg", class:"profile_picture") %> 
+									<% image_name = "prof" + response[:num] + ".jpg" %>
+									<%= image_tag(image_name, class:"profile_picture") %> 
 									<p><strong><%= response[:username] %></strong></p>
 								</div>
 
