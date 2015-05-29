@@ -25,7 +25,8 @@ class QuestionsController < ApplicationController
 			response = {
 				username: user.username,
 				text: r.text,
-				agrees: r.agreesNum
+				agrees: r.agreesNum,
+				num: (r.id % 12).to_s
 			}
 			@comments[(i % 2)].push(response)
 			i += 1

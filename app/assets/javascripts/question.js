@@ -157,7 +157,6 @@ function get_votes() {
             if(this.status == 200) {
                 data = JSON.parse(obj.xhr.responseText);
                 votes = data["votes"];
-                console.log(votes)
                 current_user = data["curr"];
                 display_all_votes();
             }
@@ -188,9 +187,6 @@ function display_all_votes() {
 
 function display_votes(name) {
     var percents = get_counts(votes[name]);
-    console.log(votes);
-    console.log(name);
-    console.log(percents);
     var width = $("#" + name + "_votes").width();
     var height = $("#" + name + "_votes").height();
     var widths = [percents[0] * width, percents[1] * width];
