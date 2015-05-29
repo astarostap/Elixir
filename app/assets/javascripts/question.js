@@ -82,12 +82,18 @@ var current_user = null;
 /* Initialization JS */
 /* ----------------- */
 $(document).ready(function() {
+    init_page();
+});
+
+function init_page() {
+    console.log("hi")
+    if(!document.getElementById("page_container")) return;
     init_graphs();
     hide_section_divs();
     init_option_buttons();
     init_dropdown_options();
     get_votes();
-});
+}
 
 function init_graphs() {
     var init_data = [{
@@ -582,11 +588,11 @@ function toggleVisibility(button_id, div_id) {
     var button = $("#" + button_id);
     if(div.css("display") == "none") {
         div.slideDown("slow", null);
-        var text = (button_id == "paper_button") ? "Hide Add Source" : "Hide " + button.text().slice(4);
+        var text = (button_id == "add_paper_button") ? "Hide Add Source" : "Hide " + button.text().slice(4);
         button.html(text);
     } else {
         div.slideUp("fast", null);
-        var text = (button_id == "paper_button") ? "Add Source" : "Show " + button.text().slice(4);
+        var text = (button_id == "add_paper_button") ? "Add Source" : "Show " + button.text().slice(4);
         button.html(text);
     }
 }
