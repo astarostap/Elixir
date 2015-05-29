@@ -25,4 +25,27 @@ questions_list.each do |title, text, option1, option2, photo_link, normal_user_i
   Question.create( title: title, text: text, option1: option1, option2: option2, photo_link: photo_link, normal_user_id: normal_user_id)
 end
 
+q = Question.create( title: "Should Prescription Drugs Be Advertised Directly to Consumers?", text: "The $300 billion a year US pharmaceutical industry spent $3.1 billion on advertising prescription drugs directly to consumers in 2012. [18] Since 1962 these ads have been regulated by the Food and Drug Administration (FDA) to ensure that they are not false or misleading.", option1: "Yes", option2: "No", photo_link: "https://neuroethicscanada.files.wordpress.com/2009/11/tv-drug-ads3.jpg?w=584", normal_user_id: "1")
+
+
+
+
+
+jb = DoctorVote.new(:optionNum => 1, :question_id => q.id)
+jb.save(:validate => false)
+ph = DoctorVote.new(:optionNum => 2, :question_id => q.id)
+ph.save(:validate => false)
+mc = DoctorVote.new(:optionNum => 1, :question_id => q.id)
+mc.save(:validate => false)
+bo = DoctorVote.new(:optionNum => 2, :question_id => q.id)
+bo.save(:validate => false)
+sc = DoctorVote.new(:optionNum => 1, :question_id => q.id)
+sc.save(:validate => false)
+jo = DoctorVote.new(:optionNum => 2, :question_id => q.id)
+jo.save(:validate => false)
+
+
+
+
+
 
