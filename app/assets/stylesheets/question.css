@@ -28,6 +28,10 @@
 	;
 }
 
+.top {
+	vertical-align: top;
+}
+
 button {
 	border-radius: 5px;
 	background-color: #1995dc;
@@ -47,6 +51,10 @@ button {
 #title {
 	text-align: center;
 	;
+}
+
+.section_button_div {
+	margin-top: 20px;
 }
 
 /* -------------------- */
@@ -86,29 +94,41 @@ button {
 	border-radius: 7px;
 }
 
+.left_percent {
+	min-width: 50px;
+	text-align: right;
+}
+
+.right_percent {
+	min-width:50px;
+	text-align: left;
+}
+
 .option_div {
-	display: table-cell;
 	width: 250px;
 	height: 250px;
-	vertical-align: middle;
 	text-align: center;
 	background: #1995dc;
 	border-radius: 10px;
 	cursor: pointer;
+	display: table;
 }
 
 .option_text_div {
-	display: inline-block;
-	width: 80%;
+	display: table;
+	vertical-align: middle;
+	width: 70%;
 	height: 80%;
 	margin: 0 auto;
 }
 
 .option_text {
+	display: table-cell;
+	vertical-align: middle;
 	color: white;
 	text-align: center;
 	word-wrap: break-word;
-	margin:5px;
+	font-size: 20px;
 }
 
 /* ------------ */
@@ -116,7 +136,14 @@ button {
 /* ------------ */
 
 .top_docs_table {
-	border-bottom: 1px solid #1995dc;
+	width:400px;
+	vertical-align: top;
+}
+
+.table_border {
+	border: 2px solid #1995dc;
+	border-top-right-radius: 12px;
+	border-top-left-radius: 12px;	
 }
 
 .top_docs_table th {
@@ -162,12 +189,10 @@ button {
 	border-top-left-radius: 10px;
 }
 
-.right_border {
-	border-right: 1px solid #1995dc;
-}
-
-.left_border {
-	border-left: 1px solid #1995dc;
+.no_doc_div {
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
 }
 
 /* --------- */
@@ -246,7 +271,7 @@ button {
 	margin-bottom:20px;
 }
 
-.doc_filter, .user_filter {
+.doctor_filter, .user_filter {
 	display: none;
 	;
 }

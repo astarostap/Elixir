@@ -4,20 +4,20 @@ class QuestionsController < ApplicationController
 		@qid = session[:qid]
 		@active_question = Question.find(params[:id])
 
-		puts "************************"
-		@active_question.user_votes.each do |v| 
-			puts v.user_id
+		@docs = [[], []];
+		@active_question.doctor_votes.each do |v|
+			doctor = Doctor.find(v.doctor_id)
+			index = (v.optionNum == 1) ? 0 : 1;
+			for i in 0..@docs[index].length
+				if(i == @docs[index].length || doctor.docScore > @docs[index][i].docScore) 
+					@docs[index].push(doctor);
+				end
+			end
 		end
 
-		puts "************************"
-		#text = "omg this is a really long and interesting question and I love pie so much. God I wish I had some pie right now, I would be so happy...."
-		#o1 = "this is a really long option 1 but I want to test if it wraps correctly. I'm just going to keep writing until something really big and stupid happens to my poor comment space. Abraham is a douche; look at him wearing that stupid leather jacket. And a pocket on his T-shirt? What a nerd..." 
-		
+		puts @docs
+
 		@comments = [["test", "o1c2"], ["o2c1", "02c2", "02c3", "02c4"]]
-		#@question = Question.new(:title => "Title", 
-		#						 :text => text, 
-		#						 :option1 => o1, 
-		#						 :option2 => "Option 2")
 	end
 
 	def index
@@ -95,23 +95,51 @@ class QuestionsController < ApplicationController
 		puts "here---------------------------"
 		q = Question.find(session[:qid])
 		user_content = "["
+		val = 1
 		q.user_votes.each do |v|
-			user_content += '{"option":' + v.optionNum.to_s + '},'
+			val = 2
+			puts "********************************************************"
+			puts v
+			puts v.user_id
+			puts "********************************************************"
 
-			#user = User.find(v.user_id)
+			user = NormalUser.find(v.user_id)
 
-			#now = Time.now.utc.to_date
-			#dob = user.birth_date
-  			#age = now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+			now = Time.now.utc.to_date
+			dob = user.birth_date
+  			age = now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
 
-			#user_content += '{"age":'' + age + "," +
-			#			     '"location":' + user.location + "," +
-			#				 '"gender":' + user.gender + "," +
-			#				 'option":' + v.optionNum + "},"
+			user_content += '{"age":"' + age.to_s + '",' +
+						     '"location":"' + user.location + '",' +
+							 '"gender":"' + user.gender + '",' +
+							 '"option":"' + v.optionNum.to_s + '",' +
+							 '"id":"' + v.user_id.to_s + '"},'
 		end
-		user_content = user_content[0..(user_content.length - 2)] + "]"
 
-		content = '{"users":' + user_content + "}"
+		user_content = user_content[0..(user_content.length - val)] + "]"
+
+		val = 1
+		doc_content = "["
+		q.doctor_votes.each do |v|
+			val = 2
+			doc = Doctor.find(v.doctor_id)
+
+			doc_content += '{"specialty":"' + doc.specialty + '",' +
+						    '"YIP":"' + 10.to_s + '",' +
+							'"rating":"' + doc.docScore.to_s + '",' +
+							'"option":"' + v.optionNum.to_s + '",' +
+							'"id":"' + v.doctor_id.to_s + '"},'
+		end
+		doc_content = doc_content[0..(doc_content.length - val)] + "]"
+
+		votes = '{"user":' + user_content + ', "doctor":' + doc_content + "}"
+
+		type = session[:is_doctor] ? "doctor" : "user"
+		current_user = '{"id":' + session[:id].to_s + ', "type":"' + type + '"}'
+		content = '{"curr":' + current_user + ', "votes":' + votes + "}"
+		puts "********************************************************"
+		puts content
+		puts "********************************************************"
 		render :json => content
 	end
 end
