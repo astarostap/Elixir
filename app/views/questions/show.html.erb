@@ -1,6 +1,8 @@
 <%= stylesheet_link_tag "question" %>
+<%= javascript_include_tag 'new_form'%>
 
 <div id="page_container">
+
 	<div id="title">
 		<h1><%= @active_question.title %></h1>
 	</div>
@@ -55,7 +57,7 @@
 			<!-- option 2 text box -->
 			<td>
 				<div id="option2" class="option_div">
-					<p class="option_text"><%= @active_question.option2 %></p>
+					<p class="option_text"><%= @active_question.option2 + " omg so much text this is awesome"%></p>
 				</div>
 			</td>
 		</tr>
@@ -224,7 +226,7 @@
 								<% doc = @docs[0][i] %>
 								<tr>
 									<td></td>
-									<td class="pic_cell"><%= image_tag("prof0.jpg", class:"profile_picture") %></td> 
+									<td class="pic_cell"><%= image_tag("goat.jpg", class:"profile_picture") %></td> 
 									<td class="doc_cell"><%= doc.username %></td>
 									<td><%= doc.specialty %></td>
 									<td><%= doc.docScore %></td>
@@ -263,7 +265,7 @@
 								<% doc = @docs[1][i] %>
 								<tr>
 									<td></td>
-									<td class="pic_cell"><%= image_tag("prof0.jpg", class:"profile_picture") %></td> 
+									<td class="pic_cell"><%= image_tag("goat.jpg", class:"profile_picture") %></td> 
 									<td class="doc_cell"><%= doc.username %></td>
 									<td><%= doc.specialty %></td>
 									<td><%= doc.docScore %></td>
@@ -322,8 +324,7 @@
 							<div class="comment_header">
 								<!-- profile picture and username floating left -->
 								<div class="float_left" style="text-align: left;">
-									<% image_name = "prof" + response[:num] + ".jpg" %>
-									<%= image_tag(image_name, class:"profile_picture") %> 
+									<%= image_tag("goat.jpg", class:"profile_picture") %> 
 									<p><strong><%= response[:username] %></strong></p>
 								</div>
 
@@ -380,8 +381,7 @@
 							<div class="comment_header">
 								<!-- profile picture and username floating left -->
 								<div class="float_left" style="text-align: left;">
-									<% image_name = "prof" + response[:num] + ".jpg" %>
-									<%= image_tag(image_name, class:"profile_picture") %> 
+									<%= image_tag("goat.jpg", class:"profile_picture") %> 
 									<p><strong><%= response[:username] %></strong></p>
 								</div>
 
@@ -411,19 +411,21 @@
 	</div>
 
 	<div class="centered section_button_div"> 
-            <button id="paper_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'paper_section');">View Sources</button>
+            <button id="paper_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'paper_section');">Show Sources</button>
     </div>
 
 	<div id="paper_section" class="centered section_div" style="margin-top:20px;">
-		<div class="panel panel-primary" id"pdfshower">
-			<div class="panel-heading">
-	    		<h3 class="panel-title">Pdf Title</h3>
-	  		</div>
-	  		<div class="panel-body">
-	  			<span style="color:#8C1515;"> Author </span>
-	    		<%= image_tag('pdf1.jpg', :style => "position:relative;width:100%;height:100%;") %>
-	 		</div>
-		</div>
+		<% for p in @active_question.papers %>
+			<div class="panel panel-primary" id"pdfshower" height:"300px">
+				<div class="panel-heading">
+		    		<h3 class="panel-title">Pdf Title</h3>
+		  		</div>
+		  		<div class="panel-body">
+		  			<span style="color:#8C1515;"> Author </span>
+		    		<%= image_tag(p.img_path, :style => "position:relative;width:100%;height:100%;") %>
+		 		</div>
+			</div>
+		<% end %>
 		<div>
 			<% if session[:is_doctor] %>
 				<div class="centered section_button_div"> 
@@ -465,4 +467,6 @@
 			<% end %>
 		</div>
 	</div>
+
+
 </div>
