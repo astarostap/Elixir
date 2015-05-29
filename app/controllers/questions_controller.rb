@@ -31,8 +31,6 @@ class QuestionsController < ApplicationController
 		puts "*****************************************************"
 		@comment = Response.new
 		@comment.text = params[:text]
-		@comment.
-		    t.integer  "agreesNum"
 		puts "*****************"
 		puts @comment.inspect
 		puts "**************"
