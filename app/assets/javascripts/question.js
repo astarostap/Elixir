@@ -186,6 +186,9 @@ function display_all_votes() {
 
 function display_votes(name) {
     var percents = get_counts(votes[name]);
+    console.log(votes);
+    console.log(name);
+    console.log(percents);
     var width = $("#" + name + "_votes").width();
     var height = $("#" + name + "_votes").height();
     if(percents[0] == -1) {
