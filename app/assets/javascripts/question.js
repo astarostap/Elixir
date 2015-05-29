@@ -5,11 +5,11 @@ var votes = null;
 
 var fake_votes = {
     "doctor" : [
-        {"option": 1, "specialty": "Internal Medicine", "YIP": 10, "rating": 83},
-        {"option": 1, "specialty": "Internal Medicine", "YIP": 5, "rating": 100},
-        {"option": 2, "specialty": "Pediatrics", "YIP": 100, "rating": 93},
-        {"option": 2, "specialty": "Cardiologist", "YIP": 11, "rating": 95},
-        {"option": 2, "specialty": "Cardiologist", "YIP": 2, "rating": 72}
+        {"option": 1, "specialty": "Radiology", "YIP": 10, "rating": 83},
+        {"option": 1, "specialty": "Pathology", "YIP": 5, "rating": 100},
+        {"option": 2, "specialty": "Pathology", "YIP": 100, "rating": 93},
+        {"option": 2, "specialty": "Cardiology", "YIP": 11, "rating": 95},
+        {"option": 2, "specialty": "Pulmonary Medicine", "YIP": 2, "rating": 72}
     ],
     "user" : [
         {"option": 1, "age": 20, "location": "West", "gender": "F"},
@@ -25,15 +25,15 @@ var fake_votes = {
 var dropdown_options = {
     "doctor": {
         "criteria": ["doc_option_filter", "doc_specialty_filter", "doc_YIP_filter", "doc_rating_filter"],
-        "doc_specialty_filter": ["Internal Medicine", "Pediatrics", "Cardiologist"],
-        "doc_option_filter": ["1", "2"],
-        "doc_YIP_filter": ["0-5", "6-10", "11-15", "16-20", "20+"],
+        "doc_specialty_filter": ["Radiology", "Pathology", "Cardiology", "Pulmonary Medicine", "Obstetrics/ Gynecology", "Neurology"],
+        "doc_option_filter": ["Option 1", "Option 2"],
+        "doc_YIP_filter": ["0-5", "6-10", "11-15", "16-20", "21+"],
         "doc_rating_filter": ["< 51", "51-60", "61-70", "71-80", "81-90", "91-100"]
     },
 
     "user": {
         "criteria": ["user_age_filter", "user_location_filter", "user_gender_filter", "user_option_filter"],
-        "user_option_filter": ["1", "2"],
+        "user_option_filter": ["Option 1", "Option 2"],
         "user_age_filter": ["< 18", "18-24", "25-30", "31-40", "41-50", "51+"],
         "user_gender_filter": ["Male", "Female"],
         "user_location_filter": ["Eastern U.S.", "Western U.S.", "Midwest", "South", "Outside U.S."]
@@ -62,6 +62,19 @@ var charts = {
     "user": null
 };
 
+var chart_options = {
+    legendTemplate : "<ul class=\"doughnut_legend\" align=\"left\">" +
+                        "<% for (var i=0; i<segments.length; i++){%>" +
+                            "<li>" +
+                                "<span class=\"legend_span\" style=\"background-color:<%=segments[i].fillColor%>\"></span>" +
+                                "<%if(segments[i].label){%>" +
+                                    "<%=segments[i].label%>" +
+                                "<%}%>" +
+                            "</li>" +
+                        "<%}%>" +
+                    "</ul>"
+};
+
 /* ----------------- */
 /* Initialization JS */
 /* ----------------- */
@@ -79,15 +92,11 @@ function init_graphs() {
     }];
 
     var doc_ctx = $("#doctor_canvas").get(0).getContext("2d");
-    var doc_chart = new Chart(doc_ctx).Doughnut(init_data, null);
-    var doc_legend = doc_chart.generateLegend();
-    $("#doctor_legend_div").append(doc_legend);
+    var doc_chart = new Chart(doc_ctx).Doughnut(init_data, chart_options);
     charts["doctor"] = doc_chart;
 
     var user_ctx = $("#user_canvas").get(0).getContext("2d");
-    var user_chart = new Chart(user_ctx).Doughnut(init_data, null);
-    var user_legend = user_chart.generateLegend();
-    $("#user_legend_div").append(user_legend);
+    var user_chart = new Chart(user_ctx).Doughnut(init_data, chart_options);
     charts["user"] = user_chart;
 }
 
@@ -189,6 +198,7 @@ function criteria_selected(val, type) {
         display_filter("doc_filter", val);
         reset_filter_option(filter_options["doctor"], dropdown_options["doctor"]["criteria"][val - 1]);
         filter_options[type]["criteria"] = val;
+        if(val == -1) reset_all_filters(type);
     }
     redraw_chart(type);
 }
@@ -217,6 +227,13 @@ function display_filter(class_name, val) {
     }
 }
 
+function reset_all_filters(type) {
+    for(var i = 0; i < dropdown_options[type]["criteria"].length; i++) {
+        var id = dropdown_options[type]["criteria"][i];
+        reset_filter_option(filter_options[type], id);
+    }
+}
+
 function reset_filter_option(options, id) {
     options[id] = null;
     $("#" + id).val(-1);
@@ -224,23 +241,108 @@ function reset_filter_option(options, id) {
 
 function redraw_chart(type) {
     var chart = charts[type];
-    var colors = ["red", "green", "blue", "yellow", "brown", "purple"];
-
-    for(var i = 0; i < chart.segments.length; i++) {
-        chart.removeData();
-    }
+    var colors = ["red", "green", "blue", "yellow", "teal", "black"];
+    chart.segments = [];
+    chart.update();
+    
     var data = generate_data(type, colors);
+    if(data.length == 1) {
+        chart.addData(data[0]);
+        $("#" + type + "_legend_div").html("");
+        return;
+    }
+    for(var i = 0; i < data.length; i++) {
+        chart.addData(data[i]);
+    }
+    
+    var legend = chart.generateLegend();
+    $("#" + type + "_legend_div").html(legend);
+
+    if(has_no_values(data)) {
+        chart.segments = [];
+        chart.addData({value:1, color:"gray", label: "No users match criteria"})
+    }
 }
 
 function generate_data(type, colors) {
-    var counts = count_entries(type);
+    var criteria_num = filter_options[type]["criteria"];
+    if(criteria_num == -1) {
+        return [{value: 1, color: "gray"}];
+    }
+    var criteria_name = dropdown_options[type]["criteria"][criteria_num - 1];
+    var criteria_values = dropdown_options[type][criteria_name];
+    var counts = count_entries(type, criteria_values, criteria_num);
+
+    var data = [];
+    for(var i = 0; i < counts.length; i++) {
+        data.push({
+            value: counts[i],
+            color: colors[i],
+            label: criteria_values[i]
+        });
+    }
+    return data;
 }
 
-function count_entries(type) {
-    var criteria = filter_options[type]["criteria"];
-    if(criteria == -1) return [1];
+/* ------------------ */
+/* Counting Functions */
+/* ------------------ */
+
+function count_entries(type, criteria_values, criteria_num) {
     var valid_entries = filter_list(type);
-    console.log(valid_entries.length);
+    if(criteria_num == 1) {
+        return count_options(valid_entries, criteria_values);
+    } else if (criteria_num == 2) {
+        return count_specialty(valid_entries, criteria_values);
+    } else if (criteria_num == 3) {
+        return count_YIP(valid_entries, criteria_values);
+    } else if (criteria_num == 4) {
+        return count_rating(valid_entries, criteria_values);
+    }
+}
+
+function count_options(arr, options) {
+    var counts = init_vec(options.length);
+    for(var i = 0; i < arr.length; i++) {
+        if(arr[i]["option"] == 1) {
+            counts[0] += 1;
+        } else {
+            counts[1] += 1;
+        }
+    }
+    return counts;
+}
+
+function count_specialty(arr, options) {
+    var counts = init_vec(options.length);
+    for(var ai = 0; ai < arr.length; ai++) {
+        var vote = arr[ai];
+        for(var oi = 0; oi < options.length; oi++) {
+            if(vote["specialty"] == options[oi]) {
+                counts[oi] += 1;
+            }
+        }
+    }
+    return counts;
+}
+
+function count_YIP(arr, options) {
+    var counts = init_vec(options.length);
+    for(var i = 0; i < arr.length; i++) {
+        var YIP = arr[i]["YIP"];
+        if(YIP > 21) YIP = 21;
+        counts[Math.floor((YIP - 1) / 5)] += 1;
+    }
+    return counts;
+}
+
+function count_rating(arr, options) {
+    var counts = init_vec(options.length);
+    for(var i = 0; i < arr.length; i++) {
+        var rating = arr[i]["rating"];
+        counts[Math.floor((rating - 41) / 10)] += 1;
+    }
+    return counts;
 }
 
 function filter_list(type) {
@@ -252,6 +354,10 @@ function filter_list(type) {
     }
     return valid_entries;
 }
+
+/* ----------------- */
+/* Validity Checking */
+/* ----------------- */
 
 function valid_entry(entry, type) {
     if(type == "doctor") {
@@ -271,7 +377,7 @@ function valid_entry(entry, type) {
 function valid_option(entry, type) {
     var filter = (type == "doctor") ? "doc_option_filter" : "user_option_filter";
     if(filter_options[type][filter] == null ||
-       filter_options[type][filter] == entry["option"]) {
+       filter_options[type][filter] == "Option " + entry["option"]) {
         return true;
     }
     return false;
@@ -292,7 +398,7 @@ function valid_YIP(entry, type) {
       (YIP == "6-10" && entry["YIP"] >= 6 && entry["YIP"] <= 10) ||
       (YIP == "11-15" && entry["YIP"] >= 11 && entry["YIP"] <= 15) ||
       (YIP == "16-20" && entry["YIP"] >= 16 && entry["YIP"] <= 20) ||
-      (YIP == "20+" && entry["YIP"] >= 20)) {
+      (YIP == "21+" && entry["YIP"] >= 21)) {
         return true;
       }
     return false;
@@ -310,6 +416,25 @@ function valid_rating(entry, type) {
         return true;
       }
     return false;
+}
+
+/* ---------------- */
+/* utility function */
+/* ---------------- */
+function init_vec(length) {
+    var vec = [];
+    for(var i = 0; i < length; i++) {
+        vec.push(0);
+    }
+    return vec;
+}
+
+function has_no_values(data) {
+    for(var i = 0; i < data.length; i++) {
+        if(data[i]["value"] != 0)
+            return false;
+    }
+    return true;
 }
 
 /*
@@ -357,39 +482,7 @@ var ctx = $("#doc_canvas").get(0).getContext("2d");
     var legend = chart.generateLegend();
     $("#user_legend_div").append(legend);
 
-var data = [
-    {
-        value: 300,
-        color:"#F7464A",
-        highlight: "#FF5A5E",
-        label: "Red"
-    },
-    {
-        value: 50,
-        color: "#46BFBD",
-        highlight: "#5AD3D1",
-        label: "Green"
-    },
-    {
-        value: 100,
-        color: "#FDB45C",
-        highlight: "#FFC870",
-        label: "Yellow"
-    }
-];
 
-var options = {
-    legendTemplate : "<ul class=\"doughnut_legend\">" +
-                        "<% for (var i=0; i<segments.length; i++){%>" +
-                            "<li>" +
-                                "<span class=\"legend_span\" style=\"background-color:<%=segments[i].fillColor%>\"></span>" +
-                                "<%if(segments[i].label){%>" +
-                                    "<%=segments[i].label%>" +
-                                "<%}%>" +
-                            "</li>" +
-                        "<%}%>" +
-                    "</ul>"};
-*/
 /* ------------------- */
 /* Comments section JS */
 /* ------------------- */

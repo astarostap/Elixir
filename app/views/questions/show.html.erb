@@ -1,5 +1,9 @@
 <%= stylesheet_link_tag "question" %>
+<<<<<<< HEAD
 <%= javascript_include_tag 'question'%>
+<%= javascript_include_tag 'new_form'%>
+=======
+>>>>>>> Tanner-5/24
 <div id="page_container">
 	<div id="title">
 		<h1><%= @active_question.title %></h1>
@@ -110,28 +114,44 @@
 			<td>
 				<div id="doctor_chart_div" class="centered">
 					<div class="chart_container centered">
-						<div class="graph_container">
-							<canvas class="doughnut_canvas" id="doctor_canvas"></canvas>
-						</div>
-						<div id="doc_legend_div"></div>
+						<table><tr>
+							<td>
+								<canvas class="doughnut_canvas" id="doctor_canvas"></canvas>
+							</td>
+							<td>
+								<div id="doctor_legend_div" class="legend_div"></div>
+							</td>
+						</tr></table>
 					</div>
 				</div>
 			</td>
 
 			<!-- Doctor Filters -->
 			<td class="filter_td">
-				<select id='doc_option_filter' class='dropdown doc_filter' onchange='filter_selected(this.id, this.value);'>
-					<option value=-1>Option Number</option>
-				</select>
-				<select id='doc_specialty_filter' class='dropdown doc_filter' onchange='filter_selected(this.id, this.value);'>
-					<option value=-1>Specialty</option>
-				</select>
-				<select id='doc_YIP_filter' class='dropdown doc_filter' onchange='filter_selected(this.id, this.value);'>
-					<option value=-1>Years in Practice</option>
-				</select>
-				<select id='doc_rating_filter' class='dropdown doc_filter' onchange='filter_selected(this.id, this.value);'>
-					<option value=-1>Rating</option>
-				</select>
+				<div class="doc_filter">
+					<h6 class="centered" style="margin: 3px;">Option Number</h6>
+					<select id='doc_option_filter' class='dropdown' onchange='filter_selected(this.id, this.value);'>
+						<option value=-1>Any</option>
+					</select>
+				</div>
+				<div class="doc_filter">
+					<h6 class="centered" style="margin: 3px;">Specialty</h6>
+					<select id='doc_specialty_filter' class='dropdown' onchange='filter_selected(this.id, this.value);'>
+						<option value=-1>Any</option>
+					</select>
+				</div>
+				<div class="doc_filter">
+					<h6 class="centered" style="margin: 3px;">Years in Practice</h6>
+					<select id='doc_YIP_filter' class='dropdown' onchange='filter_selected(this.id, this.value);'>
+						<option value=-1>Any</option>
+					</select>
+				</div>
+				<div class="doc_filter">
+					<h6 class="centered" style="margin: 3px;">Doctor Rating</h6>
+					<select id='doc_rating_filter' class='dropdown' onchange='filter_selected(this.id, this.value);'>
+						<option value=-1>Any</option>
+					</select>
+				</div>
 			</td>
 
 			<td class="stat_gap"></td>
@@ -340,5 +360,44 @@
 		</div>
 	</div>
 
-
+	<% if session[:is_doctor] %>
+            <button type="button" class="btn btn-primary" onclick="showDiv('create_paper')"><h4>Add Source</h4></button>
+          	</br>
+          	<div id="create_paper" style="display:none;" >
+			<div style="width: 30%; margin: 0 auto" class="">
+				<div class="modal-body">
+					<div class="well">
+						<div >
+							<%= form_tag({controller: "questions", action: "create_paper"}, method: "post", html: {role: "form"}) do%>
+							</br>
+							<label class="control-label"  for="text">What option number is this source for?</label>
+	            			</br>
+							<div class="btn-group">
+				              <input type="radio" name="paper[optionNum]" value="1"> 1 			              
+				              <input type="radio" name="paper[optionNum]" value="1"> 2
+							</div>
+							
+							<input type="hidden" name="paper[question_id]" value=<%= @active_question.id %>></input>
+							</br>
+						</br>
+							<div class="control-group">
+				            <label class="control-label"  for="text">Source URL</label>
+				              <div class="controls">
+				                  <input type="text" class="form-control" id="paper_url" name="paper[url]">
+				              </div>
+	          				</div>
+	          			</br>
+	          				<div class="control-group">
+								<!-- Button -->
+								<div class="controls">
+									<button type="submit" class="btn btn-primary">Submit Source</button>
+								</div>
+							</div>
+						<% end %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<% end %>
 </div>
