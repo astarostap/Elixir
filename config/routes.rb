@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post 'questions/query' => 'questions#query'
   get 'questions/show_paper' => 'questions#show_paper'
   post 'questions/create_paper' => 'questions#create_paper'
+  post 'questions/create_comment' => 'questions#create_comment'
 
   post 'questions/option_vote' => 'questions#option_vote'
   get 'questions/query_votes' => 'questions#query_votes'

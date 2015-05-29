@@ -25,6 +25,21 @@ class QuestionsController < ApplicationController
   		@first, *@rest = @all_questions
 	end
 
+	def create_comment
+		puts "******************************************************************"
+		puts params
+		puts "*****************************************************"
+		@comment = Response.new
+		@comment.text = params[:text]
+		@comment.
+		    t.integer  "agreesNum"
+		puts "*****************"
+		puts @comment.inspect
+		puts "**************"
+		@comment.save
+		render nothing: true
+	end
+
 	def show_paper
 		q = params[:question_id]
 		@paper = Paper.find(q)

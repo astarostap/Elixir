@@ -597,6 +597,52 @@ function hide_add_div(index) {
     $("#add_ta" +index).value = "";
 }
 
+function add_comment_left() {
+    var comment = $("#add_ta1").val();
+    var div = document.getElementById('ins_comment_left');
+    div.innerHTML += '<li class="disc_li"> \
+                            <div class="comment_header"> \
+                                <div class="float_left" style="text-align: left;"> \
+                                    <img alt="Goat" class="profile_picture" src="/assets/goat.jpg" /> \
+                                    <p><strong>Username goes here</strong></p> \
+                                </div> \
+                                <div class="float_right" style="text-align: right;"> \
+                                    <div class="inline comment_rating"> \
+                                        (+9001) \
+                                    </div> \
+                                    <div class="inline"> \
+                                        <input type="image" class="sentiment_button" src="/assets/thumbs-up.jpg" onclick="count_vote();"> \
+                                    </div> \
+                                    <div class="inline"> \
+                                        <input type="image" class="sentiment_button" src="/assets/thumbs-down.jpg" onclick="count_vote();"> \
+                                    </div> \
+                                </div> \
+                            </div> \
+                            <div class="comment_body"> \
+                                ' + comment + ' \
+                            </div> \
+                        </li>';
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:3000/questions/create_comment?test=5",
+        data: JSON.stringify({'text': comment}),
+        contentType: 'application/json', // format of request payload
+        success: function (response) {
+            alert('success');
+        },
+        error: function(response) {
+            alert(response.responseText);
+            alert('error');
+        }
+    });
+}
+
+function add_comment_right() {
+    var comment = $("#add_ta2").val();
+    var div = document.getElementById('ins_comment_right');
+    div.innerHTML = div.innerHTML + comment;
+}
+
 function count_vote() {
     console.log("hi");
 }
