@@ -410,61 +410,63 @@
 		</div>
 	</div>
 
-	<% if session[:is_doctor] %>
-		<div class="centered section_button_div"> 
-            <button id="paper_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'paper_section');">Add Source</button>
-        </div>
-        </br>
-		<div id="paper_section" style="width: 30%; margin: 0 auto" class="section_div" >
-			<div class="modal-body">
-				<div class="well">
-					<div>
-						<%= form_tag({controller: "questions", action: "create_paper"}, method: "post", html: {role: "form"}) do%>
-							</br>
-							<label class="control-label"  for="text">What option number is this source for?</label>
-		        			</br>
-							<div class="btn-group">
-				            	<input type="radio" name="paper[optionNum]" value="1"> 1 </input>		              
-				            	<input type="radio" name="paper[optionNum]" value="1"> 2 </input>
+	<div class="centered section_button_div"> 
+            <button id="paper_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'paper_section');">Show Sources</button>
+    </div>
+
+	<div id="paper_section" class="centered section_div" style="margin-top:20px;">
+		<% for p in @active_question.papers %>
+			<div class="panel panel-primary" id"pdfshower" height:"300px">
+				<div class="panel-heading">
+		    		<h3 class="panel-title">Pdf Title</h3>
+		  		</div>
+		  		<div class="panel-body">
+		  			<span style="color:#8C1515;"> Author </span>
+		    		<%= image_tag(p.img_path, :style => "position:relative;width:100%;height:100%;") %>
+		 		</div>
+			</div>
+		<% end %>
+		<div>
+			<% if session[:is_doctor] %>
+				<div class="centered section_button_div"> 
+		            <button id="add_paper_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'add_paper_section');">Add Source</button>
+		        </div>
+		        </br>
+				<div id="add_paper_section" style="width: 30%; margin: 0 auto" class="section_div" >
+					<div class="modal-body">
+						<div class="well">
+							<div>
+								<%= form_tag({controller: "questions", action: "create_paper"}, method: "post", html: {role: "form"}) do%>
+									</br>
+									<label class="control-label"  for="text">What option number is this source for?</label>
+				        			</br>
+									<div class="btn-group">
+						            	<input type="radio" name="paper[optionNum]" value="1"> 1 </input>		              
+						            	<input type="radio" name="paper[optionNum]" value="1"> 2 </input>
+									</div>
+									<input type="hidden" name="paper[question_id]" value=<%= @active_question.id %>></input>
+									</br></br>
+									<div class="control-group">
+							            <label class="control-label" for="text">Source URL</label>
+							            <div class="controls">
+							            	<input type="text" class="form-control" id="paper_url" name="paper[url]"></input>
+							            </div>
+					          		</div>
+				          			</br>
+			          				<div class="control-group">
+										<!-- Button -->
+										<div class="controls">
+											<button type="submit" class="btn btn-primary">Submit Source</button>
+										</div>
+									</div>
+								<% end %>
 							</div>
-							<input type="hidden" name="paper[question_id]" value=<%= @active_question.id %>></input>
-							</br></br>
-							<div class="control-group">
-					            <label class="control-label" for="text">Source URL</label>
-					            <div class="controls">
-					            	<input type="text" class="form-control" id="paper_url" name="paper[url]"></input>
-					            </div>
-			          		</div>
-		          			</br>
-	          				<div class="control-group">
-								<!-- Button -->
-								<div class="controls">
-									<button type="submit" class="btn btn-primary">Submit Source</button>
-								</div>
-							</div>
-						<% end %>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	<% end %>
-	<div class="centered section_button_div"> 
-            <button id="paper_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'paper_section');">View Sources</button>
-     </div>
-	<div id="paper_section" class="container-fluid" style="horizontal-align: middle;position:relative;top:100px;">
-		<div class="panel panel-primary" id"pdfshower" style="width:100%;height:250px;">
-			<div class="panel-heading">
-	    		<h3 class="panel-title">Pdf Title</h3>
-	  		</div>
-	  		<div class="panel-body">
-	  			<span style="color:#8C1515;"> Author </span>
-	    		<%= image_tag('pdf1.jpg', :style => "position:relative;width:100%;height:100%;") %>
-	 		</div>
+			<% end %>
 		</div>
 	</div>
-
-
-
 
 
 </div>
