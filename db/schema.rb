@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150529074113) do
+ActiveRecord::Schema.define(version: 20150529094800) do
+
 
   create_table "agrees", force: true do |t|
     t.datetime "created_at"
@@ -45,6 +46,7 @@ ActiveRecord::Schema.define(version: 20150529074113) do
     t.text     "location"
     t.datetime "birth_date"
     t.integer  "years_in_practice"
+    t.string   "profile_pic"
   end
 
   create_table "normal_users", force: true do |t|
@@ -57,6 +59,7 @@ ActiveRecord::Schema.define(version: 20150529074113) do
     t.datetime "birth_date"
     t.text     "gender"
     t.text     "location"
+    t.string   "profile_pic"
   end
 
   create_table "papers", force: true do |t|
@@ -88,6 +91,7 @@ ActiveRecord::Schema.define(version: 20150529074113) do
     t.integer  "user_id"
     t.integer  "is_doctor"
     t.integer  "question_id"
+    t.integer  "optionNum"
   end
 
   create_table "user_votes", force: true do |t|

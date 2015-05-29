@@ -3,7 +3,6 @@ class QuestionsController < ApplicationController
 		session[:qid] = params[:id]
 		@qid = session[:qid]
 		@active_question = Question.find(params[:id])
-
 		@docs = [[], []]
 		@active_question.doctor_votes.each do |v|
 			doctor = Doctor.find(v.doctor_id)
