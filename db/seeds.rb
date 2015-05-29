@@ -199,9 +199,6 @@ p2 = Paper.new(:optionNum => 2, :question_id => q11.id, :doctor_id => nd4.id, :u
 p2.save(:validate => false)
 
 
-#John Question
-
-
 
 
 
