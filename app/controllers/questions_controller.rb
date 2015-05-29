@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
 		@qid = session[:qid]
 		@active_question = Question.find(params[:id])
 
-		@docs = [[], []];
+		@docs = [[], []]
 		@active_question.doctor_votes.each do |v|
 			doctor = Doctor.find(v.doctor_id)
 			index = (v.optionNum == 1) ? 0 : 1;
@@ -15,9 +15,22 @@ class QuestionsController < ApplicationController
 			end
 		end
 
-		puts @docs
-
-		@comments = [["test", "o1c2"], ["o2c1", "02c2", "02c3", "02c4"]]
+		@comments = [[], []]
+		i = 0
+		@active_question.responses.each do |r|
+			if(r.is_doctor)
+				user = Doctor.find(r.doctor_id)
+			else
+				user = NormalUser.find(r.user_id)
+			end
+			response = {
+				username: user.username,
+				text: r.text,
+				agrees: r.agreesNum
+			}
+			@comments[(i % 2)].push(response)
+			i += 1
+		end
 	end
 
 	def index
@@ -26,9 +39,12 @@ class QuestionsController < ApplicationController
 	end
 
 	def create_comment
+		puts "-------------I am saving the question-------------------"
 		@comment = Response.new
 		@comment.text = params[:text]
 		@comment.is_doctor = session[:is_doctor]
+		@comment.question_id = session[:qid]
+		@comment.agreesNum = 0
 		if session[:is_doctor]
 			@comment.doctor_id = session[:id]
 		else
@@ -88,9 +104,6 @@ class QuestionsController < ApplicationController
 	end
 
 	def option_vote
-		puts "*********"
-		puts session[:is_doctor]
-		puts "*********"
 		if(session[:id])
 			if(session[:is_doctor]) 
 				DoctorVote.create(:optionNum => params[:option],
@@ -106,16 +119,13 @@ class QuestionsController < ApplicationController
 	end
 
 	def query_votes
-		puts "here---------------------------"
 		q = Question.find(session[:qid])
+
+
 		user_content = "["
 		val = 1
 		q.user_votes.each do |v|
 			val = 2
-			puts "********************************************************"
-			puts v
-			puts v.user_id
-			puts "********************************************************"
 
 			user = NormalUser.find(v.user_id)
 
@@ -149,7 +159,13 @@ class QuestionsController < ApplicationController
 		votes = '{"user":' + user_content + ', "doctor":' + doc_content + "}"
 
 		type = session[:is_doctor] ? "doctor" : "user"
-		current_user = '{"id":' + session[:id].to_s + ', "type":"' + type + '"}'
+		if(session[:id])
+			current_user = '{"id":' + session[:id].to_s + 
+						  ', "type":"' + type + 
+						 '", "username":"' + session[:username] + '"}'
+		else
+			current_user = "null"
+		end
 		content = '{"curr":' + current_user + ', "votes":' + votes + "}"
 		puts "********************************************************"
 		puts content
