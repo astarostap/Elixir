@@ -21,7 +21,7 @@ class QuestionsController < ApplicationController
 	end
 
 	def index
-		@all_questions = Question.all
+		@all_questions = Question.all.shuffle
   		@first, *@rest = @all_questions
 	end
 
