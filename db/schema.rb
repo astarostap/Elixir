@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150529094800) do
+ActiveRecord::Schema.define(version: 20150529100557) do
 
 
   create_table "agrees", force: true do |t|
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20150529094800) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "question_id"
+    t.text     "img_path"
   end
 
   create_table "questions", force: true do |t|
