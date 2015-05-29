@@ -628,13 +628,6 @@ function add_comment_left() {
         url: "http://localhost:3000/questions/create_comment?test=5",
         data: JSON.stringify({'text': comment}),
         contentType: 'application/json', // format of request payload
-        success: function (response) {
-            alert('success');
-        },
-        error: function(response) {
-            alert(response.responseText);
-            alert('error');
-        }
     });
 }
 

@@ -26,14 +26,15 @@ class QuestionsController < ApplicationController
 	end
 
 	def create_comment
-		puts "******************************************************************"
-		puts params
-		puts "*****************************************************"
 		@comment = Response.new
 		@comment.text = params[:text]
-		puts "*****************"
+		@comment.is_doctor = session[:is_doctor]
+		if session[:is_doctor]
+			@comment.doctor_id = session[:id]
+		else
+			@comment.user_id = session[:id]
+		end
 		puts @comment.inspect
-		puts "**************"
 		@comment.save
 		render nothing: true
 	end
