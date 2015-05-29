@@ -11,13 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150525042507) do
+ActiveRecord::Schema.define(version: 20150529082323) do
 
   create_table "agrees", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "response_id"
-    t.integer  "doctor_id"
+    t.integer  "voter_id"
+    t.integer  "is_doctor"
+    t.integer  "vote_value"
   end
 
   create_table "doctor_votes", force: true do |t|
@@ -42,6 +44,8 @@ ActiveRecord::Schema.define(version: 20150525042507) do
     t.text     "gender"
     t.text     "location"
     t.datetime "birth_date"
+    t.integer  "years_in_practice"
+    t.string   "profile_pic"
   end
 
   create_table "normal_users", force: true do |t|
@@ -54,6 +58,7 @@ ActiveRecord::Schema.define(version: 20150525042507) do
     t.datetime "birth_date"
     t.text     "gender"
     t.text     "location"
+    t.string   "profile_pic"
   end
 
   create_table "papers", force: true do |t|
@@ -84,6 +89,7 @@ ActiveRecord::Schema.define(version: 20150525042507) do
     t.integer  "doctor_id"
     t.integer  "user_id"
     t.integer  "is_doctor"
+    t.integer  "question_id"
   end
 
   create_table "user_votes", force: true do |t|
