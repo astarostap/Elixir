@@ -193,18 +193,11 @@ a5.save(:validate => false)
 a6 = Agree.new(:response_id => r3.id, :voter_id => nu1.id, :is_doctor => 0, :vote_value => 1)
 a6.save(:validate => false)
 
-p1 = Paper.new(:optionNum => 1, :question_id => 1, :doctor_id => 1, :url => "https://www.healthtap.com/user_questions/1566682", :img_path => 'paper1.jpg')
+p1 = Paper.new(:optionNum => 1, :question_id => q11.id, :doctor_id => nd3.id, :url => "http://www.pharmedout.org/RxDrugMarketing.pdf", :img_path => 'pdf1.jpg')
 p1.save(:validate => false)
-p2 = Paper.new(:optionNum => 2, :question_id => 1, :doctor_id => 2, :url => "http://www.livescience.com/34693-superfoods.html", :img_path => 'paper2.jpg')
+p2 = Paper.new(:optionNum => 2, :question_id => q11.id, :doctor_id => nd4.id, :url => "http://ue.ucdavis.edu/explorations/2005/chiu.pdf", :img_path => 'pdf2.jpg')
 p2.save(:validate => false)
-p3 = Paper.new(:optionNum => 1, :question_id => 2, :doctor_id => 3, :url => "https://www.healthtap.com/user_questions/1301456", :img_path => 'paper3.jpg')
-p3.save(:validate => false)
-p4 = Paper.new(:optionNum => 2, :question_id => 2, :doctor_id => 4, :url => "http://www.health.harvard.edu/blog/trade-sports-drinks-for-water-201207305079", :img_path => 'paper4.jpg')
-p4.save(:validate => false)
-p5 = Paper.new(:optionNum => 1, :question_id => 3, :doctor_id => 5, :url => "http://www.mensfitness.com/nutrition/supplements/6-supplements-you-shouldnt-be-skipping", :img_path => 'paper5.jpg')
-p6.save(:validate => false)
-p7 = Paper.new(:optionNum => 2, :question_id => 4, :doctor_id => 6, :url => "http://www.webmd.com/fitness-exercise/build-muscle-better-health", :img_path => 'paper6.jpg')
-p7.save(:validate => false)
+
 
 #John Question
 
