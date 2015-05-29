@@ -11,13 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150529065529) do
+ActiveRecord::Schema.define(version: 20150529074113) do
 
   create_table "agrees", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "response_id"
-    t.integer  "doctor_id"
+    t.integer  "voter_id"
+    t.integer  "is_doctor"
+    t.integer  "vote_value"
   end
 
   create_table "doctor_votes", force: true do |t|
