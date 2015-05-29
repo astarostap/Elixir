@@ -9,7 +9,8 @@ var fake_votes = {
         {"option": 1, "specialty": "Pathology", "YIP": 5, "rating": 100},
         {"option": 2, "specialty": "Pathology", "YIP": 100, "rating": 93},
         {"option": 2, "specialty": "Cardiology", "YIP": 11, "rating": 95},
-        {"option": 2, "specialty": "Pulmonary Medicine", "YIP": 2, "rating": 72}
+        {"option": 2, "specialty": "Cardiology", "YIP": 11, "rating": 95},
+        {"option": 2, "specialty": "Cardiology", "YIP": 11, "rating": 95}
     ],
     "user" : [
         {"option": 1, "age": 20, "location": "Western U.S.", "gender": "Female"},
@@ -627,13 +628,6 @@ function add_comment_left() {
         url: "http://localhost:3000/questions/create_comment?test=5",
         data: JSON.stringify({'text': comment}),
         contentType: 'application/json', // format of request payload
-        success: function (response) {
-            alert('success');
-        },
-        error: function(response) {
-            alert(response.responseText);
-            alert('error');
-        }
     });
 }
 
