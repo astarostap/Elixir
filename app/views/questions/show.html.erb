@@ -1,5 +1,4 @@
 <%= stylesheet_link_tag "question" %>
-
 <div id="page_container">
 	<div id="title">
 		<h1><%= @active_question.title %></h1>
@@ -411,7 +410,7 @@
 	</div>
 
 	<div class="centered section_button_div"> 
-            <button id="paper_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'paper_section');">View Sources</button>
+            <button id="paper_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'paper_section');">Show Sources</button>
     </div>
 
 	<div id="paper_section" class="centered section_div" style="margin-top:20px;">

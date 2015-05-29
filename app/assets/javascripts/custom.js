@@ -1,4 +1,3 @@
-(function($) {
 $(document).ready(function() {
  
   $("#owl-demo").owlCarousel({
@@ -18,5 +17,3 @@ $(document).ready(function() {
       // itemsMobile : false
   });
 });
-
-})(jQuery);
