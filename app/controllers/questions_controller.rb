@@ -67,6 +67,10 @@ class QuestionsController < ApplicationController
 		@paper.doctor_id = session[:id]
 		@paper.question_id = p[:question_id]
 		@paper.url = p[:url]
+		@paper.title = p[:title]
+		puts "**************"
+		puts @paper.inspect
+		puts "**************"
 		@paper.save
 		redirect_to :controller => "questions", :id => p[:question_id].to_i, :action => "show"
 	end
@@ -167,9 +171,6 @@ class QuestionsController < ApplicationController
 			current_user = "null"
 		end
 		content = '{"curr":' + current_user + ', "votes":' + votes + "}"
-		puts "********************************************************"
-		puts content
-		puts "********************************************************"
 		render :json => content
 	end
 end

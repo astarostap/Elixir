@@ -416,13 +416,16 @@
 
 	<div id="paper_section" class="centered section_div" style="margin-top:20px;">
 		<% for p in @active_question.papers %>
-			<div class="panel panel-primary" id"pdfshower" height:"300px">
+			<div class="panel panel-primary" id"pdfshower">
 				<div class="panel-heading">
-		    		<h3 class="panel-title">Pdf Title</h3>
+		    		<h3 class="panel-title">"<%= link_to(p.title,p.url, :target => '_blank') %>" by <%= Doctor.find(p.doctor_id).username %></h3>
 		  		</div>
 		  		<div class="panel-body">
-		  			<span style="color:#8C1515;"> Author </span>
-		    		<%= image_tag(p.img_path, :style => "position:relative;width:100%;height:100%;") %>
+		  			<% if p.img_path %>
+		    			<%= link_to(image_tag(p.img_path, :style =>"position:relative;width:100%;height:100%px;"),p.url, :target => '_blank') %>
+		    		<% else %>
+		    			No picture, please click on the title!
+		    		<% end %>
 		 		</div>
 			</div>
 		<% end %>
@@ -447,13 +450,21 @@
 									<input type="hidden" name="paper[question_id]" value=<%= @active_question.id %>></input>
 									</br></br>
 									<div class="control-group">
+							            <label class="control-label" for="text">Source Title</label>
+							            <div class="controls">
+							            	<input type="text" class="form-control" id="paper_url" name="paper[title]"></input>
+							            </div>
+					          		</div>
+					          		</br>
+
+									<div class="control-group">
 							            <label class="control-label" for="text">Source URL</label>
 							            <div class="controls">
 							            	<input type="text" class="form-control" id="paper_url" name="paper[url]"></input>
 							            </div>
 					          		</div>
 				          			</br>
-			          				<div class="control-group">
+				          			<div class="control-group">
 										<!-- Button -->
 										<div class="controls">
 											<button type="submit" class="btn btn-primary">Submit Source</button>
