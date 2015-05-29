@@ -13,7 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150529100557) do
 
-
   create_table "agrees", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -92,6 +91,7 @@ ActiveRecord::Schema.define(version: 20150529100557) do
     t.integer  "user_id"
     t.integer  "is_doctor"
     t.integer  "question_id"
+    t.integer  "option_num"
     t.integer  "optionNum"
   end
 

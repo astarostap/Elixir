@@ -54,7 +54,8 @@ button {
 }
 
 .section_button_div {
-	margin-top: 20px;
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
 
 /* -------------------- */
@@ -128,7 +129,7 @@ button {
 	color: white;
 	text-align: center;
 	word-wrap: break-word;
-	font-size: 20px;
+	font-size: 30px;
 }
 
 /* ------------ */
