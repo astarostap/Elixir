@@ -198,8 +198,12 @@ p1.save(:validate => false)
 p2 = Paper.new(:optionNum => 2, :question_id => q11.id, :doctor_id => nd4.id, :url => "http://ue.ucdavis.edu/explorations/2005/chiu.pdf", :img_path => 'pdf1.jpg', :title => "Prescription Drug Marketing: What consumers need to know")
 p2.save(:validate => false)
 
-
-
+v1 = Videos.new(:optionNum => 2, :question_id => q11.id, :doctor_id => nd5.id, :url => "https://www.youtube.com/embed/nyi7b5RvJzw", :title => "Prescription Drug Advertising Comes to Television")
+v1.save
+v2 = Videos.new(:optionNum => 1, :question_id => q11.id, :doctor_id => nd6.id, :url => "https://www.youtube.com/embed/gPFU2Bs1J1A", :title => "TV Drug Ads Contribute to 'Patient-centered' Care ")
+v2.save
+v3 = Videos.new(:optionNum => 1, :question_id => q11.id, :doctor_id => nd6.id, :url => "https://www.youtube.com/embed/3pu7sNIzSl0", :title => "Effect of Drug Ads ")
+v3.save
 
 
 
