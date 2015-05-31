@@ -9,7 +9,7 @@
 		<p id="question_text"><%= @active_question.text %></p>
 	</div>
 
-	<!-- Row containing option texts and vote bars -->
+	<!-- options -->
 	<table class="centered" id="option_table">
 		<tr>
 			<!-- Options 1 text box -->
@@ -61,423 +61,440 @@
 		</tr>
 	</table>
 
-	<div class="centered section_button_div">
-		<button id="stats_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'chart_section');" value="Statistics">Show Statistics</button>
-	</div>
+	<!-- statistics -->
+	<div>
+		<div class="centered section_button_div">
+			<button id="stats_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'chart_section');" value="Statistics">Show Statistics</button>
+		</div>
 
-	<div id="chart_section" class="section_div">
-		<table class="centered" id="chart_table">
-			<!-- Title row -->
-			<tr>
-				<th colspan="2"><h2 class="centered">Doctor statistics</h2></th>
-				<th class="stat_gap"></th>
-				<th colspan="2"><h2 class="centered">User statistics</h2></th>
-			</tr>
+		<div id="chart_section" class="section_div">
+			<table class="centered" id="chart_table">
+				<!-- Title row -->
+				<tr>
+					<th colspan="2"><h2 class="centered">Doctor statistics</h2></th>
+					<th class="stat_gap"></th>
+					<th colspan="2"><h2 class="centered">User statistics</h2></th>
+				</tr>
 
-			<!-- graph criterion and "filters" title --> 
-			<tr> 
-				<td style="height:40px;">
-					<select id="doc_criteria" onchange="criteria_selected(this.value, 'doctor');">
-						<option value=-1>Select a criterion</option>
-						<option value=1>Option Number</option>
-						<option value=2>Specialty</option>
-						<option value=3>Years in Practice</option>
-						<option value=4>Rating</option>
-					</select>
-				</td>
+				<!-- graph criterion and "filters" title --> 
+				<tr> 
+					<td style="height:40px;">
+						<select id="doc_criteria" onchange="criteria_selected(this.value, 'doctor');">
+							<option value=-1>Select a criterion</option>
+							<option value=1>Option Number</option>
+							<option value=2>Specialty</option>
+							<option value=3>Years in Practice</option>
+							<option value=4>Rating</option>
+						</select>
+					</td>
 
-				<td><h4 class='doctor_filter'>Filters</h4></td>
+					<td><h4 class='doctor_filter'>Filters</h4></td>
 
-				<td class="stat_gap"></td>
+					<td class="stat_gap"></td>
 
-				<td>
-					<select id="user_criteria" onchange="criteria_selected(this.value, 'user');">
-						<option value=-1>Select a criterion</option>
-						<option value=1>Option Number</option>
-						<option value=2>Age</option>
-						<option value=3>Gender</option>
-						<option value=4>Location</option>
-					</select>
-				</td>
+					<td>
+						<select id="user_criteria" onchange="criteria_selected(this.value, 'user');">
+							<option value=-1>Select a criterion</option>
+							<option value=1>Option Number</option>
+							<option value=2>Age</option>
+							<option value=3>Gender</option>
+							<option value=4>Location</option>
+						</select>
+					</td>
 
-				<td><h4 class="user_filter">Filters</h4></td>
-			</tr>
+					<td><h4 class="user_filter">Filters</h4></td>
+				</tr>
 
-			<tr><td><p></p></td></tr>
+				<tr><td><p></p></td></tr>
 
-			<!-- graphs and filter dropdowns -->
-			<tr>
-				<!-- Doctor graph -->
-				<td>
-					<div id="doctor_chart_div" class="centered">
-						<div class="chart_container centered">
-							<table><tr>
-								<td>
-									<canvas class="doughnut_canvas" id="doctor_canvas"></canvas>
-								</td>
-								<td>
-									<div id="doctor_legend_div" class="legend_div"></div>
-								</td>
-							</tr></table>
+				<!-- graphs and filter dropdowns -->
+				<tr>
+					<!-- Doctor graph -->
+					<td>
+						<div id="doctor_chart_div" class="centered">
+							<div class="chart_container centered">
+								<table><tr>
+									<td>
+										<canvas class="doughnut_canvas" id="doctor_canvas"></canvas>
+									</td>
+									<td>
+										<div id="doctor_legend_div" class="legend_div"></div>
+									</td>
+								</tr></table>
+							</div>
 						</div>
-					</div>
-				</td>
+					</td>
 
-				<!-- Doctor Filters -->
-				<td class="filter_td">
-					<div class="doctor_filter">
-						<h6 class="centered" style="margin: 3px;">Option Number</h6>
-						<select id='doc_option_filter' class='dropdown' onchange='filter_selected(this.id, this.value, "doctor");'>
-							<option value=-1>Any</option>
-						</select>
-					</div>
-					<div class="doctor_filter">
-						<h6 class="centered" style="margin: 3px;">Specialty</h6>
-						<select id='doc_specialty_filter' class='dropdown' onchange='filter_selected(this.id, this.value, "doctor");'>
-							<option value=-1>Any</option>
-						</select>
-					</div>
-					<div class="doctor_filter">
-						<h6 class="centered" style="margin: 3px;">Years in Practice</h6>
-						<select id='doc_YIP_filter' class='dropdown' onchange='filter_selected(this.id, this.value, "doctor");'>
-							<option value=-1>Any</option>
-						</select>
-					</div>
-					<div class="doctor_filter">
-						<h6 class="centered" style="margin: 3px;">Doctor Rating</h6>
-						<select id='doc_rating_filter' class='dropdown' onchange='filter_selected(this.id, this.value, "doctor");'>
-							<option value=-1>Any</option>
-						</select>
-					</div>
-				</td>
-
-				<td class="stat_gap"></td>
-
-				<!-- User Graph -->
-				<td>
-					<div id="user_chart_div" class="centered">
-						<div class="chart_container centered">
-							<table><tr>
-								<td>
-									<canvas class="doughnut_canvas" id="user_canvas"></canvas>
-								</td>
-								<td>
-									<div id="user_legend_div" class="legend_div"></div>
-								</td>
-							</tr></table>
+					<!-- Doctor Filters -->
+					<td class="filter_td">
+						<div class="doctor_filter">
+							<h6 class="centered" style="margin: 3px;">Option Number</h6>
+							<select id='doc_option_filter' class='dropdown' onchange='filter_selected(this.id, this.value, "doctor");'>
+								<option value=-1>Any</option>
+							</select>
 						</div>
-					</div>
-				</td>
+						<div class="doctor_filter">
+							<h6 class="centered" style="margin: 3px;">Specialty</h6>
+							<select id='doc_specialty_filter' class='dropdown' onchange='filter_selected(this.id, this.value, "doctor");'>
+								<option value=-1>Any</option>
+							</select>
+						</div>
+						<div class="doctor_filter">
+							<h6 class="centered" style="margin: 3px;">Years in Practice</h6>
+							<select id='doc_YIP_filter' class='dropdown' onchange='filter_selected(this.id, this.value, "doctor");'>
+								<option value=-1>Any</option>
+							</select>
+						</div>
+						<div class="doctor_filter">
+							<h6 class="centered" style="margin: 3px;">Doctor Rating</h6>
+							<select id='doc_rating_filter' class='dropdown' onchange='filter_selected(this.id, this.value, "doctor");'>
+								<option value=-1>Any</option>
+							</select>
+						</div>
+					</td>
 
-				<!-- User Filters -->
-				<td class="filter_td">
-					<div class="user_filter">
-						<h6 class="centered" style="margin: 3px;">Option Number</h6>
-						<select id='user_option_filter' class='dropdown' onchange='filter_selected(this.id, this.value, "user");'>
-							<option value=-1>Any</option>
-						</select>
-					</div>
-					<div class="user_filter">
-						<h6 class="centered" style="margin: 3px;">Age</h6>
-						<select id='user_age_filter' class='dropdown' onchange='filter_selected(this.id, this.value, "user");'>
-							<option value=-1>Any</option>
-						</select>
-					</div>
-					<div class="user_filter">
-						<h6 class="centered" style="margin: 3px;">Gender</h6>
-						<select id='user_gender_filter' class='dropdown' onchange='filter_selected(this.id, this.value, "user");'>
-							<option value=-1>Any</option>
-						</select>
-					</div>
-					<div class="user_filter">
-						<h6 class="centered" style="margin: 3px;">Location</h6>
-						<select id='user_location_filter' class='dropdown' onchange='filter_selected(this.id, this.value, "user");'>
-							<option value=-1>Any</option>
-						</select>
-					</div>
-				</td>
-			</tr>
-		</table> 
-	</div>
+					<td class="stat_gap"></td>
 
-	<div class="centered section_button_div">
-		<button id="doc_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'doc_section');" value="Top Doctors">Show Top Doctors</button>
-	</div>
+					<!-- User Graph -->
+					<td>
+						<div id="user_chart_div" class="centered">
+							<div class="chart_container centered">
+								<table><tr>
+									<td>
+										<canvas class="doughnut_canvas" id="user_canvas"></canvas>
+									</td>
+									<td>
+										<div id="user_legend_div" class="legend_div"></div>
+									</td>
+								</tr></table>
+							</div>
+						</div>
+					</td>
 
-	<div id="doc_section" class="section_div">
-		<h2 class="centered">Top Doctors</h2>
-		<div id="top_docs" class="centered">
-			<!-- top docs table for option 1 -->
-			<div class="centered inline top table_border">
-				<table id="top_docs1" class="top_docs_table">
-					<tr>
-						<th class="left_corner"></th>
-						<th class="centered" colspan="2">Doctor</th>
-						<th class="centered specialty_cell">Specialty</th>
-						<th class="centered rating_cell">Rating</th>
-						<th class="right_corner"></th>
-					</tr>
-
-					<% if @docs[0].length > 0 %>
-						<% for i in 0..2 %>
-							<% if i < @docs[0].length %>
-								<% doc = @docs[0][i] %>
-								<tr>
-									<td></td>
-									<td class="pic_cell"><%= image_tag("prof0.jpg", class:"profile_picture") %></td> 
-									<td class="doc_cell"><%= doc.username %></td>
-									<td><%= doc.specialty %></td>
-									<td><%= doc.docScore %></td>
-									<td></td>
-								</tr>
-							<% end %>
-						<% end %>
-					<% else %>
-						<tr>
-							<td colspan="6">
-								<div class="no_doc_div">
-									No doctors have voted for this option yet.
-								</div>
-							</td>
-						</tr>
-					<% end %>
-				</table>
-			</div>
-
-			<div class="top_doc_gap inline"></div>
-
-			<!-- top docs table for option 2 -->
-			<div class="centered inline table_border">
-				<table id="top_docs1" class="top_docs_table">
-					<tr>
-						<th class="left_corner"></th>
-						<th class="centered" colspan="2">Doctor</th>
-						<th class="centered specialty_cell">Specialty</th>
-						<th class="centered rating_cell">Rating</th>
-						<th class="right_corner"></th>
-					</tr>
-
-					<% if @docs[1].length > 0 %>
-						<% for i in 0..2 %>
-							<% if i < @docs[1].length %>
-								<% doc = @docs[1][i] %>
-								<tr>
-									<td></td>
-									<td class="pic_cell"><%= image_tag("prof0.jpg", class:"profile_picture") %></td> 
-									<td class="doc_cell"><%= doc.username %></td>
-									<td><%= doc.specialty %></td>
-									<td><%= doc.docScore %></td>
-									<td></td>
-								</tr>
-							<% end %>
-						<% end %>
-					<% else %>
-						<tr>
-							<td colspan="6">
-								<div class="no_doc_div">
-									No doctors have voted for this option yet.
-								</div>
-							</td>
-						</tr>
-					<% end %>
-				</table>
-			</div>
+					<!-- User Filters -->
+					<td class="filter_td">
+						<div class="user_filter">
+							<h6 class="centered" style="margin: 3px;">Option Number</h6>
+							<select id='user_option_filter' class='dropdown' onchange='filter_selected(this.id, this.value, "user");'>
+								<option value=-1>Any</option>
+							</select>
+						</div>
+						<div class="user_filter">
+							<h6 class="centered" style="margin: 3px;">Age</h6>
+							<select id='user_age_filter' class='dropdown' onchange='filter_selected(this.id, this.value, "user");'>
+								<option value=-1>Any</option>
+							</select>
+						</div>
+						<div class="user_filter">
+							<h6 class="centered" style="margin: 3px;">Gender</h6>
+							<select id='user_gender_filter' class='dropdown' onchange='filter_selected(this.id, this.value, "user");'>
+								<option value=-1>Any</option>
+							</select>
+						</div>
+						<div class="user_filter">
+							<h6 class="centered" style="margin: 3px;">Location</h6>
+							<select id='user_location_filter' class='dropdown' onchange='filter_selected(this.id, this.value, "user");'>
+								<option value=-1>Any</option>
+							</select>
+						</div>
+					</td>
+				</tr>
+			</table> 
 		</div>
 	</div>
 
-	<div class="centered section_button_div" >
-		<button id="discussion_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'discussion_section');" value="Discussion">Show Discussion</button>
-	</div>
+	<!-- top docs -->
+	<div>
+		<div class="centered section_button_div">
+			<button id="doc_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'doc_section');" value="Top Doctors">Show Top Doctors</button>
+		</div>
 
-	<div id="discussion_section" class="centered section_div">
+		<div id="doc_section" class="section_div">
+			<h2 class="centered">Top Doctors</h2>
+			<div id="top_docs" class="centered">
+				<!-- top docs table for option 1 -->
+				<div class="centered inline top table_border">
+					<table id="top_docs1" class="top_docs_table">
+						<tr>
+							<th class="left_corner"></th>
+							<th class="centered" colspan="2">Doctor</th>
+							<th class="centered specialty_cell">Specialty</th>
+							<th class="centered rating_cell">Rating</th>
+							<th class="right_corner"></th>
+						</tr>
 
-		<h2 class="centered">Discussion</h2>
+						<% if @docs[0].length > 0 %>
+							<% for i in 0..2 %>
+								<% if i < @docs[0].length %>
+									<% doc = @docs[0][i] %>
+									<tr>
+										<td></td>
+										<td class="pic_cell"><%= image_tag("prof0.jpg", class:"profile_picture") %></td> 
+										<td class="doc_cell"><%= doc.username %></td>
+										<td><%= doc.specialty %></td>
+										<td><%= doc.docScore %></td>
+										<td></td>
+									</tr>
+								<% end %>
+							<% end %>
+						<% else %>
+							<tr>
+								<td colspan="6">
+									<div class="no_doc_div">
+										No doctors have voted for this option yet.
+									</div>
+								</td>
+							</tr>
+						<% end %>
+					</table>
+				</div>
 
-		<!-- left column of discussion section -->
-		<div id="left_col" class="centered disc_col">
-			<!-- title with "add comment" button -->
-			<div class="centered disc_header_div">
-				<h4 class="float_left">Option 1</h4>
-				<button type="button" class="float_right add_comment" onclick="show_add_div(1);">Add Comment</button>
-			</div>
+				<div class="top_doc_gap inline"></div>
 
-			<!-- comment text area with "post" and "cancel" buttons -->
+				<!-- top docs table for option 2 -->
+				<div class="centered inline table_border">
+					<table id="top_docs1" class="top_docs_table">
+						<tr>
+							<th class="left_corner"></th>
+							<th class="centered" colspan="2">Doctor</th>
+							<th class="centered specialty_cell">Specialty</th>
+							<th class="centered rating_cell">Rating</th>
+							<th class="right_corner"></th>
+						</tr>
 
-			<div class="centered" id="add_comment_div_1">
-				<textarea rows="6" id="left_add_ta" class="full_width"></textarea>
-				<div>
-					<button type="button" class="float_left" id="add_comment_left" onclick="add_comment('left')">Post</button>
-					<button type="button" class="float_right" onclick="hide_add_div(1);">Cancel</button>
+						<% if @docs[1].length > 0 %>
+							<% for i in 0..2 %>
+								<% if i < @docs[1].length %>
+									<% doc = @docs[1][i] %>
+									<tr>
+										<td></td>
+										<td class="pic_cell"><%= image_tag("prof0.jpg", class:"profile_picture") %></td> 
+										<td class="doc_cell"><%= doc.username %></td>
+										<td><%= doc.specialty %></td>
+										<td><%= doc.docScore %></td>
+										<td></td>
+									</tr>
+								<% end %>
+							<% end %>
+						<% else %>
+							<tr>
+								<td colspan="6">
+									<div class="no_doc_div">
+										No doctors have voted for this option yet.
+									</div>
+								</td>
+							</tr>
+						<% end %>
+					</table>
 				</div>
 			</div>
-
-			<!-- list of comments -->
-			<div class="centered">
-				<ul class="disc_ul" id="left_comment_list">
-					<% for i in 0..(@comments[0].length - 1) %>
-						<% response = @comments[0][i] %>
-						<li class="disc_li">
-
-							<!-- header for each comment with profile/comment info -->
-							<div class="comment_header">
-								<!-- profile picture and username floating left -->
-								<div class="float_left" style="text-align: left;">
-									<% image_name = "prof" + response[:num] + ".jpg" %>
-									<%= image_tag(image_name, class:"profile_picture") %> 
-									<p><strong><%= response[:username] %></strong></p>
-								</div>
-
-								<!-- up and down vote buttons with current rating -->
-								<div class="float_right" style="text-align: right;">
-									<div class="inline comment_rating">
-										(<%= response[:agrees] %>)
-									</div>
-									<div class="inline">
-										<input type="image" class="sentiment_button" src="/assets/thumbs-up.jpg" onclick="count_vote();">
-									</div>
-									<div class="inline">
-										<input type="image" class="sentiment_button" src="/assets/thumbs-down.jpg" onclick="count_vote();">
-									</div>
-								</div>
-							</div>
-
-							<div class="comment_body">
-								<%= response[:text] %>
-							</div>
-							
-						</li>
-					<% end %>
-				</ul>
-			</div>
-		</div>
-
-		<div class="disc_gap"></div>
-
-		<div id="right_col" class="centered disc_col">
-			<!-- title with "add comment" button -->
-			<div class="centered disc_header_div">
-				<h4 class="float_left">Option 2</h4>
-				<button type="button" class="float_right" onclick="show_add_div(2);">Add Comment</button>
-			</div>
-
-			<!-- comment text area with "post" and "cancel" buttons -->
-			<div class="centered" id="add_comment_div_2">
-				<textarea rows="6" id="right_add_ta" class="full_width"></textarea>
-				<div>
-					<button type="button" id="add_comment_right" class="float_left" onclick="add_comment('right')">Post</button>
-					<button type="button" class="float_right" onclick="hide_add_div(2);">Cancel</button>
-				</div>
-			</div>
-
-			<!-- list of comments -->
-			<div class="centered">
-				<ul class="disc_ul" id="right_comment_list">
-					<% for i in 0..(@comments[1].length - 1) %>
-						<% response = @comments[1][i] %> 
-						<li class="disc_li">
-
-							<!-- header for each comment with profile/comment info -->
-							<div class="comment_header">
-								<!-- profile picture and username floating left -->
-								<div class="float_left" style="text-align: left;">
-									<% image_name = "prof" + response[:num] + ".jpg" %>
-									<%= image_tag(image_name, class:"profile_picture") %> 
-									<p><strong><%= response[:username] %></strong></p>
-								</div>
-
-								<!-- up and down vote buttons with current rating -->
-								<div class="float_right" style="text-align: right;">
-									<div class="inline comment_rating">
-										(<%= response[:agrees] %>)
-									</div>
-									<div class="inline">
-										<input type="image" class="sentiment_button" src="/assets/thumbs-up.jpg" onclick="count_vote();">
-									</div>
-									<div class="inline">
-										<input type="image" class="sentiment_button" src="/assets/thumbs-down.jpg" onclick="count_vote();">
-									</div>
-								</div>
-							</div>
-
-							<div class="comment_body" id="comment_body_right">
-								<%= response[:text] %>
-							</div>
-							
-						</li>
-					<% end %>
-				</ul>
-			</div>
 		</div>
 	</div>
 
-	<div class="centered section_button_div"> 
-            <button id="paper_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'paper_section');">Show Sources</button>
-    </div>
+	<!-- discussion -->
+	<div>
+		<div class="centered section_button_div" >
+			<button id="discussion_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'discussion_section');" value="Discussion">Show Discussion</button>
+		</div>
 
-	<div id="paper_section" class="centered section_div" style="margin-top:20px;">
-		<% for p in @active_question.papers %>
-			<div class="panel panel-primary" id"pdfshower">
-				<div class="panel-heading">
-		    		<h3 class="panel-title">"<%= link_to(p.title,p.url, :target => '_blank') %>" by <%= Doctor.find(p.doctor_id).username %></h3>
-		  		</div>
-		  		<div class="panel-body">
-		  			<% if p.img_path %>
-		    			<%= link_to(image_tag(p.img_path, :style =>"position:relative;width:100%;height:100%px;"),p.url, :target => '_blank') %>
-		    		<% else %>
-		    			No picture, please click on the title!
-		    		<% end %>
-		 		</div>
-			</div>
-		<% end %>
-		<div>
-			<% if session[:is_doctor] %>
-				<div class="centered section_button_div"> 
-		            <button id="add_paper_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'add_paper_section');">Add Source</button>
-		        </div>
-		        </br>
-				<div id="add_paper_section" style="width: 30%; margin: 0 auto" class="section_div" >
-					<div class="modal-body">
-						<div class="well">
-							<div>
-								<%= form_tag({controller: "questions", action: "create_paper"}, method: "post", html: {role: "form"}) do%>
-									</br>
-									<label class="control-label"  for="text">What option number is this source for?</label>
-				        			</br>
-									<div class="btn-group">
-						            	<input type="radio" name="paper[optionNum]" value="1"> 1 </input>		              
-						            	<input type="radio" name="paper[optionNum]" value="1"> 2 </input>
+		<div id="discussion_section" class="centered section_div">
+
+			<h2 class="centered">Discussion</h2>
+
+			<!-- left column of discussion section -->
+			<div id="left_col" class="centered disc_col">
+				<!-- title with "add comment" button -->
+				<div class="centered disc_header_div">
+					<h4 class="float_left">Option 1</h4>
+					<button type="button" class="float_right add_comment" onclick="show_add_div(1);">Add Comment</button>
+				</div>
+
+				<!-- comment text area with "post" and "cancel" buttons -->
+
+				<div class="centered" id="add_comment_div_1">
+					<textarea rows="6" id="left_add_ta" class="full_width"></textarea>
+					<div>
+						<button type="button" class="float_left" id="add_comment_left" onclick="add_comment('left')">Post</button>
+						<button type="button" class="float_right" onclick="hide_add_div(1);">Cancel</button>
+					</div>
+				</div>
+
+				<!-- list of comments -->
+				<div class="centered">
+					<ul class="disc_ul" id="left_comment_list">
+						<% for i in 0..(@comments[0].length - 1) %>
+							<% response = @comments[0][i] %>
+							<li class="disc_li">
+
+								<!-- header for each comment with profile/comment info -->
+								<div class="comment_header">
+									<!-- profile picture and username floating left -->
+									<div class="float_left" style="text-align: left;">
+										<% image_name = "prof" + response[:num] + ".jpg" %>
+										<%= image_tag(image_name, class:"profile_picture") %> 
+										<p><strong><%= response[:username] %></strong></p>
 									</div>
-									<input type="hidden" name="paper[question_id]" value=<%= @active_question.id %>></input>
-									</br></br>
-									<div class="control-group">
-							            <label class="control-label" for="text">Source Title</label>
-							            <div class="controls">
-							            	<input type="text" class="form-control" id="paper_url" name="paper[title]"></input>
-							            </div>
-					          		</div>
-					          		</br>
 
-									<div class="control-group">
-							            <label class="control-label" for="text">Source URL</label>
-							            <div class="controls">
-							            	<input type="text" class="form-control" id="paper_url" name="paper[url]"></input>
-							            </div>
-					          		</div>
-				          			</br>
-				          			<div class="control-group">
-										<!-- Button -->
-										<div class="controls">
-											<button type="submit" class="btn btn-primary">Submit Source</button>
+									<!-- up and down vote buttons with current rating -->
+									<div class="float_right" style="text-align: right;">
+										<div class="inline comment_rating" id="agrees_<%= response[:id] %>">
+											(<%= response[:agrees] %>)
+										</div>
+										<div class="inline">
+											<input type="image" class="sentiment_button" 
+												   src="/assets/thumbs-up.jpg" onclick="count_vote(1,<%= response[:id] %>);">
+										</div>
+										<div class="inline">
+											<input type="image" class="sentiment_button" 
+												   src="/assets/thumbs-down.jpg" onclick="count_vote(-1,<%= response[:id] %>);">
 										</div>
 									</div>
-								<% end %>
+								</div>
+
+								<div class="comment_body">
+									<%= response[:text] %>
+								</div>
+								
+							</li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
+
+			<div class="disc_gap"></div>
+
+			<div id="right_col" class="centered disc_col">
+				<!-- title with "add comment" button -->
+				<div class="centered disc_header_div">
+					<h4 class="float_left">Option 2</h4>
+					<button type="button" class="float_right" onclick="show_add_div(2);">Add Comment</button>
+				</div>
+
+				<!-- comment text area with "post" and "cancel" buttons -->
+				<div class="centered" id="add_comment_div_2">
+					<textarea rows="6" id="right_add_ta" class="full_width"></textarea>
+					<div>
+						<button type="button" id="add_comment_right" class="float_left" onclick="add_comment('right')">Post</button>
+						<button type="button" class="float_right" onclick="hide_add_div(2);">Cancel</button>
+					</div>
+				</div>
+
+				<!-- list of comments -->
+				<div class="centered">
+					<ul class="disc_ul" id="right_comment_list">
+						<% for i in 0..(@comments[1].length - 1) %>
+							<% response = @comments[1][i] %> 
+							<li class="disc_li">
+
+								<!-- header for each comment with profile/comment info -->
+								<div class="comment_header">
+									<!-- profile picture and username floating left -->
+									<div class="float_left" style="text-align: left;">
+										<% image_name = "prof" + response[:num] + ".jpg" %>
+										<%= image_tag(image_name, class:"profile_picture") %> 
+										<p><strong><%= response[:username] %></strong></p>
+									</div>
+
+									<!-- up and down vote buttons with current rating -->
+									<div class="float_right" style="text-align: right;">
+										<div class="inline comment_rating" id="agrees_<%= response[:id] %>">
+											(<%= response[:agrees] %>)
+										</div>
+										<div class="inline">
+											<input type="image" class="sentiment_button" 
+												   src="/assets/thumbs-up.jpg" onclick="count_vote(1,<%= response[:id] %>);">
+										</div>
+										<div class="inline">
+											<input type="image" class="sentiment_button"
+												   src="/assets/thumbs-down.jpg" onclick="count_vote(-1,<%= response[:id] %>);">
+										</div>
+									</div>
+								</div>
+
+								<div class="comment_body" id="comment_body_right">
+									<%= response[:text] %>
+								</div>
+								
+							</li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- papers -->
+	<div>
+		<div class="centered section_button_div"> 
+	            <button id="paper_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'paper_section');">Show Sources</button>
+	    </div>
+
+		<div id="paper_section" class="centered section_div" style="margin-top:20px;">
+			<% for p in @active_question.papers %>
+				<div class="panel panel-primary" id"pdfshower">
+					<div class="panel-heading">
+			    		<h3 class="panel-title">"<%= link_to(p.title,p.url, :target => '_blank') %>" by <%= Doctor.find(p.doctor_id).username %></h3>
+			  		</div>
+			  		<div class="panel-body">
+			  			<% if p.img_path %>
+			    			<%= link_to(image_tag(p.img_path, :style =>"position:relative;width:100%;height:100%px;"),p.url, :target => '_blank') %>
+			    		<% else %>
+			    			No picture, please click on the title!
+			    		<% end %>
+			 		</div>
+				</div>
+			<% end %>
+			<div>
+				<% if session[:is_doctor] %>
+					<div class="centered section_button_div"> 
+			            <button id="add_paper_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'add_paper_section');">Add Source</button>
+			        </div>
+			        </br>
+					<div id="add_paper_section" style="width: 30%; margin: 0 auto" class="section_div" >
+						<div class="modal-body">
+							<div class="well">
+								<div>
+									<%= form_tag({controller: "questions", action: "create_paper"}, method: "post", html: {role: "form"}) do%>
+										</br>
+										<label class="control-label"  for="text">What option number is this source for?</label>
+					        			</br>
+										<div class="btn-group">
+							            	<input type="radio" name="paper[optionNum]" value="1"> 1 </input>		              
+							            	<input type="radio" name="paper[optionNum]" value="1"> 2 </input>
+										</div>
+										<input type="hidden" name="paper[question_id]" value=<%= @active_question.id %>></input>
+										</br></br>
+										<div class="control-group">
+								            <label class="control-label" for="text">Source Title</label>
+								            <div class="controls">
+								            	<input type="text" class="form-control" id="paper_url" name="paper[title]"></input>
+								            </div>
+						          		</div>
+						          		</br>
+
+										<div class="control-group">
+								            <label class="control-label" for="text">Source URL</label>
+								            <div class="controls">
+								            	<input type="text" class="form-control" id="paper_url" name="paper[url]"></input>
+								            </div>
+						          		</div>
+					          			</br>
+					          			<div class="control-group">
+											<!-- Button -->
+											<div class="controls">
+												<button type="submit" class="btn btn-primary">Submit Source</button>
+											</div>
+										</div>
+									<% end %>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			<% end %>
+				<% end %>
+			</div>
 		</div>
 	</div>
+
 		<div id="videoSection">
 		<table class="table" style="width:100%;1px solid black;">
 			<tr>
