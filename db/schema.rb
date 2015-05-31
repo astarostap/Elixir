@@ -92,7 +92,6 @@ ActiveRecord::Schema.define(version: 20150529114810) do
     t.integer  "user_id"
     t.integer  "is_doctor"
     t.integer  "question_id"
-    t.integer  "option_num"
     t.integer  "optionNum"
   end
 
