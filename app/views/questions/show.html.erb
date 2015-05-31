@@ -1,7 +1,4 @@
 <%= stylesheet_link_tag "question" %>
-<%= javascript_include_tag 'question'%>
-<%= javascript_include_tag 'new_form'%>
-
 <div id="page_container">
 	<div id="title">
 		<h1><%= @active_question.title %></h1>
@@ -57,7 +54,7 @@
 			<!-- option 2 text box -->
 			<td>
 				<div id="option2" class="option_div">
-					<p class="option_text"><%= @active_question.option2 + " omg so much text this is awesome"%></p>
+					<p class="option_text"><%= @active_question.option2 %></p>
 				</div>
 			</td>
 		</tr>
@@ -226,7 +223,7 @@
 								<% doc = @docs[0][i] %>
 								<tr>
 									<td></td>
-									<td class="pic_cell"><%= image_tag("goat.jpg", class:"profile_picture") %></td> 
+									<td class="pic_cell"><%= image_tag("prof0.jpg", class:"profile_picture") %></td> 
 									<td class="doc_cell"><%= doc.username %></td>
 									<td><%= doc.specialty %></td>
 									<td><%= doc.docScore %></td>
@@ -265,7 +262,7 @@
 								<% doc = @docs[1][i] %>
 								<tr>
 									<td></td>
-									<td class="pic_cell"><%= image_tag("goat.jpg", class:"profile_picture") %></td> 
+									<td class="pic_cell"><%= image_tag("prof0.jpg", class:"profile_picture") %></td> 
 									<td class="doc_cell"><%= doc.username %></td>
 									<td><%= doc.specialty %></td>
 									<td><%= doc.docScore %></td>
@@ -291,7 +288,9 @@
 		<button id="discussion_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'discussion_section');" value="Discussion">Show Discussion</button>
 	</div>
 
-	<div id="discussion_section" class="centered">
+	<div id="discussion_section" class="centered section_div">
+
+		<h2 class="centered">Discussion</h2>
 
 		<!-- left column of discussion section -->
 		<div id="left_col" class="centered disc_col">
@@ -304,31 +303,33 @@
 			<!-- comment text area with "post" and "cancel" buttons -->
 
 			<div class="centered" id="add_comment_div_1">
-				<textarea rows="6" id="add_ta1" name="comment[add_ta1]" class="full_width"></textarea>
+				<textarea rows="6" id="left_add_ta" class="full_width"></textarea>
 				<div>
-					<button type="button" class="float_left" id="add_comment_left" onclick="add_comment_left()">Post</button>
+					<button type="button" class="float_left" id="add_comment_left" onclick="add_comment('left')">Post</button>
 					<button type="button" class="float_right" onclick="hide_add_div(1);">Cancel</button>
 				</div>
 			</div>
 
 			<!-- list of comments -->
 			<div class="centered">
-				<ul class="disc_ul" id="ins_comment_left">
+				<ul class="disc_ul" id="left_comment_list">
 					<% for i in 0..(@comments[0].length - 1) %>
+						<% response = @comments[0][i] %>
 						<li class="disc_li">
 
 							<!-- header for each comment with profile/comment info -->
 							<div class="comment_header">
 								<!-- profile picture and username floating left -->
 								<div class="float_left" style="text-align: left;">
-									<%= image_tag("goat.jpg", class:"profile_picture") %> 
-									<p><strong>Username goes here</strong></p>
+									<% image_name = "prof" + response[:num] + ".jpg" %>
+									<%= image_tag(image_name, class:"profile_picture") %> 
+									<p><strong><%= response[:username] %></strong></p>
 								</div>
 
 								<!-- up and down vote buttons with current rating -->
 								<div class="float_right" style="text-align: right;">
 									<div class="inline comment_rating">
-										(+9001)
+										(<%= response[:agrees] %>)
 									</div>
 									<div class="inline">
 										<input type="image" class="sentiment_button" src="/assets/thumbs-up.jpg" onclick="count_vote();">
@@ -340,7 +341,7 @@
 							</div>
 
 							<div class="comment_body">
-								<%= @comments[0][i] %>
+								<%= response[:text] %>
 							</div>
 							
 						</li>
@@ -359,35 +360,34 @@
 			</div>
 
 			<!-- comment text area with "post" and "cancel" buttons -->
-			<%= form_for(:question, :url => {:controller => 'questions', :action => 'create_comment'}) do |f| %>
-				<div class="centered" id="add_comment_div_2">
-					<textarea rows="6" name="comment[add_ta2]" id="add_ta2" class="full_width"></textarea>
-					<div>
-						<button type="button" id="add_comment_right" class="float_left" onclick="add_comment_right()">Post</button>
-						<button type="button" class="float_right" onclick="hide_add_div(2);">Cancel</button>
-					</div>
+			<div class="centered" id="add_comment_div_2">
+				<textarea rows="6" id="right_add_ta" class="full_width"></textarea>
+				<div>
+					<button type="button" id="add_comment_right" class="float_left" onclick="add_comment('right')">Post</button>
+					<button type="button" class="float_right" onclick="hide_add_div(2);">Cancel</button>
 				</div>
-			<% end %>
+			</div>
 
 			<!-- list of comments -->
-			<div class="centered" id="ins_comment_right">
-				<div>
-					<ul class="disc_ul">
-						<% for i in 0..(@comments[1].length - 1) %>
+			<div class="centered">
+				<ul class="disc_ul" id="right_comment_list">
+					<% for i in 0..(@comments[1].length - 1) %>
+						<% response = @comments[1][i] %> 
 						<li class="disc_li">
 
 							<!-- header for each comment with profile/comment info -->
 							<div class="comment_header">
 								<!-- profile picture and username floating left -->
 								<div class="float_left" style="text-align: left;">
-									<%= image_tag("goat.jpg", class:"profile_picture") %> 
-									<p><strong>Username goes here</strong></p>
+									<% image_name = "prof" + response[:num] + ".jpg" %>
+									<%= image_tag(image_name, class:"profile_picture") %> 
+									<p><strong><%= response[:username] %></strong></p>
 								</div>
 
 								<!-- up and down vote buttons with current rating -->
 								<div class="float_right" style="text-align: right;">
 									<div class="inline comment_rating">
-										(+9001)
+										(<%= response[:agrees] %>)
 									</div>
 									<div class="inline">
 										<input type="image" class="sentiment_button" src="/assets/thumbs-up.jpg" onclick="count_vote();">
@@ -399,53 +399,84 @@
 							</div>
 
 							<div class="comment_body" id="comment_body_right">
-								<%= @comments[1][i] %>
+								<%= response[:text] %>
 							</div>
 							
 						</li>
 					<% end %>
-					</ul>
-				</div>
+				</ul>
 			</div>
 		</div>
 	</div>
 
-	<% if session[:is_doctor] %>
-		<div class="centered section_button_div"> 
-            <button id="paper_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'paper_section');">Add Source</button>
-        </div>
-        </br>
-		<div id="paper_section" style="width: 30%; margin: 0 auto" class="section_div" >
-			<div class="modal-body">
-				<div class="well">
-					<div>
-						<%= form_tag({controller: "questions", action: "create_paper"}, method: "post", html: {role: "form"}) do%>
-							</br>
-							<label class="control-label"  for="text">What option number is this source for?</label>
-		        			</br>
-							<div class="btn-group">
-				            	<input type="radio" name="paper[optionNum]" value="1"> 1 </input>		              
-				            	<input type="radio" name="paper[optionNum]" value="1"> 2 </input>
+	<div class="centered section_button_div"> 
+            <button id="paper_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'paper_section');">Show Sources</button>
+    </div>
+
+	<div id="paper_section" class="centered section_div" style="margin-top:20px;">
+		<% for p in @active_question.papers %>
+			<div class="panel panel-primary" id"pdfshower">
+				<div class="panel-heading">
+		    		<h3 class="panel-title">"<%= link_to(p.title,p.url, :target => '_blank') %>" by <%= Doctor.find(p.doctor_id).username %></h3>
+		  		</div>
+		  		<div class="panel-body">
+		  			<% if p.img_path %>
+		    			<%= link_to(image_tag(p.img_path, :style =>"position:relative;width:100%;height:100%px;"),p.url, :target => '_blank') %>
+		    		<% else %>
+		    			No picture, please click on the title!
+		    		<% end %>
+		 		</div>
+			</div>
+		<% end %>
+		<div>
+			<% if session[:is_doctor] %>
+				<div class="centered section_button_div"> 
+		            <button id="add_paper_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'add_paper_section');">Add Source</button>
+		        </div>
+		        </br>
+				<div id="add_paper_section" style="width: 30%; margin: 0 auto" class="section_div" >
+					<div class="modal-body">
+						<div class="well">
+							<div>
+								<%= form_tag({controller: "questions", action: "create_paper"}, method: "post", html: {role: "form"}) do%>
+									</br>
+									<label class="control-label"  for="text">What option number is this source for?</label>
+				        			</br>
+									<div class="btn-group">
+						            	<input type="radio" name="paper[optionNum]" value="1"> 1 </input>		              
+						            	<input type="radio" name="paper[optionNum]" value="1"> 2 </input>
+									</div>
+									<input type="hidden" name="paper[question_id]" value=<%= @active_question.id %>></input>
+									</br></br>
+									<div class="control-group">
+							            <label class="control-label" for="text">Source Title</label>
+							            <div class="controls">
+							            	<input type="text" class="form-control" id="paper_url" name="paper[title]"></input>
+							            </div>
+					          		</div>
+					          		</br>
+
+									<div class="control-group">
+							            <label class="control-label" for="text">Source URL</label>
+							            <div class="controls">
+							            	<input type="text" class="form-control" id="paper_url" name="paper[url]"></input>
+							            </div>
+					          		</div>
+				          			</br>
+				          			<div class="control-group">
+										<!-- Button -->
+										<div class="controls">
+											<button type="submit" class="btn btn-primary">Submit Source</button>
+										</div>
+									</div>
+								<% end %>
 							</div>
-							<input type="hidden" name="paper[question_id]" value=<%= @active_question.id %>></input>
-							</br></br>
-							<div class="control-group">
-					            <label class="control-label" for="text">Source URL</label>
-					            <div class="controls">
-					            	<input type="text" class="form-control" id="paper_url" name="paper[url]"></input>
-					            </div>
-			          		</div>
-		          			</br>
-	          				<div class="control-group">
-								<!-- Button -->
-								<div class="controls">
-									<button type="submit" class="btn btn-primary">Submit Source</button>
-								</div>
-							</div>
-						<% end %>
+						</div>
 					</div>
 				</div>
-			</div>
+			<% end %>
 		</div>
-	<% end %>
+	</div>
+
+
 </div>
