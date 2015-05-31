@@ -15,21 +15,26 @@ class QuestionsController < ApplicationController
 		end
 
 		@comments = [[], []]
-		i = 0
 		@active_question.responses.each do |r|
 			if(r.is_doctor)
 				user = Doctor.find(r.doctor_id)
 			else
 				user = NormalUser.find(r.user_id)
 			end
+
+			agrees = 0
+			r.agrees.each do |a|
+				agrees += a.vote_value
+			end
+
 			response = {
 				username: user.username,
 				text: r.text,
-				agrees: r.agreesNum,
-				num: (r.id % 12).to_s
+				agrees: agrees,
+				num: (user.id % 12).to_s,
+				id: r.id
 			}
-			@comments[(i % 2)].push(response)
-			i += 1
+			@comments[r.option_num - 1].push(response)
 		end
 	end
 
@@ -39,19 +44,28 @@ class QuestionsController < ApplicationController
 	end
 
 	def create_comment
-		puts "-------------I am saving the question-------------------"
 		@comment = Response.new
 		@comment.text = params[:text]
 		@comment.is_doctor = session[:is_doctor]
 		@comment.question_id = session[:qid]
 		@comment.agreesNum = 0
+		@comment.option_num = params[:option]
 		if session[:is_doctor]
 			@comment.doctor_id = session[:id]
 		else
 			@comment.user_id = session[:id]
 		end
-		puts @comment.inspect
 		@comment.save
+		render nothing: true
+	end
+
+	def create_agree
+		@agree = Agree.new
+		@agree.response_id = params[:response_id]
+		@agree.is_doctor = session[:is_doctor]
+		@agree.voter_id = session[:id]
+		@agree.vote_value = params[:vote].to_i
+		@agree.save
 		render nothing: true
 	end
 
@@ -126,10 +140,8 @@ class QuestionsController < ApplicationController
 		q = Question.find(session[:qid])
 
 
-		user_content = "["
-		val = 1
+		user_content = "[ "
 		q.user_votes.each do |v|
-			val = 2
 
 			user = NormalUser.find(v.user_id)
 
@@ -144,32 +156,41 @@ class QuestionsController < ApplicationController
 							 '"id":"' + v.user_id.to_s + '"},'
 		end
 
-		user_content = user_content[0..(user_content.length - val)] + "]"
+		user_content = user_content[0..(user_content.length - 2)] + "]"
 
-		val = 1
-		doc_content = "["
+		doc_content = "[ "
 		q.doctor_votes.each do |v|
-			val = 2
 			doc = Doctor.find(v.doctor_id)
 
 			doc_content += '{"specialty":"' + doc.specialty + '",' +
-						    '"YIP":"' + 10.to_s + '",' +
+						    '"YIP":"' + doc.years_in_practice.to_s + '",' +
 							'"rating":"' + doc.docScore.to_s + '",' +
 							'"option":"' + v.optionNum.to_s + '",' +
 							'"id":"' + v.doctor_id.to_s + '"},'
 		end
-		doc_content = doc_content[0..(doc_content.length - val)] + "]"
+		doc_content = doc_content[0..(doc_content.length - 2)] + "]"
 
 		votes = '{"user":' + user_content + ', "doctor":' + doc_content + "}"
 
 		type = session[:is_doctor] ? "doctor" : "user"
 		if(session[:id])
+			user_votes = "[ "
+			comment_votes = Agree.where(voter_id: session[:id])
+
+			comment_votes.each do |v|
+				user_votes += v.response_id.to_s + ","
+			end
+			user_votes = user_votes[0..(user_votes.length - 2)] + "]"
+			puts user_votes
 			current_user = '{"id":' + session[:id].to_s + 
 						  ', "type":"' + type + 
-						 '", "username":"' + session[:username] + '"}'
+						 '", "votes":' + user_votes + 
+						 ', "username":"' + session[:username] + '"}'
+			puts current_user
 		else
 			current_user = "null"
 		end
+
 		content = '{"curr":' + current_user + ', "votes":' + votes + "}"
 		render :json => content
 	end
