@@ -153,7 +153,7 @@ class QuestionsController < ApplicationController
 			doc = Doctor.find(v.doctor_id)
 
 			doc_content += '{"specialty":"' + doc.specialty + '",' +
-						    '"YIP":"' + 10.to_s + '",' +
+						    '"YIP":"' + doc.years_in_practice.to_s + '",' +
 							'"rating":"' + doc.docScore.to_s + '",' +
 							'"option":"' + v.optionNum.to_s + '",' +
 							'"id":"' + v.doctor_id.to_s + '"},'
