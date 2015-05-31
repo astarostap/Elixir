@@ -26,7 +26,7 @@ var fake_votes = {
 var dropdown_options = {
     "doctor": {
         "criteria": ["doc_option_filter", "doc_specialty_filter", "doc_YIP_filter", "doc_rating_filter"],
-        "doc_specialty_filter": ["Radiology", "Pathology", "Cardiology", "Pulmonary Medicine", "Obstetrics/ Gynecology", "Neurology"],
+        "doc_specialty_filter": ["Radiology", "Pathology", "Cardiology", "Obstetrics/ Gynecology", "Neurology", "Other"],
         "doc_option_filter": ["Option 1", "Option 2"],
         "doc_YIP_filter": ["0-5", "6-10", "11-15", "16-20", "21+"],
         "doc_rating_filter": ["< 51", "51-60", "61-70", "71-80", "81-90", "91-100"]
@@ -86,7 +86,6 @@ $(document).ready(function() {
 });
 
 function init_page() {
-    console.log("hi")
     if(!document.getElementById("page_container")) return;
     init_graphs();
     hide_section_divs();
@@ -197,42 +196,70 @@ function display_votes(name) {
     var height = $("#" + name + "_votes").height();
     var widths = [percents[0] * width, percents[1] * width];
     if(widths[0] + widths[1] < width) widths[0] += 1;
-    
-    if(percents[0] == -1) {
-        var left_div = $("#" + name + "_vote_bar_left");
-        left_div.width(width).height(height);
-        left_div.html("<p class='centered'><strong>No Votes<strong></p>");
-        return;
+
+    if(!already_voted()) { //hide votes since they haven't voted
+        show_no_votes(name, width, height, "Vote First");
+    } else if(percents[0] == -1) { //no votes
+        show_no_votes(name, width, height, "No Votes");
+    } else if(percents[0] == 0) { //no one voted for option 1
+        show_single_option(name, "right", height, width);
+    } else if(percents[0] == 1) { //everyone voted for option 1
+        show_single_option(name, "left", height, width);
+    } else { //split vote
+        show_both_options(name, widths, height);
     }
-
-    var left_div = $("#" + name + "_vote_bar_left");
-    left_div.html("");
-    left_div.width(widths[0]).height(height);
-    left_div.css("background", "green");
-    left_div.css("border-top-left-radius", "5px");
-    left_div.css("border-bottom-left-radius", "5px");
-    $("#" + name + "_left_percent").html(Math.round(percents[0] * 100) + "%");
-
-    var right_div = $("#" + name + "_vote_bar_right");
-    right_div.width(widths[1]).height(height);
-    right_div.css("background", "red");
-    right_div.css("border-top-right-radius", "5px");
-    right_div.css("border-bottom-right-radius", "5px");
-    $("#" + name + "_right_percent").html(Math.round(percents[1] * 100) + "%");
-
-    round_opposite_corners(widths, right_div, left_div);
 }
 
-function round_opposite_corners(widths, right_div, left_div) {
-    if(widths[0] == 0) {
-        right_div.css("border-top-left-radius", "5px");
-        right_div.css("border-bottom-left-radius", "5px");
-        left_div.css("display", "none");
-    } else if (widths[1] == 0) {
-        left_div.css("border-top-right-radius", "5px");
-        left_div.css("border-bottom-right-radius", "5px");
-        right_div.css("display", "none");
-    }
+function show_both_options(name, widths, height) {
+    var left_div = $("#" + name + "_vote_bar_left");
+    left_div.html("");
+    left_div.show();
+    left_div.width(widths[0]).height(height);
+    round_corners(left_div, "left", 5);
+    round_corners(left_div, "right", 0);
+    left_div.css("background", "red");
+    var percent1 = Math.round((widths[0] * 100) / (widths[0] + widths[1]));
+    $("#" + name + "_left_percent").html(percent1 + "%");
+
+    var right_div = $("#" + name + "_vote_bar_right");
+    right_div.show();
+    right_div.html("");
+    right_div.width(widths[1]).height(height);
+    round_corners(right_div, "left", 0);
+    round_corners(right_div, "right", 5);
+    right_div.css("background", "green");
+    var percent2 = Math.round((widths[1] * 100) / (widths[0] + widths[1]));
+    $("#" + name + "_right_percent").html(percent2 + "%");
+}
+
+function show_single_option(name, side, h, w) {
+    var other_side = (side == "left") ? "right" : "left";
+    var hide_bar = $("#" + name + "_vote_bar_" + other_side);
+    hide_bar.html("");
+    hide_bar.hide();
+
+    var show_bar = $("#" + name + "_vote_bar_" + side);
+    show_bar.html("");
+    show_bar.show();
+
+    var color = (side == "left") ? "green" : "red";
+    show_bar.css("background", color);
+    round_corners(show_bar, side, 5);
+    round_corners(show_bar, other_side, 5);
+    show_bar.height(h).width(w);
+    $("#" + name + "_" + side + "_percent").html("100%");
+    $("#" + name + "_" + other_side + "_percent").html("0%");
+}
+
+function round_corners(elem, side, rad) {
+    elem.css("border-top-" + side + "-radius", "" + rad + "px");
+    elem.css("border-bottom-" + side + "-radius", "" + rad + "px");
+}
+
+function show_no_votes(name, w, h, str) {
+    var elem = $("#" + name + "_vote_bar_left");
+    elem.width(w).height(h);
+    elem.html("<p class='centered'><strong>" + str + "<strong></p>");
 }
 
 function already_voted() {
@@ -584,6 +611,10 @@ function has_no_values(data) {
 }
 
 function toggleVisibility(button_id, div_id) {
+    if(!already_voted()) {
+        alert("You must vote first!");
+        return;
+    }
     var div = $("#" + div_id);
     var button = $("#" + button_id);
     console.log(button_id + ", " + div_id)
@@ -639,10 +670,11 @@ function add_comment(side) {
 }
 
 function generate_comment_html(comment) {
+    var pic = current_user["id"] % 12;
     return '<li class="disc_li"> \
                 <div class="comment_header"> \
                     <div class="float_left" style="text-align: left;"> \
-                        <img alt="Goat" class="profile_picture" src="/assets/goat.jpg" /> \
+                        <img alt="Prof' + pic + '" class="profile_picture" src="/assets/prof' + pic + '.jpg" /> \
                         <p><strong>' + current_user.username + '</strong></p> \
                     </div> \
                     <div class="float_right" style="text-align: right;"> \
@@ -663,6 +695,38 @@ function generate_comment_html(comment) {
             </li>';
 }
 
-function count_vote() {
-    console.log("hi");
+function count_vote(val, resp_id) {
+    if(current_user == null) {
+        alert("You must be signed in to vote on a comment.");
+        return;
+    } else if(current_user["votes"].indexOf(resp_id) != -1) {
+        alert("You have already voted on this comment.");
+        return
+    }
+
+    data = {
+        'response_id': resp_id,
+        'vote': val
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:3000/questions/create_agree",
+        data: JSON.stringify(data),
+        contentType: 'application/json', 
+        error:  function(response) {
+            alert("Your vote failed to save. Please try again.");
+        },
+        success: function() {
+            console.log("#agrees_" + resp_id);
+            var count = $("#agrees_" + resp_id).text().trim();
+            count = count.substring(1, count.length - 1);
+            console.log(count);
+            var new_count = parseInt(count) + parseInt(val);
+            console.log(new_count);
+            $("#agrees_" + resp_id).html("(" + new_count + ")");
+        }
+    });
+
+
 }
