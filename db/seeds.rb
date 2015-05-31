@@ -193,9 +193,9 @@ a5.save(:validate => false)
 a6 = Agree.new(:response_id => r3.id, :voter_id => nu1.id, :is_doctor => 0, :vote_value => 1)
 a6.save(:validate => false)
 
-p1 = Paper.new(:optionNum => 1, :question_id => q11.id, :doctor_id => nd3.id, :url => "http://www.pharmedout.org/RxDrugMarketing.pdf", :img_path => 'pdf1.jpg')
+p1 = Paper.new(:optionNum => 1, :question_id => q11.id, :doctor_id => nd3.id, :url => "http://www.pharmedout.org/RxDrugMarketing.pdf", :img_path => 'pdf2.jpg', :title => "Selling Drugs: Marketing Strategies:")
 p1.save(:validate => false)
-p2 = Paper.new(:optionNum => 2, :question_id => q11.id, :doctor_id => nd4.id, :url => "http://ue.ucdavis.edu/explorations/2005/chiu.pdf", :img_path => 'pdf2.jpg')
+p2 = Paper.new(:optionNum => 2, :question_id => q11.id, :doctor_id => nd4.id, :url => "http://ue.ucdavis.edu/explorations/2005/chiu.pdf", :img_path => 'pdf1.jpg', :title => "Prescription Drug Marketing: What consumers need to know")
 p2.save(:validate => false)
 
 
