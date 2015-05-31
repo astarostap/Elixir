@@ -34,8 +34,38 @@ class QuestionsController < ApplicationController
 				num: (user.id % 12).to_s,
 				id: r.id
 			}
-			@comments[r.option_num - 1].push(response)
+			@comments[r.optionNum - 1].push(response)
 		end
+
+
+		allvidsone = []
+		allvidstwo = []
+		for v in Videos.all do
+			if v.question_id == @active_question.id then
+				if v.optionNum == 1 then
+					allvidsone << v
+				else
+					allvidstwo << v
+				end
+			end
+		end
+
+
+		@vids_left = []
+		if allvidsone.count > allvidstwo.count then
+			@vid_pairs= allvidstwo.zip(allvidsone)
+			@vids_left = allvidsone[allvidstwo.count, allvidsone.count]
+			@vids_opt_left = 1
+		else
+			@vid_pairs= allvidsone.zip(allvidstwo)
+			@vids_left = allvidstwo[allvidsone.count, allvidstwo.count]
+			@vids_opt_left = 2
+		end
+		puts "^^^^^^^^^^^^^^^^^"
+		puts @vids_left
+		puts @vids_opt_left
+		puts "^^^^^^^^^^^^^^^^^"
+
 	end
 
 	def index
@@ -59,6 +89,7 @@ class QuestionsController < ApplicationController
 		render nothing: true
 	end
 
+
 	def create_agree
 		@agree = Agree.new
 		@agree.response_id = params[:response_id]
@@ -67,6 +98,17 @@ class QuestionsController < ApplicationController
 		@agree.vote_value = params[:vote].to_i
 		@agree.save
 		render nothing: true
+	end
+
+	def create_video
+		p = params[:video]
+		@video = Videos.new
+		@video.title = p[:title]
+		@video.question_id = p[:question_id]
+		@video.optionNum = p[:optionNum]
+		@video.url = p[:url]
+		@video.save
+		redirect_to :controller => "questions", :id => p[:question_id].to_i, :action => "show"
 	end
 
 	def show_paper

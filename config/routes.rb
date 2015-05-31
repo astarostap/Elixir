@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   post 'questions/create_paper' => 'questions#create_paper'
   post 'questions/create_comment' => 'questions#create_comment'
   post 'questions/create_agree' => 'questions#create_agree'
+  post 'questions/create_video' => 'questions#create_video'
+
 
   post 'questions/option_vote' => 'questions#option_vote'
   get 'questions/query_votes' => 'questions#query_votes'

@@ -617,6 +617,7 @@ function toggleVisibility(button_id, div_id) {
     }
     var div = $("#" + div_id);
     var button = $("#" + button_id);
+    console.log(button_id + ", " + div_id)
     if(div.css("display") == "none") {
         div.slideDown("slow", null);
         var text = (button_id == "add_paper_button") ? "Hide Add Source" : "Hide " + button.text().slice(4);

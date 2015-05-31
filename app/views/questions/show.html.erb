@@ -495,34 +495,122 @@
 		</div>
 	</div>
 
-		<div id="videoSection">
-		<table class="table" style="width:100%;1px solid black;">
-			<tr>
-				<td>
-					<div class="panel panel-primary" style="height:100px;">
-                		<div class="panel-heading">
-                  			<h3 class="panel-title" id="panel-title" style="text-align:center;"> <%= @active_question.option1 %></h3>
-                		</div>
-                	</div>
-                	
-                	</div>
-              </div>
-				</td>
-				<td>
-					<div class="panel panel-primary" style="height:100px;">
-                		<div class="panel-heading">
-                  			<h3 class="panel-title" id="panel-title" style="text-align:center;"> <%= @active_question.option2 %></h3>
-                		</div>
-                		<div class="panel-body">
-                			hoi
-                		</div>
-                	</div>
+	<div class="centered section_button_div"> 
+            <button id="video_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'video_section');">Show Videos</button>
+    </div>
+	<div id="video_section" class="centered section_div">
+			<table class="centered">
+				<% for v_p in @vid_pairs %>
+					<tr>
+						<td>
+							<div class="panel panel-primary">
 
+								<div class="panel-heading">
+						                  <h3 class="panel-title" id="panel-title" > <%= v_p[0].title %></h3>
+						         </div>
+						  		<div class="panel-body">
+						    		 <iframe width="420" height="315"
+										src="<%= v_p[0].url %>">
+								</iframe> 
+						  		</div>
+							</div>
+						</td>
+						<td>
+							<div class="panel panel-primary">
 
-				</td>
-			</tr>
-		</table>
+								<div class="panel-heading">
+						                  <h3 class="panel-title" id="panel-title" > <%= v_p[1].title %></h3>
+						         </div>
+						  		<div class="panel-body">
+						    		 <iframe width="420" height="315"
+										src="<%= v_p[1].url %>">
+								</iframe> 
+						  		</div>
+							</div>
+						</td>
+					</tr>
+				<% end %>
+				<% for v in @vids_left %>
+					<tr>
+						<td>
+							<% if @vids_opt_left == 1 %>
+								<div class="panel panel-primary">
+
+									<div class="panel-heading">
+							                  <h3 class="panel-title" id="panel-title" > <%= v.title %></h3>
+							         </div>
+							  		<div class="panel-body">
+							    		 <iframe width="420" height="315"
+											src="<%= v.url %>">
+									</iframe> 
+							  		</div>
+								</div>
+							<% end %>
+						</td>
+						<td>
+							<% if @vids_opt_left == 2 %>
+								<div class="panel panel-primary">
+
+									<div class="panel-heading">
+							                  <h3 class="panel-title" id="panel-title" > <%= v.title %></h3>
+							         </div>
+							  		<div class="panel-body">
+							    		 <iframe width="420" height="315"
+											src="<%= v.url %>">
+									</iframe> 
+							  		</div>
+								</div>
+							<% end %>
+						</td>
+					</tr>
+
+				<% end %>
+			</table>
+
+			<div class="centered section_button_div"> 
+		            <button id="add_video_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'add_video_section');">Add Video</button>
+		        </div>
+		        </br>
+				<div id="add_video_section" style="width: 30%; margin: 0 auto" class="section_div" >
+					<div class="modal-body">
+						<div class="well">
+							<div>
+								<%= form_tag({controller: "questions", action: "create_video"}, method: "post", html: {role: "form"}) do%>
+									</br>
+									<label class="control-label"  for="text">What option number is this video for?</label>
+				        			</br>
+									<div class="btn-group">
+						            	<input type="radio" name="video[optionNum]" value="1"> 1 </input>		              
+						            	<input type="radio" name="video[optionNum]" value="2"> 2 </input>
+									</div>
+									<input type="hidden" name="video[question_id]" value=<%= @active_question.id %>></input>
+									</br></br>
+									<div class="control-group">
+							            <label class="control-label" for="text">Video Title</label>
+							            <div class="controls">
+							            	<input type="text" class="form-control" id="paper_url" name="video[title]"></input>
+							            </div>
+					          		</div>
+					          		</br>
+
+									<div class="control-group">
+							            <label class="control-label" for="text">Video URL (please use the 'embed' URL from youtube)</label>
+							            <div class="controls">
+							            	<input type="text" class="form-control" id="paper_url" name="video[url]"></input>
+							            </div>
+					          		</div>
+				          			</br>
+				          			<div class="control-group">
+										<!-- Button -->
+										<div class="controls">
+											<button type="submit" class="btn btn-primary">Submit Video</button>
+										</div>
+									</div>
+								<% end %>
+							</div>
+						</div>
+					</div>
+				</div>
 
 	</div>
-
 </div>
