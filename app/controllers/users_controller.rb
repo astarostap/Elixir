@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 			@new_user.specialty = f[:docSpecialty]
 			@new_user.school = f[:docSchool]
 			@new_user.knownFor = f[:knownFor]
+			@new_user.years_in_practice = f[:years_in_practice]
 			session[:is_doctor] = true
 		else
 			@new_user = NormalUser.new
