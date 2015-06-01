@@ -567,7 +567,12 @@
 				<% end %>
 			</table>
 
+
+
 			<div class="centered section_button_div"> 
+				<% if flash.notice %>
+  					<div><h3><%= flash.notice %></h3></div>
+				<%end%> 
 		            <button id="add_video_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'add_video_section');">Add Video</button>
 		        </div>
 		        </br>

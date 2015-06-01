@@ -107,8 +107,13 @@ class QuestionsController < ApplicationController
 		@video.question_id = p[:question_id]
 		@video.optionNum = p[:optionNum]
 		@video.url = p[:url]
-		@video.save
-		redirect_to :controller => "questions", :id => p[:question_id].to_i, :action => "show"
+		if not @video.save
+			flash.notice = "You didn't enter one of the fields!"
+			redirect_to :controller => "questions", :id => p[:question_id].to_i, :action => "show"
+		else
+			redirect_to :controller => "questions", :id => p[:question_id].to_i, :action => "show"
+		end
+		
 	end
 
 	def show_paper
@@ -159,8 +164,13 @@ class QuestionsController < ApplicationController
 		@new_question.option2 = q[:option2]
 		@new_question.photo_link = q[:photo_link]
 
-		@new_question.save
-		redirect_to :controller => "questions", :id => @new_question.id, :action => "show"
+		if not @new_question.save
+			flash.notice = "You didn't enter one of the fields!"
+			redirect_to :controller => "questions", :action => "new"
+		else
+			redirect_to :controller => "questions", :id => @new_question.id, :action => "show"
+		end
+
 	end
 
 	def option_vote
