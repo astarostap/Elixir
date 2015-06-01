@@ -203,6 +203,8 @@ v2 = Videos.new(:optionNum => 1, :question_id => q11.id, :doctor_id => nd6.id, :
 v2.save
 v3 = Videos.new(:optionNum => 1, :question_id => q11.id, :doctor_id => nd6.id, :url => "https://www.youtube.com/embed/3pu7sNIzSl0", :title => "Effect of Drug Ads ")
 v3.save
+v4 = Videos.new(:optionNum => 2, :question_id => q11.id, :doctor_id => nd6.id, :url => "https://www.youtube.com/embed/5uZAjwN2Eho", :title => "Are You Brainwashed By TV? Are Drug Ads Misleading? ")
+v4.save
 
 
 #John Question
@@ -400,3 +402,8 @@ p3 = Paper.new(:optionNum => 1, :question_id => q12.id, :doctor_id => nd5.id, :u
 p3.save(:validate => false)
 p4 = Paper.new(:optionNum => 2, :question_id => q12.id, :doctor_id => nd6.id, :url => "http://www.cdc.gov/pcd/issues/2014/pdf/13_0390.pdf", :img_path => 'pdf4.jpg', :title => "Defining Powerhouse Fruits and Vegetables: A Nutrient Density Approach")
 p4.save(:validate => false)
+
+v4 = Videos.new(:optionNum => 2, :question_id => q12.id, :doctor_id => nd7.id, :url => "https://www.youtube.com/embed/Dddfe1d9-t8", :title => "Health Benefits Of Top Super Foods On The Earth")
+v4.save
+v5 = Videos.new(:optionNum => 1, :question_id => q12.id, :doctor_id => nd8.id, :url => "https://www.youtube.com/embed/eY3Xk3EJgsA", :title => "Superfood Dangers")
+v5.save

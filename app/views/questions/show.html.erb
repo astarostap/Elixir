@@ -443,77 +443,86 @@
 		<div class="centered section_button_div"> 
 	            <button id="paper_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'paper_section');">Show Sources</button>
 	    </div>
-
+	    
 		<div id="paper_section" class="centered section_div" style="margin-top:20px;">
-			<% for p in @active_question.papers %>
-				<div class="panel panel-primary" id"pdfshower">
-					<div class="panel-heading">
-			    		<h3 class="panel-title">"<%= link_to(p.title,p.url, :target => '_blank') %>" by <%= Doctor.find(p.doctor_id).username %></h3>
-			  		</div>
-			  		<div class="panel-body">
-			  			<% if p.img_path %>
-			    			<%= link_to(image_tag(p.img_path, :style =>"position:relative;width:100%;height:100%px;"),p.url, :target => '_blank') %>
-			    		<% else %>
-			    			No picture, please click on the title!
-			    		<% end %>
-			 		</div>
-				</div>
-			<% end %>
-			<div>
-				<% if session[:is_doctor] %>
-					<div class="centered section_button_div"> 
-			            <button id="add_paper_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'add_paper_section');">Add Source</button>
-			        </div>
-			        </br>
-					<div id="add_paper_section" style="width: 30%; margin: 0 auto" class="section_div" >
-						<div class="modal-body">
-							<div class="well">
-								<div>
-									<%= form_tag({controller: "questions", action: "create_paper"}, method: "post", html: {role: "form"}) do%>
-										</br>
-										<label class="control-label"  for="text">What option number is this source for?</label>
-					        			</br>
-										<div class="btn-group">
-							            	<input type="radio" name="paper[optionNum]" value="1"> 1 </input>		              
-							            	<input type="radio" name="paper[optionNum]" value="1"> 2 </input>
-										</div>
-										<input type="hidden" name="paper[question_id]" value=<%= @active_question.id %>></input>
-										</br></br>
-										<div class="control-group">
-								            <label class="control-label" for="text">Source Title</label>
-								            <div class="controls">
-								            	<input type="text" class="form-control" id="paper_url" name="paper[title]"></input>
-								            </div>
-						          		</div>
-						          		</br>
-
-										<div class="control-group">
-								            <label class="control-label" for="text">Source URL</label>
-								            <div class="controls">
-								            	<input type="text" class="form-control" id="paper_url" name="paper[url]"></input>
-								            </div>
-						          		</div>
-					          			</br>
-					          			<div class="control-group">
-											<!-- Button -->
-											<div class="controls">
-												<button type="submit" class="btn btn-primary">Submit Source</button>
+			<% if @active_question.papers.count > 0 %>
+				<% for p in @active_question.papers %>
+					<div class="panel panel-primary" id"pdfshower">
+						<div class="panel-heading">
+				    		<h3 class="panel-title">"<%= link_to(p.title,p.url, :target => '_blank') %>" by <%= Doctor.find(p.doctor_id).username %></h3>
+				  		</div>
+				  		<div class="panel-body">
+				  			<% if p.img_path %>
+				    			<%= link_to(image_tag(p.img_path, :style =>"position:relative;width:100%;height:100%px;"),p.url, :target => '_blank') %>
+				    		<% else %>
+				    			No picture, please click on the title!
+				    		<% end %>
+				 		</div>
+					</div>
+				<% end %>
+				<div>
+					<% if session[:is_doctor] %>
+						<div class="centered section_button_div"> 
+				            <button id="add_paper_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'add_paper_section');">Add Source</button>
+				        </div>
+				        </br>
+						<div id="add_paper_section" style="width: 30%; margin: 0 auto" class="section_div" >
+							<div class="modal-body">
+								<div class="well">
+									<div>
+										<%= form_tag({controller: "questions", action: "create_paper"}, method: "post", html: {role: "form"}) do%>
+											</br>
+											<label class="control-label"  for="text">What option number is this source for?</label>
+						        			</br>
+											<div class="btn-group">
+								            	<input type="radio" name="paper[optionNum]" value="1"> 1 </input>		              
+								            	<input type="radio" name="paper[optionNum]" value="1"> 2 </input>
 											</div>
-										</div>
-									<% end %>
+											<input type="hidden" name="paper[question_id]" value=<%= @active_question.id %>></input>
+											</br></br>
+											<div class="control-group">
+									            <label class="control-label" for="text">Source Title</label>
+									            <div class="controls">
+									            	<input type="text" class="form-control" id="paper_url" name="paper[title]"></input>
+									            </div>
+							          		</div>
+							          		</br>
+
+											<div class="control-group">
+									            <label class="control-label" for="text">Source URL</label>
+									            <div class="controls">
+									            	<input type="text" class="form-control" id="paper_url" name="paper[url]"></input>
+									            </div>
+							          		</div>
+						          			</br>
+						          			<div class="control-group">
+												<!-- Button -->
+												<div class="controls">
+													<button type="submit" class="btn btn-primary">Submit Source</button>
+												</div>
+											</div>
+										<% end %>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				<% end %>
+					<% end %>
+				</div>
 			</div>
-		</div>
+			<% else %>
+				<div class="alert alert-success centered" role="alert" style="width:400px;">
+					<strong>
+						No sources yet, please add one for everyone to check out!
+					</strong>
+				</div>
+			<% end %>
 	</div>
 
 	<div class="centered section_button_div"> 
             <button id="video_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'video_section');">Show Videos</button>
     </div>
 	<div id="video_section" class="centered section_div">
+		<% if @vid_pairs.count > 0 %>
 			<table class="centered">
 				<% for v_p in @vid_pairs %>
 					<tr>
@@ -582,7 +591,12 @@
 				<% end %>
 			</table>
 
+
+
 			<div class="centered section_button_div"> 
+				<% if flash.notice %>
+  					<div><h3><%= flash.notice %></h3></div>
+				<%end%> 
 		            <button id="add_video_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'add_video_section');">Add Video</button>
 		        </div>
 		        </br>
@@ -626,6 +640,12 @@
 						</div>
 					</div>
 				</div>
-
+		<% else %>
+			<div class="alert alert-success centered" role="alert" style="width:400px;">
+				<strong>
+					No videos yet, please add one for everyone to check out!
+				</strong>
+			</div>
+		<% end %>
 	</div>
 </div>

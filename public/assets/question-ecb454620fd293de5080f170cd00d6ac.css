@@ -1,0 +1,356 @@
+/* ----------- */
+/* General CSS */
+/* ----------- */
+
+
+.float_left {
+	float:left;
+	;
+}
+
+.float_right {
+	float: right;
+	;
+}
+
+.centered {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.full_width {
+	width: 100%;
+	;
+}
+
+.inline {
+	display: inline-block;
+	;
+}
+
+.top {
+	vertical-align: top;
+}
+
+button {
+	border-radius: 5px;
+	background-color: #1995dc;
+	color: white;
+	border: none;
+}
+
+/* -------- */
+/* page CSS */
+/* -------- */
+
+#page_container {
+	position: relative;
+	margin-top: 70px;
+}
+
+#title {
+	text-align: center;
+	;
+}
+
+.section_button_div {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+/* -------------------- */
+/* Question/Options CSS */
+/* -------------------- */
+
+#question_text_div {
+	width: 300px;
+	;
+}
+
+#question_text {
+	text-align: center;
+	word-wrap: break-word;
+}
+
+#option_table {
+	border-collapse: separate;
+	border-spacing: 10px;
+}
+
+#vote_div {
+	width: 250px;
+	height: 100px;
+}
+
+.vote_line {
+	border-collapse: separate;
+	border-spacing: 3px;
+	width: 200px;
+}
+
+.vote_bar {
+	width: 150px;
+	height: 20px;
+	background: gray;
+	border-radius: 7px;
+}
+
+.left_percent {
+	min-width: 50px;
+	text-align: right;
+}
+
+.right_percent {
+	min-width:50px;
+	text-align: left;
+}
+
+.option_div {
+	width: 250px;
+	height: 250px;
+	text-align: center;
+	background: #1995dc;
+	border-radius: 10px;
+	cursor: pointer;
+	display: table;
+}
+
+.option_text_div {
+	display: table;
+	vertical-align: middle;
+	width: 70%;
+	height: 80%;
+	margin: 0 auto;
+}
+
+.option_text {
+	display: table-cell;
+	vertical-align: middle;
+	color: white;
+	text-align: center;
+	word-wrap: break-word;
+	font-size: 24px;
+}
+
+/* ------------ */
+/* Top Docs CSS */
+/* ------------ */
+
+.top_docs_table {
+	width:400px;
+	vertical-align: top;
+}
+
+.table_border {
+	border: 2px solid #1995dc;
+	border-top-right-radius: 12px;
+	border-top-left-radius: 12px;	
+}
+
+.top_docs_table th {
+	font-size: 16px;
+	height: 25px;
+	background-color: #1995dc;
+	color:white;
+}
+
+.top_docs_table td {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.pic_cell {
+	width:40px;
+}
+
+.doc_cell {
+	width: 75px;
+	text-align: left;
+}
+
+.specialty_cell {
+	width: 150px;
+}
+
+.rating_cell {
+	width: 50px;
+}
+
+.top_doc_gap {
+	width: 150px;
+}
+
+.right_corner {
+	width:25px;
+	border-top-right-radius: 10px;
+}
+
+.left_corner {
+	width: 25px;
+	border-top-left-radius: 10px;
+}
+
+.no_doc_div {
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+}
+
+/* --------- */
+/* graph CSS */
+/* --------- */
+
+/*graph and legend*/
+.chart_container { 
+	width:350px;
+	height:200px;
+  	position: relative;
+}
+
+/*only graph, NOT legend*/
+.graph_container {
+	display:block;
+	width:150px;
+	height:150px;
+}
+
+/*the canvas on which the graph is drawn*/
+.doughnut_canvas {
+	width:200px;
+	height:200px;
+}
+
+/*ul of legend*/
+.doughnut_legend {
+	list-style: none;
+  	position: absolute;
+  	top: 0;
+  	max-width: 120px;
+  	padding-left: 20px;
+}
+
+/*contains colored block and word*/
+.doughnut_legend li {
+  	display: block;
+  	position: relative;
+  	margin-bottom: 4px;
+  	border-radius: 5px;
+  	padding: 2px 8px 2px 28px;
+  	font-size: 14px;
+  	text-align: left;
+  	float: left;
+}
+
+/*only colored block*/
+.doughnut_legend li span {
+  	display: block;
+  	position: absolute;
+  	left: 0;
+  	top: 0;
+  	width: 20px;
+  	height: 20px;
+  	border-radius: 5px;
+}
+
+.legend_div {
+	width: 120px;
+	height: 200px;
+}
+
+.stat_gap {
+	width:150px;
+	;
+}
+
+.filter_td {
+	vertical-align: top;
+	width: 150px;
+}
+
+.dropdown {
+	width: 140px;
+	margin-bottom:20px;
+}
+
+.doctor_filter, .user_filter {
+	display: none;
+	;
+}
+
+/* -------------- */
+/* Discussion CSS */
+/* -------------- */
+
+/* div containing all "add comment" elements */
+#add_comment_div_1, #add_comment_div_2 {
+	display: none;
+	overflow:hidden;
+}
+
+/* div containing title and "add comment" button */
+.disc_header_div {
+	overflow:hidden;
+	;
+}
+
+/* gap between left and right column */
+.disc_gap {
+	width:100px;
+	display:inline-block;
+}
+
+/* the left and right columns containing everything for that option */
+.disc_col {
+	width: 300px;
+	display:inline-block;
+	vertical-align: top;
+}
+
+.add_comment {
+	margin-top: 7px;
+	;
+}
+/* --------------- */
+/* - Comment CSS - */
+/* --------------- */
+
+/* ul containing comments */
+.disc_ul {
+	list-style-type: none;
+	padding-left: 0px;
+	width:300px;
+}
+
+.disc_li {
+	border-bottom: 1px solid gray;
+	margin-top: 20px;
+}
+
+.profile_picture {
+	width: 50px;
+	height: 50px;
+	border-radius: 25px;
+	margin-right: 10px;
+}
+
+.comment_header {
+	overflow: hidden;
+	;
+}
+
+.comment_body {
+	text-align: left;
+	word-wrap: break-word;
+	margin-bottom: 10px;
+}
+
+.sentiment_button {
+	width:40px;
+	height: 33px;
+}
+
+.comment_rating {
+	margin-top: 5px;
+	vertical-align: top;
+}

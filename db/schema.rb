@@ -32,9 +32,9 @@ ActiveRecord::Schema.define(version: 20150531213415) do
 
   create_table "doctors", force: true do |t|
     t.integer  "docScore"
-    t.string   "specialty"
-    t.string   "school"
-    t.string   "knownFor"
+    t.text     "specialty"
+    t.text     "school"
+    t.text     "knownFor"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username"
@@ -73,10 +73,10 @@ ActiveRecord::Schema.define(version: 20150531213415) do
   end
 
   create_table "questions", force: true do |t|
-    t.string   "title"
-    t.string   "text"
-    t.string   "option1"
-    t.string   "option2"
+    t.text     "title"
+    t.text     "text"
+    t.text     "option1"
+    t.text     "option2"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_link"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 20150531213415) do
 
   create_table "responses", force: true do |t|
     t.integer  "agreesNum"
-    t.string   "text"
+    t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "doctor_id"
