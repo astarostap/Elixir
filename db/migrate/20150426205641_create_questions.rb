@@ -1,10 +1,10 @@
 class CreateQuestions < ActiveRecord::Migration
   def change
     create_table :questions do |t|
-      t.string :title
-      t.string :text
-      t.string :option1
-      t.string :option2
+      t.text :title
+      t.text :text
+      t.text :option1
+      t.text :option2
       t.timestamps
     end
   end
