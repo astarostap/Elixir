@@ -203,6 +203,8 @@ v2 = Videos.new(:optionNum => 1, :question_id => q11.id, :doctor_id => nd6.id, :
 v2.save
 v3 = Videos.new(:optionNum => 1, :question_id => q11.id, :doctor_id => nd6.id, :url => "https://www.youtube.com/embed/3pu7sNIzSl0", :title => "Effect of Drug Ads ")
 v3.save
+v4 = Videos.new(:optionNum => 2, :question_id => q11.id, :doctor_id => nd6.id, :url => "https://www.youtube.com/embed/5uZAjwN2Eho", :title => "Are You Brainwashed By TV? Are Drug Ads Misleading? ")
+v4.save
 
 
 #John Question
