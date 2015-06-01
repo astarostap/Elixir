@@ -78,7 +78,7 @@ button {
 }
 
 #vote_div {
-	width: 250px;
+	width: 300px;
 	height: 100px;
 }
 
@@ -194,6 +194,16 @@ button {
 	height: 50px;
 	line-height: 50px;
 	text-align: center;
+}
+
+.text_button {
+	background:none!important;
+    border:none; 
+    padding:0!important;
+    font: inherit;
+    color: black;
+    /*border is optional*/
+    cursor: pointer;
 }
 
 /* --------- */
@@ -322,8 +332,14 @@ button {
 }
 
 .disc_li {
-	border-bottom: 1px solid gray;
+	border: 3px solid white;
+	padding: 5px;
+    border-radius: 10px;
 	margin-top: 20px;
+}
+
+.comment_container {
+	border-bottom: 1px solid gray;
 }
 
 .profile_picture {
