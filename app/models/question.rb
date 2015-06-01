@@ -5,6 +5,12 @@ class Question < ActiveRecord::Base
 	has_many :papers
 	belongs_to :user
 
+	validates :title, presence: true
+	validates :text, presence: true
+	validates :option1, presence: true
+	validates :option2, presence: true
+	validates :photo_link, presence: true
+
 	def getQueries (substr)
 		matching_questions = []
 	
