@@ -7,9 +7,22 @@ class QuestionsController < ApplicationController
 		@active_question.doctor_votes.each do |v|
 			doctor = Doctor.find(v.doctor_id)
 			index = (v.optionNum == 1) ? 0 : 1;
+			doc_info = {
+				username: doctor.username,
+				specialty: doctor.specialty,
+				pic: doctor.profile_pic,
+				rating: doctor.docScore,
+				doc_id: doctor.id,
+				resp_id: []
+			}
+
 			for i in 0..@docs[index].length
-				if(i == @docs[index].length || doctor.docScore > @docs[index][i].docScore) 
-					@docs[index].push(doctor);
+				if(i == @docs[index].length)
+					@docs[index].push(doc_info)
+					break
+				elsif(doc_info[:rating] > @docs[index][i][:rating]) 
+					@docs[index].insert(i, doc_info);
+					break
 				end
 			end
 		end
@@ -18,6 +31,17 @@ class QuestionsController < ApplicationController
 		@active_question.responses.each do |r|
 			if(r.is_doctor)
 				user = Doctor.find(r.doctor_id)
+
+				[0, 1].each do |i|
+
+					@docs[i].each do |doc|
+						if(doc[:doc_id] == user.id)
+							doc[:resp_id] << r.id
+							break
+						end
+					end
+
+				end
 			else
 				user = NormalUser.find(r.user_id)
 			end
@@ -31,12 +55,13 @@ class QuestionsController < ApplicationController
 				username: user.username,
 				text: r.text,
 				agrees: agrees,
-				num: (user.id % 12).to_s,
+				pic: user.profile_pic,
 				id: r.id
 			}
 			@comments[r.optionNum - 1].push(response)
 		end
 
+		puts @docs[1]
 
 		allvidsone = []
 		allvidstwo = []
@@ -61,11 +86,6 @@ class QuestionsController < ApplicationController
 			@vids_left = allvidstwo[allvidsone.count, allvidstwo.count]
 			@vids_opt_left = 2
 		end
-		puts "^^^^^^^^^^^^^^^^^"
-		puts @vids_left
-		puts @vids_opt_left
-		puts "^^^^^^^^^^^^^^^^^"
-
 	end
 
 	def index
@@ -79,7 +99,7 @@ class QuestionsController < ApplicationController
 		@comment.is_doctor = session[:is_doctor]
 		@comment.question_id = session[:qid]
 		@comment.agreesNum = 0
-		@comment.option_num = params[:option]
+		@comment.optionNum = params[:option]
 		if session[:is_doctor]
 			@comment.doctor_id = session[:id]
 		else

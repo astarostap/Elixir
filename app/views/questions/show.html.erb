@@ -206,7 +206,9 @@
 	<!-- top docs -->
 	<div>
 		<div class="centered section_button_div">
-			<button id="doc_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'doc_section');" value="Top Doctors">Show Top Doctors</button>
+			<button id="doc_button" class="btn btn-primary" onclick="toggleVisibility(this.id, 'doc_section');" value="Top Doctors">
+				Show Top Doctors
+			</button>
 		</div>
 
 		<div id="doc_section" class="section_div">
@@ -229,10 +231,18 @@
 									<% doc = @docs[0][i] %>
 									<tr>
 										<td></td>
-										<td class="pic_cell"><%= image_tag("prof0.jpg", class:"profile_picture") %></td> 
-										<td class="doc_cell"><%= doc.username %></td>
-										<td><%= doc.specialty %></td>
-										<td><%= doc.docScore %></td>
+										<td class="pic_cell"><%= image_tag(doc[:pic], class:"profile_picture") %></td> 
+										<td class="doc_cell">
+											<% if doc[:resp_id].length > 0 %>
+												<button class="text_button" onclick="link_comment(<%= doc[:resp_id][0] %>)">
+													<strong><%= doc[:username] %></strong>
+												</button>
+											<% else %>
+												<%= doc[:username] %>
+											<% end %>
+										</td>
+										<td><%= doc[:specialty] %></td>
+										<td><%= doc[:rating] %></td>
 										<td></td>
 									</tr>
 								<% end %>
@@ -268,10 +278,18 @@
 									<% doc = @docs[1][i] %>
 									<tr>
 										<td></td>
-										<td class="pic_cell"><%= image_tag("prof0.jpg", class:"profile_picture") %></td> 
-										<td class="doc_cell"><%= doc.username %></td>
-										<td><%= doc.specialty %></td>
-										<td><%= doc.docScore %></td>
+										<td class="pic_cell"><%= image_tag(doc[:pic], class:"profile_picture") %></td> 
+										<td class="doc_cell">
+											<% if doc[:resp_id].length > 0 %>
+												<button class="text_button" onclick="link_comment(<%= doc[:resp_id][0] %>)">
+													<strong><%= doc[:username] %></strong>
+												</button>
+											<% else %>
+												<%= doc[:username] %>
+											<% end %>
+										</td>
+										<td><%= doc[:specialty] %></td>
+										<td><%= doc[:rating] %></td>
 										<td></td>
 									</tr>
 								<% end %>
@@ -324,14 +342,12 @@
 					<ul class="disc_ul" id="left_comment_list">
 						<% for i in 0..(@comments[0].length - 1) %>
 							<% response = @comments[0][i] %>
-							<li class="disc_li">
-
+							<li class="disc_li" id="response_<%= response[:id] %>">
 								<!-- header for each comment with profile/comment info -->
 								<div class="comment_header">
 									<!-- profile picture and username floating left -->
 									<div class="float_left" style="text-align: left;">
-										<% image_name = "prof" + response[:num] + ".jpg" %>
-										<%= image_tag(image_name, class:"profile_picture") %> 
+										<%= image_tag(response[:pic], class:"profile_picture") %> 
 										<p><strong><%= response[:username] %></strong></p>
 									</div>
 
@@ -384,37 +400,36 @@
 					<ul class="disc_ul" id="right_comment_list">
 						<% for i in 0..(@comments[1].length - 1) %>
 							<% response = @comments[1][i] %> 
-							<li class="disc_li">
+							<li class="disc_li" id="response_<%= response[:id] %>">
+								<div class="comment_container">
+									<!-- header for each comment with profile/comment info -->
+									<div class="comment_header">
+										<!-- profile picture and username floating left -->
+										<div class="float_left" style="text-align: left;">
+											<%= image_tag(response[:pic], class:"profile_picture") %> 
+											<p><strong><%= response[:username] %></strong></p>
+										</div>
 
-								<!-- header for each comment with profile/comment info -->
-								<div class="comment_header">
-									<!-- profile picture and username floating left -->
-									<div class="float_left" style="text-align: left;">
-										<% image_name = "prof" + response[:num] + ".jpg" %>
-										<%= image_tag(image_name, class:"profile_picture") %> 
-										<p><strong><%= response[:username] %></strong></p>
+										<!-- up and down vote buttons with current rating -->
+										<div class="float_right" style="text-align: right;">
+											<div class="inline comment_rating" id="agrees_<%= response[:id] %>">
+												(<%= response[:agrees] %>)
+											</div>
+											<div class="inline">
+												<input type="image" class="sentiment_button" 
+													   src="/assets/thumbs-up.jpg" onclick="count_vote(1,<%= response[:id] %>);">
+											</div>
+											<div class="inline">
+												<input type="image" class="sentiment_button"
+													   src="/assets/thumbs-down.jpg" onclick="count_vote(-1,<%= response[:id] %>);">
+											</div>
+										</div>
 									</div>
 
-									<!-- up and down vote buttons with current rating -->
-									<div class="float_right" style="text-align: right;">
-										<div class="inline comment_rating" id="agrees_<%= response[:id] %>">
-											(<%= response[:agrees] %>)
-										</div>
-										<div class="inline">
-											<input type="image" class="sentiment_button" 
-												   src="/assets/thumbs-up.jpg" onclick="count_vote(1,<%= response[:id] %>);">
-										</div>
-										<div class="inline">
-											<input type="image" class="sentiment_button"
-												   src="/assets/thumbs-down.jpg" onclick="count_vote(-1,<%= response[:id] %>);">
-										</div>
+									<div class="comment_body" id="comment_body_right">
+										<%= response[:text] %>
 									</div>
 								</div>
-
-								<div class="comment_body" id="comment_body_right">
-									<%= response[:text] %>
-								</div>
-								
 							</li>
 						<% end %>
 					</ul>

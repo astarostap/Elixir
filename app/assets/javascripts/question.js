@@ -197,7 +197,7 @@ function display_votes(name) {
     var widths = [percents[0] * width, percents[1] * width];
     if(widths[0] + widths[1] < width) widths[0] += 1;
 
-    if(!already_voted()) { //hide votes since they haven't voted
+    if(current_user == null || !already_voted()) { //hide votes since they haven't voted
         show_no_votes(name, width, height, "Vote First");
     } else if(percents[0] == -1) { //no votes
         show_no_votes(name, width, height, "No Votes");
@@ -611,22 +611,31 @@ function has_no_values(data) {
 }
 
 function toggleVisibility(button_id, div_id) {
-    if(!already_voted()) {
+    if(current_user == null || !already_voted()) {
         alert("You must vote first!");
         return;
     }
     var div = $("#" + div_id);
     var button = $("#" + button_id);
-    console.log(button_id + ", " + div_id)
     if(div.css("display") == "none") {
+
+        div.css("visibility", "default");
+        var height = div.height();
+        div.css("visibility", "none");
+
         div.slideDown("slow", null);
         var text = (button_id == "add_paper_button") ? "Hide Add Source" : "Hide " + button.text().slice(4);
         button.html(text);
+
+        var button_top = button.offset().top - 80;
+        $("html, body").animate({scrollTop:button_top}, 500);
+        
     } else {
         div.slideUp("fast", null);
         var text = (button_id == "add_paper_button") ? "Add Source" : "Show " + button.text().slice(4);
         button.html(text);
     }
+    
 }
 
 /* ------------------- */
@@ -634,7 +643,6 @@ function toggleVisibility(button_id, div_id) {
 /* ------------------- */
 function show_add_div(index) {
     $("#add_comment_div_" + index).slideDown("slow", null);
-    //window.scrollBy(0, 120); //make it based on bottom of div on page
 }
 
 function hide_add_div(index) {
@@ -718,15 +726,22 @@ function count_vote(val, resp_id) {
             alert("Your vote failed to save. Please try again.");
         },
         success: function() {
-            console.log("#agrees_" + resp_id);
             var count = $("#agrees_" + resp_id).text().trim();
             count = count.substring(1, count.length - 1);
-            console.log(count);
             var new_count = parseInt(count) + parseInt(val);
-            console.log(new_count);
             $("#agrees_" + resp_id).html("(" + new_count + ")");
         }
     });
+}
 
-
+function link_comment(comment_num) {
+    var comment = $("#response_" + comment_num);
+    var disc_div = $("#discussion_section");
+    disc_div.slideDown("fast", null);
+    var comment_top = comment.offset().top - 100;
+    $("html, body").animate({scrollTop:comment_top}, 500);
+    comment.css("border-color", "green");
+    setTimeout(function() {
+        comment.css("border-color", "white");
+    }, 1500);
 }
