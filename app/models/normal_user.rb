@@ -3,8 +3,8 @@ class NormalUser < ActiveRecord::Base
 	has_many :questions
 
 	attr_accessor :password
-  	#validates_formatting_of :email, :using => :email
-  	#validates_length_of :password, :in => 6..20, :on => :create
+  	# validates_formatting_of :email, :using => :email
+  	# validates_length_of :password, :in => 6..20, :on => :create
 
 
   	def password

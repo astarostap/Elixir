@@ -254,6 +254,7 @@ class QuestionsController < ApplicationController
 
 		type = session[:is_doctor] ? "doctor" : "user"
 		if(session[:id])
+			user = NormalUser.find(session[:id])
 			user_votes = "[ "
 			comment_votes = Agree.where(voter_id: session[:id])
 
@@ -265,7 +266,8 @@ class QuestionsController < ApplicationController
 			current_user = '{"id":' + session[:id].to_s + 
 						  ', "type":"' + type + 
 						 '", "votes":' + user_votes + 
-						 ', "username":"' + session[:username] + '"}'
+						 ', "pic":"' + user.profile_pic +
+						 '", "username":"' + session[:username] + '"}'
 			puts current_user
 		else
 			current_user = "null"

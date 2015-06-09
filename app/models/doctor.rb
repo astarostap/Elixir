@@ -4,10 +4,10 @@ class Doctor < ActiveRecord::Base
 	has_many :questions
 
 	attr_accessor :password
-  	#validates :username, :presence => true, :uniqueness => true, :length => { :in => 3..20 }
-  	#validates_formatting_of :email, :using => :email
-  	#validates :password, :confirmation => true #password_confirmation attr
-  	#validates_length_of :password, :in => 6..20, :on => :create
+  	# validates :username, :presence => true, :uniqueness => true, :length => { :in => 3..20 }
+  	# validates_formatting_of :email, :using => :email
+  	# validates :password, :confirmation => true #password_confirmation attr
+  	# validates_length_of :password, :in => 6..20, :on => :create
 
   	def password
 	end
