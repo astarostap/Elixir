@@ -343,34 +343,35 @@
 						<% for i in 0..(@comments[0].length - 1) %>
 							<% response = @comments[0][i] %>
 							<li class="disc_li" id="response_<%= response[:id] %>">
-								<!-- header for each comment with profile/comment info -->
-								<div class="comment_header">
-									<!-- profile picture and username floating left -->
-									<div class="float_left" style="text-align: left;">
-										<%= image_tag(response[:pic], class:"profile_picture") %> 
-										<p><strong><%= response[:username] %></strong></p>
+								<div class="comment_container">
+									<!-- header for each comment with profile/comment info -->
+									<div class="comment_header">
+										<!-- profile picture and username floating left -->
+										<div class="float_left" style="text-align: left;">
+											<%= image_tag(response[:pic], class:"profile_picture") %> 
+											<p><strong><%= response[:username] %></strong></p>
+										</div>
+
+										<!-- up and down vote buttons with current rating -->
+										<div class="float_right" style="text-align: right;">
+											<div class="inline comment_rating" id="agrees_<%= response[:id] %>">
+												(<%= response[:agrees] %>)
+											</div>
+											<div class="inline">
+												<input type="image" class="sentiment_button" 
+													   src="/assets/thumbs-up.jpg" onclick="count_vote(1,<%= response[:id] %>);">
+											</div>
+											<div class="inline">
+												<input type="image" class="sentiment_button" 
+													   src="/assets/thumbs-down.jpg" onclick="count_vote(-1,<%= response[:id] %>);">
+											</div>
+										</div>
 									</div>
 
-									<!-- up and down vote buttons with current rating -->
-									<div class="float_right" style="text-align: right;">
-										<div class="inline comment_rating" id="agrees_<%= response[:id] %>">
-											(<%= response[:agrees] %>)
-										</div>
-										<div class="inline">
-											<input type="image" class="sentiment_button" 
-												   src="/assets/thumbs-up.jpg" onclick="count_vote(1,<%= response[:id] %>);">
-										</div>
-										<div class="inline">
-											<input type="image" class="sentiment_button" 
-												   src="/assets/thumbs-down.jpg" onclick="count_vote(-1,<%= response[:id] %>);">
-										</div>
+									<div class="comment_body">
+										<%= response[:text] %>
 									</div>
 								</div>
-
-								<div class="comment_body">
-									<%= response[:text] %>
-								</div>
-								
 							</li>
 						<% end %>
 					</ul>
