@@ -1,6 +1,6 @@
 <div style = "position:relative;top:70px;">
 <% if flash.notice %>
-  <div><h3><%= flash.notice %></h3></div>
+  <div style="text-align: center; margin-left: auto; margin-right: auto;"><h3><%= flash.notice %></h3></div>
 <%end%> 
 
 <%= javascript_include_tag 'new_form'%>
@@ -60,12 +60,9 @@
           <label class="control-label"  for="text"> Birth Date </label>
         </br>
         <div class="control-group">
-            <div class="input-group input-append date" id="datePicker">
+            
+            <div class="controls" id="datePicker">
                 <input type="text" class="form-control" name="user[birth_date]" placeholder="mm/dd/yyyy"></input>
-                <span class="input-group-addon add-on">
-                  <span class="glyphicon glyphicon-calendar">
-                  </span>
-                </span>
           </div>
         </div>
         </br>
@@ -73,7 +70,7 @@
           <div class="control-group">
             <label class="control-label"  for="text">Password</label>
             <div class="controls">
-              <input type="password" class="form-control" id="user_password" name="user[password]">
+              <input type="password" class="form-control" id="user_password" name="user[password]"></input>
             </div>
           </div>
         </br>
@@ -106,19 +103,11 @@
                   <option value="Cardiology"  name="user[docSpecialty]">Cardiology</option>
                   <option value="Pulmonary Medicine"  name="user[docSpecialty]">Pulmonary Medicine</option>
                   <option value="Obstetrics/ Gynecology"  name="user[docSpecialty]">Obstetrics/ Gynecology</option>
+                  <option value="Other"  name="user[docSpecialty]">Other</option>
                 </select>
-                  <!-- <div class="controls">
-                      <input type="text" class="form-control" id="user_specialty" name="user[docSpecialty]">
-                  </div> -->
               </div>
               <div class="control-group" >
-                <label class="control-label"  for="text">KnownFor</label>
-                  <div class="controls">
-                    <input type="text" class="form-control" id="user_email" name="user[knownFor]">
-                  </div>
-              </div>
-              <div class="control-group" >
-                <label class="control-label"  for="text">How many years have you practices medicine?</label>
+                <label class="control-label"  for="text">Years in Practice</label>
                   <div class="controls">
                     <input type="text" class="form-control" id="user_email" name="user[years_in_practice]">
                   </div>
