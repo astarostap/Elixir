@@ -182,7 +182,14 @@ class QuestionsController < ApplicationController
 		@new_question.text = q[:text]
 		@new_question.option1 = q[:option1]
 		@new_question.option2 = q[:option2]
-		@new_question.photo_link = q[:photo_link]
+
+
+		@new_question.photo_link =  params[:picture].original_filename
+
+		@pic_file = params[:picture]
+		File.open(Rails.root.join('app/assets', 'images', params[:picture].original_filename), 'wb') do |f|
+			f.write(@pic_file.read)
+		end
 
 		if not @new_question.save
 			flash.notice = "You didn't enter one of the fields!"

@@ -20,7 +20,7 @@
 			</ul>
 			<div id="myTabContent" class="tab-content">
 				<div class="tab-pane active in" id="create">
-					<%= form_tag({controller: "users", action: "create"}, method: "post", html: {role: "form"}) do%>
+					<%= form_tag({controller: "users", action: "create"}, method: "post", html: {role: "form"},:multipart => true) do%>
         </br>
 					<div class="control-group">
                			<label class="control-label"  for="text">Username</label>
@@ -80,6 +80,10 @@
               <input type="password" class="form-control" id="user_password_confirmation" name="user[password_confirmation]">
             </div>
           </div>
+        </br>
+            <label class="control-label">Picture</label>
+            <%= file_field_tag "picture"%>
+          </br>
           <div class="control-group">
             <div class="checkbox">
               <label>

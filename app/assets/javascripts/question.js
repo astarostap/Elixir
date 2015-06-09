@@ -679,11 +679,11 @@ function add_comment(side) {
 }
 
 function generate_comment_html(comment) {
-    var pic = current_user["id"] % 12;
+    var pic = current_user["username"] + ".jpg"; 
     return '<li class="disc_li"> \
                 <div class="comment_header"> \
                     <div class="float_left" style="text-align: left;"> \
-                        <img alt="Prof' + pic + '" class="profile_picture" src="/assets/prof' + pic + '.jpg" /> \
+                        <img alt="'+ pic + '" class="profile_picture" src="/assets/' + pic +'" /> \
                         <p><strong>' + current_user.username + '</strong></p> \
                     </div> \
                     <div class="float_right" style="text-align: right;"> \
