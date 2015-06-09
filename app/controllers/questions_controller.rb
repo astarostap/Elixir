@@ -106,7 +106,8 @@ class QuestionsController < ApplicationController
 			@comment.user_id = session[:id]
 		end
 		@comment.save
-		render nothing: true
+
+		render json: @comment.id
 	end
 
 
