@@ -679,14 +679,21 @@ function add_comment(side) {
     });
 }
 
-function generate_comment_html(comment, response_id) {
-    var pic = current_user["username"] + ".jpg";
+
+function generate_comment_html(comment) {
+    var pic = current_user["username"] + ".jpg"; 
     return '<li class="disc_li"> \
-                <div class="comment_container"> \
-                    <div class="comment_header"> \
-                        <div class="float_left" style="text-align: left;"> \
-                            <img alt="' + pic + '" class="profile_picture" src="/assets/' + pic + '.jpg" /> \
-                            <p><strong>' + current_user.username + '</strong></p> \
+                <div class="comment_header"> \
+                    <div class="float_left" style="text-align: left;"> \
+                        <img alt="'+ pic + '" class="profile_picture" src="/assets/' + pic +'" /> \
+                        <p><strong>' + current_user.username + '</strong></p> \
+                    </div> \
+                    <div class="float_right" style="text-align: right;"> \
+                        <div class="inline comment_rating"> \
+                            (0) \
+                        </div> \
+                        <div class="inline"> \
+                            <input type="image" class="sentiment_button" src="/assets/thumbs-up.jpg" onclick="count_vote();"> \
                         </div> \
                         <div class="float_right" style="text-align: right;"> \
                             <div class="inline comment_rating" id="agrees_' + response_id + '"> \

@@ -17,7 +17,6 @@ class UsersController < ApplicationController
 				@new_user.school = f[:docSchool]
 				@new_user.years_in_practice = f[:years_in_practice]
 				session[:is_doctor] = true
-				@new_user.profile_pic = "prof" + Random.rand(0..11).to_s + ".jpg"
 			end
 		else
 			@new_user = NormalUser.new
@@ -28,6 +27,7 @@ class UsersController < ApplicationController
 		@new_user.username = f[:username]
 		@new_user.gender = f[:sex]
 		@new_user.location = f[:origin]
+		@new_user.profile_pic = f[:username] + ".jpg"
 
 		puts "************"
 		puts @new_user.inspect
@@ -38,6 +38,10 @@ class UsersController < ApplicationController
 			flash.notice = "Please fill out the form completely. Thank you."
 			redirect_to :controller => "users", :id => @user_id, :action => "new"
 		else
+			@pic_file = params[:picture]
+			File.open(Rails.root.join('app/assets', 'images', f[:username] + ".jpg"), 'wb') do |f|
+				f.write(@pic_file.read)
+			end
 			input_birthDay = f[:birth_date]
 			split_bday = input_birthDay.split('/')
 			@new_user.birth_date = DateTime.new(split_bday[2].to_i, split_bday[0].to_i, split_bday[1].to_i)
