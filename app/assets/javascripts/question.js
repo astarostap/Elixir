@@ -162,6 +162,7 @@ function get_votes() {
         if(this.readyState == 4) {
             if(this.status == 200) {
                 data = JSON.parse(obj.xhr.responseText);
+                console.log(data);
                 votes = data["votes"];
                 current_user = data["curr"];
                 display_all_votes();
@@ -585,7 +586,8 @@ function valid_location(entry, type) {
 }
 
 function valid_gender(entry, type) {
-    var gender = filter_options[type]["gender"];
+    var gender = filter_options[type]["user_gender_filter"];
+    console.log(gender);
     if(gender == null || entry["gender"] == gender) {
         return true;
     }
@@ -656,16 +658,10 @@ function add_comment(side) {
         alert("You must be signed in to comment.");
         return;
     }
-    var option = (side == "left") ? "1" : "2";
-    var comment = $("#" + side + "_add_ta").val();
-    $("#" + side + "_comment_list").append(generate_comment_html(comment));
-    $("#" + side + "_add_ta").val('');
-    hide_add_div(option)
 
-    data = {
-        'text': comment,
-        'option': option
-    };
+    var comment = $("#" + side + "_add_ta").val();
+    var option = (side == "left") ? "1" : "2";
+    var data = {'text': comment,'option': option};
 
     $.ajax({
         type: "POST",
@@ -674,32 +670,39 @@ function add_comment(side) {
         contentType: 'application/json', 
         error:  function(response) {
             alert("Your comment failed to save. Please try again.");
+        },
+        success: function(data) {
+            $("#" + side + "_comment_list").append(generate_comment_html(comment, data));
+            $("#" + side + "_add_ta").val('');
+            hide_add_div(option);
         }
     });
 }
 
-function generate_comment_html(comment) {
-    var pic = current_user["id"] % 12;
+function generate_comment_html(comment, response_id) {
+    var pic = current_user["username"] + ".jpg";
     return '<li class="disc_li"> \
-                <div class="comment_header"> \
-                    <div class="float_left" style="text-align: left;"> \
-                        <img alt="Prof' + pic + '" class="profile_picture" src="/assets/prof' + pic + '.jpg" /> \
-                        <p><strong>' + current_user.username + '</strong></p> \
+                <div class="comment_container"> \
+                    <div class="comment_header"> \
+                        <div class="float_left" style="text-align: left;"> \
+                            <img alt="' + pic + '" class="profile_picture" src="/assets/' + pic + '.jpg" /> \
+                            <p><strong>' + current_user.username + '</strong></p> \
+                        </div> \
+                        <div class="float_right" style="text-align: right;"> \
+                            <div class="inline comment_rating" id="agrees_' + response_id + '"> \
+                                (0) \
+                            </div> \
+                            <div class="inline"> \
+                                <input type="image" class="sentiment_button" src="/assets/thumbs-up.jpg" onclick="count_vote(1,' + response_id + ');"> \
+                            </div> \
+                            <div class="inline"> \
+                                <input type="image" class="sentiment_button" src="/assets/thumbs-down.jpg" onclick="count_vote(-1,' + response_id + ');"> \
+                            </div> \
+                        </div> \
                     </div> \
-                    <div class="float_right" style="text-align: right;"> \
-                        <div class="inline comment_rating"> \
-                            (0) \
-                        </div> \
-                        <div class="inline"> \
-                            <input type="image" class="sentiment_button" src="/assets/thumbs-up.jpg" onclick="count_vote();"> \
-                        </div> \
-                        <div class="inline"> \
-                            <input type="image" class="sentiment_button" src="/assets/thumbs-down.jpg" onclick="count_vote();"> \
-                        </div> \
+                    <div class="comment_body"> \
+                        ' + comment + ' \
                     </div> \
-                </div> \
-                <div class="comment_body"> \
-                    ' + comment + ' \
                 </div> \
             </li>';
 }
@@ -727,6 +730,7 @@ function count_vote(val, resp_id) {
             alert("Your vote failed to save. Please try again.");
         },
         success: function() {
+            current_user["votes"].push(resp_id);
             var count = $("#agrees_" + resp_id).text().trim();
             count = count.substring(1, count.length - 1);
             var new_count = parseInt(count) + parseInt(val);

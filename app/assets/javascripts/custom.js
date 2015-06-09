@@ -16,4 +16,6 @@ $(document).ready(function() {
       // itemsTablet: false,
       // itemsMobile : false
   });
+
+   $("#page_container").css("margin-top", $(".navbar").height() - 20);
 });
