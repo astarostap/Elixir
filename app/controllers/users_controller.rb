@@ -6,14 +6,19 @@ class UsersController < ApplicationController
   	def create
 		f = params[:user]
 
+		problems = false
 		if f[:is_doctor]
 			@new_user = Doctor.new
-			@new_user.docScore = 80
-			@new_user.specialty = f[:docSpecialty]
-			@new_user.school = f[:docSchool]
-			@new_user.knownFor = f[:knownFor]
-			@new_user.years_in_practice = f[:years_in_practice]
-			session[:is_doctor] = true
+			if f[:docSpecialty] == "" or f[:docSchool] == "" or f[:years_in_practice] == "" then
+				problems = true
+			else
+				@new_user.docScore = 80
+				@new_user.specialty = f[:docSpecialty]
+				@new_user.school = f[:docSchool]
+				@new_user.years_in_practice = f[:years_in_practice]
+				session[:is_doctor] = true
+				@new_user.profile_pic = "prof" + Random.rand(0..11).to_s + ".jpg"
+			end
 		else
 			@new_user = NormalUser.new
 			session[:is_doctor] = false
@@ -24,18 +29,18 @@ class UsersController < ApplicationController
 		@new_user.gender = f[:sex]
 		@new_user.location = f[:origin]
 
-		input_birthDay = f[:birth_date]
-		split_bday = input_birthDay.split('/')
-		@new_user.birth_date = DateTime.new(split_bday[2].to_i, split_bday[0].to_i, split_bday[1].to_i)
-
 		puts "************"
 		puts @new_user.inspect
 		puts "*************"
 
-		if f[:password] != f[:password_confirmation] or params[:password] == ""
-			flash.notice = "Passwords do not match. Please enter your password again."
+
+		if problems or f[:password] != f[:password_confirmation] or params[:password] == "" or f[:username] == "" or f[:origin] == "" or f[:sex] == "" or f[:birth_date] == "" or f[:password] == "" or f[:password_confirmation] == ""
+			flash.notice = "Please fill out the form completely. Thank you."
 			redirect_to :controller => "users", :id => @user_id, :action => "new"
 		else
+			input_birthDay = f[:birth_date]
+			split_bday = input_birthDay.split('/')
+			@new_user.birth_date = DateTime.new(split_bday[2].to_i, split_bday[0].to_i, split_bday[1].to_i)
 			@new_user.password=(f[:password])
 			if @new_user.save
 				session[:id] = @new_user.id
