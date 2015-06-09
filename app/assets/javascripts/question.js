@@ -91,6 +91,7 @@ function init_page() {
     hide_section_divs();
     init_option_buttons();
     init_dropdown_options();
+    $("#page_container").css("margin-top", $(".navbar").height() + 5);
     get_votes();
 }
 
